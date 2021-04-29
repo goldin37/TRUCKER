@@ -3,8 +3,8 @@
     pageEncoding="EUC-KR"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="DeliveryOrder.GeoCode"%>
-<%@page import="DeliveryOrder.Directions5"%>
+<%@page import="myUtil.GeoCode"%>
+<%@page import="myUtil.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
 	//order3에서 넘겨준 값 세션에 저장
@@ -14,12 +14,7 @@
 	String depart_time = (String)session.getAttribute("depart_time");
 	//운송거리, 시간, ETA 계산
 	Directions5 dir = new Directions5();
-//	dir.Direction((String)session.getAttribute("from_where")
-//			, (String)session.getAttribute("to_where")
-//			, (String)session.getAttribute("truck_type")
-//			, Integer.parseInt((String)session.getAttribute("cargo_weight"))
-//			, (String)session.getAttribute("cargo_help")
-//			, depart_time);
+	
 	dir.Direction(HanConv.toKor((String)session.getAttribute("from_where"))
 			, HanConv.toKor((String)session.getAttribute("to_where"))
 			, (String)session.getAttribute("truck_type")

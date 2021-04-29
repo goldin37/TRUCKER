@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="myUtil.HanConv"%>
-<%@page import = "DeliveryOrder.DeliveryOrder" %>
-<%@page import = "DeliveryOrder.DeliveryOrderDB" %>
+<%@page import = "myUtil.DeliveryOrder" %>
+<%@page import = "myUtil.DeliveryOrderDB" %>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 
 <%
-	//데이터베이스 입력
+//데이터베이스 입력
 	//세션 값 변수로 받아오기
 	String truck_type = (String)session.getAttribute("truck_type");
 	String cargo_type = (String)session.getAttribute("cargo_type");
@@ -26,7 +26,7 @@
 	String customer_name = HanConv.toKor((String)session.getAttribute("customer_name"));
 	String customer_telephone = (String)session.getAttribute("customer_telephone");
 	
-	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
+	myUtil.DeliveryOrderDB db = myUtil.DeliveryOrderDB.getInstance();
 	int result = db.createOrder(truck_type, cargo_type, cargo_weight, cargo_help, cargo_spec, from_where, from_spec, depart_time, to_where, to_spec, distance, time, ETA, recommend_cost, fix_cost, customer_name, customer_telephone);
 	//데이터베이스 입력 실패하면 실패 페이지
 	if(result == 0){
@@ -38,5 +38,4 @@
 		session.setAttribute("order_id", result);
 		response.sendRedirect("order_complete.jsp");
 	}
-	
 %>

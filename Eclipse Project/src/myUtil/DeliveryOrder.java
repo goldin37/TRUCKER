@@ -1,9 +1,9 @@
-package DeliveryOrder;
+package myUtil;
 
 import java.sql.Timestamp;
 
 public class DeliveryOrder {
-	//DELIVERY_ORDER 컬럼?��?�� ?���? �??�� ?��?��
+	//DELIVERY_ORDER 컬럼 내용들을 전부 멤버변수로
 	private int order_id;
 	private String truck_type;
 	private String from;
@@ -36,7 +36,7 @@ public class DeliveryOrder {
 	private int customer_evaluation;
 	private String customer_comment;
 	
-	//�??��?��?�� ???�� getter/setter
+	// getter/setter
 	public int getOrder_id() {
 		return order_id;
 	}

@@ -1,4 +1,4 @@
-package DeliveryOrder;
+package myUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
