@@ -4,11 +4,28 @@ KEY		svQaeTRI6EoOAufCfliJfjFQlKpoNcjl4ZY5UMX7
 geocode - 부산역 주소 받아오기
 geolocation 1000건 이하 무료
 
+1. 아래 URL 주소 웹브라우저에 복붙(GET)
 https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?X-NCP-APIGW-API-KEY-ID=tzchnboziv&X-NCP-APIGW-API-KEY=svQaeTRI6EoOAufCfliJfjFQlKpoNcjl4ZY5UMX7&query=%EB%B6%80%EC%82%B0%EC%8B%9C%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C%20206
+
+2. response 데이터를 JSON 형태로 받아옴
+
+3. 받아온 데이터를 라이브러리로 파싱해 필요한 부분을 추출해 사용.
+
+4. 공식문서 > 네이버클라우드플랫폼
+https://guide.ncloud-docs.com/docs/ko/naveropenapiv3-maps-geocoding-geocoding#
+
 
 Maps > directions5 - 경로찾기
 Directions5 건당 5원, 월 60,000건은 무료
+
+1. 아래 URL 주소 웹브라우저에 복붙(GET)
 https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?X-NCP-APIGW-API-KEY-ID=tzchnboziv&X-NCP-APIGW-API-KEY=svQaeTRI6EoOAufCfliJfjFQlKpoNcjl4ZY5UMX7&start=127,35&goal=127.002,35.002&cartype=4&fueltype=diesel&mileage=10
 start=127,35&goal=127.002,35.002&cartype=4&fueltype=diesel&mileage=10
 차례로 출발지, 도착지, 차량종류, 연료유종류, 연비
 
+2. response 데이터를 JSON 형태로 받아옴
+
+3. 받아온 데이터를 라이브러리로 파싱해 필요한 부분을 추출해 사용.
+
+4. 공식문서 > 네이버클라우드플랫폼
+https://guide.ncloud-docs.com/docs/naveropenapiv3-maps-direction-driving
