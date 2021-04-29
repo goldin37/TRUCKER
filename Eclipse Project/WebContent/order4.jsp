@@ -1,15 +1,36 @@
+<%@page import="myUtil.HanConv"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="myUtil.GeoCode"%>
+<%@page import="myUtil.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
 	//order3에서 넘겨준 값 세션에 저장
 	session.setAttribute("to_where", request.getParameter("to_where"));
 	session.setAttribute("to_spec", request.getParameter("to_spec"));
-	session.setAttribute("distance", request.getParameter("distance"));
-	session.setAttribute("time", request.getParameter("time"));
-	session.setAttribute("ETA", request.getParameter("ETA"));
-	session.setAttribute("recommend_cost", request.getParameter("recommend_cost"));
+	
+	String depart_time = (String)session.getAttribute("depart_time");
+	//운송거리, 시간, ETA 계산
+	Directions5 dir = new Directions5();
+//	dir.Direction((String)session.getAttribute("from_where")
+//			, (String)session.getAttribute("to_where")
+//			, (String)session.getAttribute("truck_type")
+//			, Integer.parseInt((String)session.getAttribute("cargo_weight"))
+//			, (String)session.getAttribute("cargo_help")
+//			, depart_time);
+	dir.Direction(HanConv.toKor((String)session.getAttribute("from_where"))
+			, HanConv.toKor((String)session.getAttribute("to_where"))
+			, (String)session.getAttribute("truck_type")
+			, Integer.parseInt((String)session.getAttribute("cargo_weight"))
+			, (String)session.getAttribute("cargo_help")
+			, depart_time);
 
+	//출발시각 변환
+	depart_time = depart_time.substring(0, 4) + "년 " + depart_time.substring(5,7) + "/" + depart_time.substring(8,10) + " " + depart_time.substring(11,13) + ":" + depart_time.substring(14,16);
+	
+	
 	//영문을 한글로 바꾸기
 	String truck_type = (String)session.getAttribute("truck_type");
 	if(truck_type.equals("damas")){
@@ -43,15 +64,9 @@
 	} else if(cargo_help.equals("to_door")){
 		cargo_help = "승하차 후 집/창고까지 이동";
 	}
-	String depart_time = (String)session.getAttribute("depart_time");
-	depart_time = depart_time.substring(0,4) + "년 " 
-	+ Integer.parseInt(depart_time.substring(5,7)) + "월 "
-	+ Integer.parseInt(depart_time.substring(8,10)) + "일 "
-	+ depart_time.substring(11,13) + "시 "
-	+ depart_time.substring(14,16) + "분";
 	
-	int intcost = Integer.parseInt((String)session.getAttribute("recommend_cost"));
-	String recommend_cost = intcost/1000 + ",000원 (부가가치세 포함)";
+//	int intcost = Integer.parseInt((String)session.getAttribute("recommend_cost"));
+//	String recommend_cost = intcost/1000 + ",000원 (부가가치세 포함)";
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -148,13 +163,13 @@ function order(){
     	<tr><td>출발 시각</td>
     	<td><%= depart_time %></td></tr>
     	<tr><td>운송 거리</td>
-    	<td><%= session.getAttribute("distance") %>km</td></tr>
+    	<td><%= dir.distance %>km</td></tr>
     	<tr><td>운송 시간</td>
-    	<td><%= HanConv.toKor((String)session.getAttribute("time")) %></td></tr>
+    	<td><%= dir.time %></td></tr>
     	<tr><td>도착 예정 시각</td>
-    	<td><%= session.getAttribute("ETA") %></td></tr>
+    	<td><%= dir.ETA %></td></tr>
     	<tr><td>운임</td>
-    	<td><h2><%= recommend_cost %></h2></td></tr>
+    	<td><h2><%= dir.recommend_cost %>원</h2></td></tr>
     	<tr><th colspan = "2">운송 주문</th></tr>
 
     	<form name = "form" method = "post" action = "payment.jsp">

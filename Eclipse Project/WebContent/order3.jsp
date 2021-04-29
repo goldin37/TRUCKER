@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="myUtil.GeoCode"%>
-<%@page import="myUtil.Directions5"%>
 <%
 	//order2에서 넘겨준 값 세션에 저장
 	session.setAttribute("from_where", request.getParameter("from_where"));
@@ -26,22 +23,12 @@ function fromCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 		document.form.to_spec.value = roadAddrPart2 + addrDetail;
 }
 
-function calculate(){
+function next(){
 	//주소를 입력안하면 경고
 	if(document.form.to_where.value == ""){
 		alert("주소를 검색 해주세요.")
 		return
 	}
-	//거리랑 시간 계산
-	document.form.distance.value = "123"
-	document.form.time.value = "2시간 10분"
-	document.form.ETA.value = "4/26 17:50"
-	document.form.recommend_cost.value = "150000"
-	document.form.next.hidden = false
-}
-
-function next(){
-	alert("next")
 	form.submit()
 }
 
@@ -75,28 +62,7 @@ function next(){
 					<input type="text"  name="to_where" size = "40" readonly>
 					<a onClick="toPopup();">주소 검색</a><br><br>
 					<input type="text" name="to_spec" size = "40">
-					<a onClick="calculate();">계산</a>
-				</td>
-			</tr>
-			<tr>
-				<td>예상 거리</td>
-				<td><input name = "distance" size = "5" readonly></td>
-			</tr>
-			<tr>
-				<td>예상 소요시간</td>
-				<td><input name = "time" size = "6" readonly></td>
-			</tr>
-			<tr>
-				<td>예상 도착시각</td>
-				<td><input name = "ETA" size = "8" readonly></td>
-			</tr>
-			<tr>
-				<td>추천 요금</td>
-				<td><input name = "recommend_cost" size = "8" readonly>(VAT 포함)</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type = "submit" name = "next" value = "다음" onClick = "next()" hidden>
+					<a onClick="next()">다음</a>
 				</td>
 			</tr>
 		</form>

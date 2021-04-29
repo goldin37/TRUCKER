@@ -51,9 +51,9 @@ public class GeoCode {
 			System.out.println("HTTP body : " + response.toString());
 			System.out.println("x : " + x);
 			System.out.println("y : " + y);
-			System.out.println("ì¢Œí‘œ ë°›ê¸° ?„±ê³?");
+			System.out.println("geocode success");
 		} catch(Exception e) {
-			System.out.println("ì¢Œí‘œ ë°›ê¸° ?‹¤?Œ¨");
+			System.out.println("geocode failed");
 		}
 	}
 }

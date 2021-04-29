@@ -90,18 +90,15 @@ public class Directions5 {
 			jsonObj = (JSONObject) jsonArray.get(0);
 			jsonObj = (JSONObject) jsonObj.get("summary");
 			
-			// ê°?? ¸?˜¤?Š” ?°?´?„°?Š” ê±°ë¦¬?‘ ?†¨ë¹?
-			distance = Integer.valueOf(jsonObj.get("distance").toString()) * 1609 / 1000;		//ë°?ë¦? ë§ˆì¼ ?‹¨?œ„ë¡? ê³„ì‚°?˜?Š” ?“¯, 1.609 ê³±í•˜ë©? ? ?‹¹?ˆ ?‚˜?˜¬ ?“¯
+			distance = Integer.valueOf(jsonObj.get("distance").toString()) * 1609 / 1000 / 1000; 
+
 			toll_cost = Integer.valueOf(jsonObj.get("tollFare").toString());
-			// ê°? ë³??ˆ˜ ê³„ì‚°
-			// ?†?„
+			
 			speed = distance * 1.5;
 			if(speed > 80) speed = 80;
-			//?‹œê°?
-			time = (int)( distance / 1000 / speed + 1 ) * 60 * 60; // ?‹œê°? = ê±°ë¦¬ / ?†?„ + 1?‹œê°?, ?‹¨?œ„?Š” ì´?
-			//?„ì°©ì˜ˆ? •?¼?‹œ
+
+			time = (int)( distance / speed + 1 ) * 60 * 60;
 			ETA = LocalDateTime.parse(depart_time).plusSeconds(time).toString();
-			//?—°ë¹?, ?—°ë£Œë‹¨ê°?, ?œ ì§??‹¨ê°?
 			if(truck_type.equals("damas")) {
 				public_fuel_rate = 8.8;
 				fuel_rate = public_fuel_rate * 865 / ( 865 + cargo_weight);
@@ -177,10 +174,10 @@ public class Directions5 {
 			System.out.println("ë¶?ê°??„¸ : " + vat);
 			System.out.println("ì¶”ì²œ ?š´?„ : " + recommend_cost);
 			
-			System.out.println("ê±°ë¦¬/?š”ê¸ˆê³„?‚° ?„±ê³?");
+			System.out.println("direction success");
 		}
 		catch(Exception e){
-			System.out.println("ê±°ë¦¬/?š”ê¸ˆê³„?‚° ?‹¤?Œ¨");
+			System.out.println("direction failed");
 		}
 	}
 }
