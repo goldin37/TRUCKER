@@ -120,9 +120,9 @@ public class Directions5 {
 				maintenance_rate = 5000000 / 70000;
 			}
 
-			fuel_cost = distance / 1000 * fuel_cost_rate / fuel_rate; 
+			fuel_cost = distance * fuel_cost_rate / fuel_rate; 
 
-			maintenance_cost = distance / 1000 * maintenance_rate;
+			maintenance_cost = distance * maintenance_rate;
 
 			if(cargo_help.equals("drive_only")){
 				help_cost = 0;
