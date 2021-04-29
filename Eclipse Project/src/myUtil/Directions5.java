@@ -51,16 +51,16 @@ public class Directions5 {
 		System.out.println(to.x);
 		System.out.println(to.y);
 		
-		//거리 계산?��?��?�� 받기
+		//거리 계산
 		try {
-			//URL?��?�� 주소 ?��?��, 주소?�� UTF-8�? ?��코딩
+			//URL로 주소 넘겨주기
 			URL url = new URL("https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?X-NCP-APIGW-API-KEY-ID=tzchnboziv&X-NCP-APIGW-API-KEY=svQaeTRI6EoOAufCfliJfjFQlKpoNcjl4ZY5UMX7&start=" 
 			+ from.x + "," + from.y + "&goal=" + to.x + "," + from.y + "&cartype=4");
 			
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
 			
-			//조회?�� ?��?��?���? response�? 받기
+			//response 코드 받기
 			int responseCode = con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -71,7 +71,7 @@ public class Directions5 {
 			}
 			in.close();
 			
-			//JSON ?��?��?�� ?��?��
+			//JSON 데이터 파싱하기
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObj = (JSONObject) parser.parse(response.toString());
 			System.out.println(jsonObj.toString());
@@ -119,11 +119,11 @@ public class Directions5 {
 				fuel_cost_rate = 1300;
 				maintenance_rate = 5000000 / 70000;
 			}
-			//?��료비
+
 			fuel_cost = distance / 1000 * fuel_cost_rate / fuel_rate; 
-			//?���?�?
+
 			maintenance_cost = distance / 1000 * maintenance_rate;
-			//?��?���? ?��??
+
 			if(cargo_help.equals("drive_only")){
 				help_cost = 0;
 			}
@@ -133,29 +133,28 @@ public class Directions5 {
 			if(cargo_help.equals("to_door")){
 				help_cost = 30000;
 			}
-			//?��건비
+
 			labor_rate = 10000;
 			labor_cost = time * labor_rate / 60 / 60 + help_cost;
 
-			//?��?���?, �?�??�� �? ?���?
 			sub_total = toll_cost + fuel_cost + maintenance_cost + labor_cost;
 			commission = sub_total * 0.08;
 			sub_total += commission;
 			vat = sub_total * 0.1;
 			recommend_cost = (int)(sub_total + vat)/1000*1000;
 			System.out.println("차량 종류 : " + truck_type);
-			System.out.println("?���? 무게 : " + cargo_weight);
-			System.out.println("?��?���? ?��?? : " + cargo_help);
+			System.out.println("화물 무게 : " + cargo_weight);
+			System.out.println("화물 도움 : " + cargo_help);
 			System.out.println("거리 : " + distance);
-			System.out.println("?���? ?��?�� : " + speed);
-			System.out.println("?��?�� ?���? : " + time);
-			System.out.println("?���? ?��?�� : " + ETA);
-			System.out.println("공인?���? : " + public_fuel_rate);
-			System.out.println("?���? : " + fuel_rate);
-			System.out.println("?��료단�? : " + fuel_cost_rate);
-			System.out.println("거리?�� ?���?�? : " + maintenance_rate);
-			System.out.println("?��?���? ?��건비 : " + help_cost);
-			System.out.println("?��간당 ?��건비 : " + labor_rate);
+			System.out.println("속도 : " + speed);
+			System.out.println("시간 : " + time);
+			System.out.println("도착 예정시간 : " + ETA);
+			System.out.println("공인연비 : " + public_fuel_rate);
+			System.out.println("연비 : " + fuel_rate);
+			System.out.println("연료 단가 : " + fuel_cost_rate);
+			System.out.println("유지비 비율 : " + maintenance_rate);
+			System.out.println("도움 인건비 : " + help_cost);
+			System.out.println("시간당 인건비 : " + labor_rate);
 			System.out.println("?���? : " + toll_cost);
 			System.out.println("?��료비 : " + fuel_cost);
 			System.out.println("?���?�? : " + maintenance_cost);
