@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="euc-kr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel = "stylesheet" type = "text/css" href = "css/trucker_join.css">
+    <script type="text/javascript" src="trucker.js" charset="utf-8"></script>
+</head>
+<body>
+    <header>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <h2>믿을 수 있는 화물 중개 플랫폼</h2>
+        <h1>트럭커(TRUCKER)</h1>
+    </header>
+      <nav>
+          <table>
+            <tr>
+                <td><a href = "#">화물접수</a></td>
+                <td><a href = "#">배송조회</a></td>
+                <td><a href = "#">고객센터</a></td>
+                <td><a href = "#">회사소개</a></td>
+            </tr>
+        </table>
+      </nav>
+      <section>
+          <h1>회원가입</h1>
+          <p> 정보를 전부 입력해주세요.</p>
+          <table>
+              <form name="form" action="join_ok.jsp" method="post">
+                <tr>
+                    <td>아이디 : </td>
+                    <td><input type="text" size="12" name="driver_id"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호 : </td>
+                    <td><input type="text" size="12" name="driver_password"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호 확인 : </td>
+                    <td><input type="text" size="12" name="driver_password_check" ></td>
+                </tr>
+                <tr>
+                    <td>이름 : </td>
+                    <td><input type="text" size="12" name= "driver_name"></td>
+                </tr>
+                <tr>
+                    <td>주민등록번호 : </td>
+                    <td>
+                    <input type="text" size="40" maxlength="13" name = driver_jumin> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>전화번호 : </td>
+                    <td>
+                    <input type="text" name="driver_phone_number" size="40"> 
+                </td>
+                </tr>
+                <tr>
+                    <td>주소 : </td>
+                    <td><input type="text" size="40" name= "driver_address"></td>
+                </tr>
+                <tr>
+                    <td>이메일 : </td>
+                    <td>
+                    <input type="text" size="40" name= "driver_email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>주 활동지역 : </td>
+                    <td>
+                        <select name= "driver_position">
+                            <option value="전국">전국</option>
+                            <option value="서울">서울</option>
+                            <option value="경기">경기</option>
+                            <option value="강원">강원</option>
+                            <option value="충청">충청</option>
+                            <option value="전라">전라</option>
+                            <option value="경북">경북</option>
+                            <option value="경남">경남</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>차량종류 : </td>
+                    <td>
+                    <label><input type="radio" name="truck_type" value="damas">다마스</label>
+                    <label><input type="radio" name="truck_type" value="labo">라보</label>
+                    <label><input type="radio" name="truck_type" value="1ton">1톤</label>
+                    <label><input type="radio" name="truck_type" value="1.4ton" checked="checked">1.4톤</label>
+                    <label><input type="radio" name="truck_type" value="2.5ton">2.5톤</label>
+                </td>
+                </tr>
+                <tr>
+                    <td>차량번호 : </td>
+                    <td><input type="text" size="20" name ="truck_number"></td>
+                </tr>
+                <tr>
+                    <td>면허 사진 : </td>
+                    <td> 
+                        <sub>면허사진을 추가해주세요</sub>
+                        <input  type = 'file' accept=".png, .jpg, .jpeg"  name= "driver_picture">
+                </td>
+                </tr> 
+                </tr>
+                <tr>
+                    <td>면허번호 : </td>
+                    <td>
+                        <input type="text" size="40" name="driver_license"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="회원가입" class="join" onclick="join_check_ok()"></td>
+                </tr>
+              </form>
+          </table>
+      </section>
+
+
+
+      <footer>
+        (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
+        통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 
+        전화번호 : 1588-3333 | 팩스 : 070-1234-1234 | 대표메일 : trucker@naver.com <br>
+        화물운송약관 | 개인정보 처리방침<br>
+        COPYRIGHT(C) TRUCKER LTD. ALL RIGHT RESERVED.
+    </footer>
+</body>
+</html>
