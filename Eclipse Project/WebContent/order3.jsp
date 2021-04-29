@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="myUtil.GeoCode"%>
+<%@page import="myUtil.Directions5"%>
 <%
 	//order2에서 넘겨준 값 세션에 저장
 	session.setAttribute("from_where", request.getParameter("from_where"));
