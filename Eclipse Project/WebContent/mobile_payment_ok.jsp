@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="myUtil.HanConv"%>
-<%@page import = "myUtil.DeliveryOrder" %>
-<%@page import = "myUtil.DeliveryOrderDB" %>
+<%@page import = "DeliveryOrder.DeliveryOrder" %>
+<%@page import = "DeliveryOrder.DeliveryOrderDB" %>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 
 <%

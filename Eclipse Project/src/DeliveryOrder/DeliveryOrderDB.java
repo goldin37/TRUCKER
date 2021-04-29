@@ -1,4 +1,4 @@
-package myUtil;
+package DeliveryOrder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,12 +15,12 @@ import javax.sql.DataSource;
 public class DeliveryOrderDB {
 	private static DeliveryOrderDB instance = new DeliveryOrderDB();
 
-	//ê°ì²´ ?ƒ?„±
+	//ê°ì²´ ?ï¿½ï¿½?ï¿½ï¿½
 	public static DeliveryOrderDB getInstance() {
 		return instance;
 	}
 	
-	//DB ?—°ê²?
+	//DB ?ï¿½ï¿½ï¿½?
 	public Connection getConnection() throws Exception{
 		Context ctx=new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
@@ -28,7 +28,7 @@ public class DeliveryOrderDB {
 	}
 	
 	public int createOrder(String truck_type, String cargo_type, String cargo_weight, String cargo_help, String cargo_spec, String from_where, String from_spec, String depart_time, String to_where, String to_spec, String distance, String time, String ETA, String recommend_cost, String fix_cost, String customer_name, String customer_telephone) throws Exception{
-		int re = 0; //order_idê°?
+		int re = 0; //order_idï¿½?
 
 		Connection con = null;
 		Statement stmt = null;
@@ -52,17 +52,17 @@ public class DeliveryOrderDB {
 				create_order_id = 1;
 			}
 			
-			//? ‘?† ?•´? œ
+			//?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½
 			rs.close();
 			stmt.close();
 			con.close();
 			
-			//? ‘?†¡ ?„±ê³? ë©”ì‹œì§?
-			System.out.println("ë§ˆì?ë§? order_id : " + max_order_id);
-			System.out.println("?ƒˆ?„± order_id : " + create_order_id);
-			System.out.println("DB ì¡°íšŒ ?„±ê³?");
+			//?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? ë©”ì‹œï¿½?
+			System.out.println("ë§ˆï¿½?ï¿½? order_id : " + max_order_id);
+			System.out.println("?ï¿½ï¿½?ï¿½ï¿½ order_id : " + create_order_id);
+			System.out.println("DB ì¡°íšŒ ?ï¿½ï¿½ï¿½?");
 		} catch(Exception e) {
-			System.out.println("DB ì¡°íšŒ ?‹¤?Œ¨");
+			System.out.println("DB ì¡°íšŒ ?ï¿½ï¿½?ï¿½ï¿½");
 			e.printStackTrace();
 		}
 		//ì£¼ë¬¸ insert
@@ -93,20 +93,20 @@ public class DeliveryOrderDB {
 			pstmt.setTimestamp(19, Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.executeUpdate();
 			
-			//? ‘?† ì¢…ë£Œ
+			//?ï¿½ï¿½?ï¿½ï¿½ ì¢…ë£Œ
 			rs.close();
 			pstmt.close();
 			con.close();
 
-			//?„±ê³? ë©”ì‹œì§?
-			System.out.println("ì£¼ë¬¸ ?ƒ?„± ?„±ê³?");
+			//?ï¿½ï¿½ï¿½? ë©”ì‹œï¿½?
+			System.out.println("ì£¼ë¬¸ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?");
 			re = create_order_id;
 		} catch(Exception e){
-			System.out.println("ì£¼ë¬¸ ?ƒ?„± ?‹¤?Œ¨");
+			System.out.println("ì£¼ë¬¸ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½");
 			e.printStackTrace();
 		}
 		
-		//?ƒ?„±?•œ order_id ë¦¬í„´
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ order_id ë¦¬í„´
 		return re;
 	}
 

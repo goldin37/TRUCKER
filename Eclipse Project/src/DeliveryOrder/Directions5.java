@@ -1,4 +1,4 @@
-package myUtil;
+package DeliveryOrder;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -60,7 +60,7 @@ public class Directions5 {
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
 			
-			//response 코드 받기
+			//response 데이터 받기
 			int responseCode = con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -93,7 +93,7 @@ public class Directions5 {
 				public_fuel_rate = 8.8;
 				fuel_rate = public_fuel_rate * 865 / ( 865 + cargo_weight);
 				fuel_cost_rate = 950;
-				maintenance_rate = 2000000 / 30000;	//?�� ?���?�? 200만원 / 5만키�?
+				maintenance_rate = 2000000 / 30000;	//연간 200만원, 3만 키로
 			}
 			if(truck_type.equals("labo")) {
 				public_fuel_rate = 8.6;
@@ -155,13 +155,13 @@ public class Directions5 {
 			System.out.println("유지비 비율 : " + maintenance_rate);
 			System.out.println("도움 인건비 : " + help_cost);
 			System.out.println("시간당 인건비 : " + labor_rate);
-			System.out.println("?���? : " + toll_cost);
-			System.out.println("?��료비 : " + fuel_cost);
-			System.out.println("?���?�? : " + maintenance_cost);
-			System.out.println("?��건비 : " + labor_cost);
-			System.out.println("?��?���? : " + commission);
-			System.out.println("�?�??�� : " + vat);
-			System.out.println("추천 ?��?�� : " + recommend_cost);
+			System.out.println("톨비 : " + toll_cost);
+			System.out.println("연료비 : " + fuel_cost);
+			System.out.println("유지비 : " + maintenance_cost);
+			System.out.println("인건비 : " + labor_cost);
+			System.out.println("수수료 : " + commission);
+			System.out.println("부가세 : " + vat);
+			System.out.println("추천운임 : " + recommend_cost);
 			
 			System.out.println("direction success");
 		}

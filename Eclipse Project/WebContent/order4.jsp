@@ -3,8 +3,8 @@
     pageEncoding="EUC-KR"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="myUtil.GeoCode"%>
-<%@page import="myUtil.Directions5"%>
+<%@page import="DeliveryOrder.GeoCode"%>
+<%@page import="DeliveryOrder.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
 	//order3에서 넘겨준 값 세션에 저장

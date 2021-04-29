@@ -1,9 +1,9 @@
-package myUtil;
+package DeliveryOrder;
 
 import java.sql.Timestamp;
 
 public class DeliveryOrder {
-	//DELIVERY_ORDER ì»¬ëŸ¼?“¤?„ ? „ë¶? ë³??ˆ˜ ?„ ?–¸
+	//DELIVERY_ORDER ì»¬ëŸ¼?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½
 	private int order_id;
 	private String truck_type;
 	private String from;
@@ -36,7 +36,7 @@ public class DeliveryOrder {
 	private int customer_evaluation;
 	private String customer_comment;
 	
-	//ë³??ˆ˜?“¤?— ???•œ getter/setter
+	//ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ???ï¿½ï¿½ getter/setter
 	public int getOrder_id() {
 		return order_id;
 	}

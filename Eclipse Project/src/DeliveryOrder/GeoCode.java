@@ -1,4 +1,4 @@
-package myUtil;
+package DeliveryOrder;
 
 import java.io.BufferedReader;
 
@@ -12,21 +12,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-// ?„ë¡œëª… ì£¼ì†Œë¡? ?œ„ì¹˜ì¢Œ?‘œ(ê²½ë„, ?œ„?„) ?”°?˜¤?Š” ?´?˜?Š¤
+//ë„ë¡œëª… ì£¼ì†Œë¡œ ê²½ìœ„ë„(x,y) ë°›ì•„ì˜¤ëŠ” í´ë˜ìŠ¤
 public class GeoCode {
 	public double x;
 	public double y;
 
 	public void getGPS(String address){
 		try {
-			//URL?´?‘ ì£¼ì†Œ ?…? ¥, ì£¼ì†Œ?Š” UTF-8ë¡? ?¸ì½”ë”©
+			//URLë¡œ ë„ë¡œëª… ì£¼ì†Œë¥¼ GET ë³´ë‚´ê¸°, UTF-8 í˜•ì‹ìœ¼ë¡œ í•´ì•¼ í•œê¸€ ë°›ìŒ
 			URL url = new URL("https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?X-NCP-APIGW-API-KEY-ID=tzchnboziv&X-NCP-APIGW-API-KEY=svQaeTRI6EoOAufCfliJfjFQlKpoNcjl4ZY5UMX7&query=" 
 			+ URLEncoder.encode(address, "UTF-8"));
 			
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
 			
-			//ì¡°íšŒ?•œ ?°?´?„°ë¥? responseë¡? ë°›ê¸°
+			//ì¡°íšŒ  ë°ì´í„°ë¥¼ response ë¬¸ìì—´ë¡œ ë°›ê¸°
 			int responseCode = con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -37,8 +37,8 @@ public class GeoCode {
 			}
 			in.close();
 			
-			//JSON ?°?´?„° ?ŒŒ?‹±
-			//addresses ì²«ë²ˆì§?(0) ë°°ì—´?—?„œ x?‘ yë¡? ê°’ì„ ë½‘ì•„?‚¸?‹¤.
+			//JSON ë°ì´í„° íŒŒì‹±
+			//addresses ì²«ë²ˆì§¸(0) ë°°ì—´ì—ì„œ ìœ„ì¹˜ ì¢Œí‘œ ë½‘ì•„ë‚´ê¸°
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObj = (JSONObject) parser.parse(response.toString());
 			JSONArray jsonArray = (JSONArray) jsonObj.get("addresses");
@@ -47,7 +47,7 @@ public class GeoCode {
 			y = Double.valueOf((String) jsonObj.get("y"));
 			
 			//ê²°ê³¼ ì¶œë ¥
-			System.out.println("HTTP ?‘?‹µ ì½”ë“œ ; " + responseCode);
+			System.out.println("HTTP ì‘ë‹µ ì½”ë“œ ; " + responseCode);
 			System.out.println("HTTP body : " + response.toString());
 			System.out.println("x : " + x);
 			System.out.println("y : " + y);
