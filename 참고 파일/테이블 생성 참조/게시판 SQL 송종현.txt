@@ -1,0 +1,29 @@
+create table Notice_Board
+(   notice_number number(5),
+    notice_title varchar2(100),
+    notice_content varchar2(1000),
+    notice_date date,
+    notice_hit number(5),
+    primary key (notice_number)
+    );
+
+create table FAQ_Board
+(   faq_number number(5),
+    faq_title varchar2(100),
+    faq_content varchar2(1000),
+    primary key (faq_number)
+    );
+
+create table inquiry_board 
+ (   inquiry_number number(5), 
+	inquiry_name varchar2(60 byte), 
+	inquiry_title varchar2(100 byte), 
+	inquiry_content varchar2(1000 byte), 
+	inquiry_pwd varchar2(15 byte), 
+	inquiry_date date, 
+	inquiry_hit number(5), 
+	inquiry_ref number(5), 
+	inquiry_step number(5), 
+	inquiry_level number(5), 
+	primary key (inquiry_number)
+     );
