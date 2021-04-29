@@ -4,17 +4,18 @@
 설치
 ==================================================================
 
-오라클 데이터베이스 테이블 생성
-cmd > sqlplus scott/tiger > @입력, 긁어오기 > create_table.sql
+1. 오라클 데이터베이스 테이블 생성
+cmd > sqlplus scott/tiger > @입력, 긁어오기 > $$$$create_table.sql
 
-이클립스 임포트
+2. 이클립스 임포트
 File > Operon Project from File System > Directory > TRUCKER 폴더
 
-서버 추가
-Servers 탭 > 링크 클릭 > 프로젝트 Add > Finish
-Servers 탭 > 서버 더블클릭 > 포트번호 변경
+3. 서버 추가
+서버 추가 : Servers 탭 > 링크 클릭 > 프로젝트 Add > Finish
+포트 설정 : Servers 탭 > 서버 더블클릭 > 포트번호 변경
+DB 연결 : Context 태그 안에 추가 <Resource name="jdbc/oracle" auth="Container" type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:xe"    username="scott" password="tiger" maxTotal="100" maxIdle="20" minIdle="5" maxWaitMillis="10000" />
 
-한글 표시 설정
+4. 한글 표시 설정
 Windows > Preferences > Text file encoding > UTF-8
 
 ==================================================================
