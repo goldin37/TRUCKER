@@ -17,7 +17,7 @@
 --><!-- Note:  A "Server" is not itself a "Container", so you may not
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
- --><Server port="8005" shutdown="SHUTDOWN">
+ --><Server port="8008" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -62,7 +62,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" port="8081" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8086" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -130,21 +130,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
 
-      
-<Context docBase="trucker" path="/trucker" reloadable="true" source="org.eclipse.jst.jee.server:trucker">
-			    <Resource name="jdbc/oracle"
-               auth="Container"
-               type="javax.sql.DataSource"
-               driverClassName="oracle.jdbc.driver.OracleDriver"
-               url="jdbc:oracle:thin:@localhost:1521:xe"
-               username="scott"
-               password="tiger"
-               maxTotal="100"
-               maxIdle="20"
-               minIdle="5"
-               maxWaitMillis="10000" />
-</Context>
-</Host>
+      <Context docBase="trucker" path="/trucker" reloadable="true" source="org.eclipse.jst.jee.server:trucker"/></Host>
     </Engine>
   </Service>
 </Server>

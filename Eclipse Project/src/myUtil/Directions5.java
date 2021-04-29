@@ -12,45 +12,35 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-//?š´?„ ê³„ì‚°?„ ?œ„?•œ ?´?˜?Š¤, ìµœì¢…? ?œ¼ë¡? ì¶”ì²œ ?š”ê¸ˆì„ ê³„ì‚°?•œ?‹¤.
 public class Directions5 {
-	public String ETA; //?„ì°©ì‹œê°?
-	public int distance;	//ê±°ë¦¬
-	public double speed;	//?‰ê·? ?†?„
-	public int time;	//?†Œ?š”?‹œê°?(ì´?)
-	public int toll_cost;	//?†¨ë¹?
+	public String ETA;
+	public int distance;
+	public double speed;
+	public int time;
+	public int toll_cost;
 	
-	public double public_fuel_rate;	//ê³µì¸?—°ë¹?
-	public double fuel_rate;	//?—°ë¹?
-	public double fuel_cost_rate;	//ë¦¬í„°?‹¹ ?—°ë£Œë‹¨ê°?
-	public double fuel_cost;	//?—°ë£Œë¹„
+	public double public_fuel_rate;
+	public double fuel_rate;
+	public double fuel_cost_rate;
+	public double fuel_cost;	
 	
-	public double maintenance_rate;	//ê±°ë¦¬?‹¹ ?œ ì§?ë¹?
-	public double maintenance_cost;	//?œ ì§?ë¹?
+	public double maintenance_rate;
+	public double maintenance_cost;
 	
 	public int help_cost;
-	public int labor_rate;	//?‹œê°„ë‹¹ ?¸ê±´ë¹„
-	public int labor_cost;	//?¸ê±´ë¹„
+	public int labor_rate;
+	public int labor_cost;
 	
 	public double sub_total;
 	
-	public double commission;	//?ˆ˜?ˆ˜ë£?
-	public double vat;			//ë¶?ê°??„¸
+	public double commission;
+	public double vat;
 	
-	public int recommend_cost;	//ì¶”ì²œ ?š´?„
-	// ?‰ê·? ?†?„ = ê±°ë¦¬ * 1.5, MAX 80
-	// ?—°ë¹? = ê³µì¸?—°ë¹? * ì°¨ëŸ‰ë¬´ê²Œ / ì°¨ëŸ‰ + ?™”ë¬¼ë¬´ê²?
-	
-	// ì¶”ì²œ?š”ê¸? = ?†¨ë¹? + ?—°ë£Œë¹„ + ?œ ì§?ë¹? + ?¸ê±´ë¹„ + ?„?? + ?ˆ˜?ˆ˜ë£? + ë¶?ê°??„¸ ?—?„œ 1000?‹¨?œ„ ë¯¸ë§Œ ? ˆ?‚¬
-	// ?—°ë£Œë¹„ = ë¦¬í„°?‹¹ ?—°ë£Œë¹„ * ê±°ë¦¬ / ?—°ë¹?
-	// ?œ ì§?ë¹? = ê±°ë¦¬ * ê±°ë¦¬?‹¹ ?œ ì§?ë¹?
-	// ?¸ê±´ë¹„ = ?†Œ?š”?‹œê°?  * ?‹œê°„ë‹¹ ?¸ê±´ë¹„ + ?„??
-	// ?ˆ˜?ˆ˜ë£? = ( ?†¨ë¹? + ?—°ë£Œë¹„ + ?œ ì§?ë¹? + ?¸ê±´ë¹„ ) * 8%
-	// ë¶?ê°??„¸ = ( ?†¨ë¹? + ?—°ë£Œë¹„ + ?œ ì§?ë¹? + ?¸ê±´ë¹„  + ?ˆ˜?ˆ˜ë£?) * 10%
+	public int recommend_cost;
 	
 	public String result; //ê²°ê³¼ JSON
 	public void Direction(String from_where, String to_where, String truck_type, int cargo_weight, String cargo_help, String depart_time) {
-		//ì¶œë°œì§??‘ ?„ì°©ì? ì¢Œí‘œ ë°›ì•„?˜¤ê¸?
+		//ì¶œë°œì§€, ë„ì°©ì§€ ì¢Œí‘œ ë°›ê¸°
 		GeoCode from = new GeoCode();
 		from.getGPS(from_where);
 		System.out.println(from.x);
@@ -61,16 +51,16 @@ public class Directions5 {
 		System.out.println(to.x);
 		System.out.println(to.y);
 		
-		//ê±°ë¦¬ ê³„ì‚°?°?´?„° ë°›ê¸°
+		//ê±°ë¦¬ ê³„ì‚°?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°›ê¸°
 		try {
-			//URL?´?‘ ì£¼ì†Œ ?…? ¥, ì£¼ì†Œ?Š” UTF-8ë¡? ?¸ì½”ë”©
+			//URL?ï¿½ï¿½?ï¿½ï¿½ ì£¼ì†Œ ?ï¿½ï¿½?ï¿½ï¿½, ì£¼ì†Œ?ï¿½ï¿½ UTF-8ï¿½? ?ï¿½ï¿½ì½”ë”©
 			URL url = new URL("https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?X-NCP-APIGW-API-KEY-ID=tzchnboziv&X-NCP-APIGW-API-KEY=svQaeTRI6EoOAufCfliJfjFQlKpoNcjl4ZY5UMX7&start=" 
 			+ from.x + "," + from.y + "&goal=" + to.x + "," + from.y + "&cartype=4");
 			
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
 			
-			//ì¡°íšŒ?•œ ?°?´?„°ë¥? responseë¡? ë°›ê¸°
+			//ì¡°íšŒ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? responseï¿½? ë°›ê¸°
 			int responseCode = con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -81,7 +71,7 @@ public class Directions5 {
 			}
 			in.close();
 			
-			//JSON ?°?´?„° ?ŒŒ?‹±
+			//JSON ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObj = (JSONObject) parser.parse(response.toString());
 			System.out.println(jsonObj.toString());
@@ -97,13 +87,13 @@ public class Directions5 {
 			speed = distance * 1.5;
 			if(speed > 80) speed = 80;
 
-			time = (int)( distance / speed + 1 ) * 60 * 60;
+			time = (int)(( distance / speed + 1 ) * 60 * 60);
 			ETA = LocalDateTime.parse(depart_time).plusSeconds(time).toString();
 			if(truck_type.equals("damas")) {
 				public_fuel_rate = 8.8;
 				fuel_rate = public_fuel_rate * 865 / ( 865 + cargo_weight);
 				fuel_cost_rate = 950;
-				maintenance_rate = 2000000 / 30000;	//?—° ?œ ì§?ë¹? 200ë§Œì› / 5ë§Œí‚¤ë¡?
+				maintenance_rate = 2000000 / 30000;	//?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?ï¿½? 200ë§Œì› / 5ë§Œí‚¤ï¿½?
 			}
 			if(truck_type.equals("labo")) {
 				public_fuel_rate = 8.6;
@@ -129,11 +119,11 @@ public class Directions5 {
 				fuel_cost_rate = 1300;
 				maintenance_rate = 5000000 / 70000;
 			}
-			//?—°ë£Œë¹„
+			//?ï¿½ï¿½ë£Œë¹„
 			fuel_cost = distance / 1000 * fuel_cost_rate / fuel_rate; 
-			//?œ ì§?ë¹?
+			//?ï¿½ï¿½ï¿½?ï¿½?
 			maintenance_cost = distance / 1000 * maintenance_rate;
-			//?Š¹?•˜ì°? ?„??
+			//?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½??
 			if(cargo_help.equals("drive_only")){
 				help_cost = 0;
 			}
@@ -143,36 +133,36 @@ public class Directions5 {
 			if(cargo_help.equals("to_door")){
 				help_cost = 30000;
 			}
-			//?¸ê±´ë¹„
+			//?ï¿½ï¿½ê±´ë¹„
 			labor_rate = 10000;
 			labor_cost = time * labor_rate / 60 / 60 + help_cost;
 
-			//?ˆ˜?ˆ˜ë£?, ë¶?ê°??„¸ ë°? ?•©ê³?
+			//?ï¿½ï¿½?ï¿½ï¿½ï¿½?, ï¿½?ï¿½??ï¿½ï¿½ ï¿½? ?ï¿½ï¿½ï¿½?
 			sub_total = toll_cost + fuel_cost + maintenance_cost + labor_cost;
 			commission = sub_total * 0.08;
 			sub_total += commission;
 			vat = sub_total * 0.1;
 			recommend_cost = (int)(sub_total + vat)/1000*1000;
 			System.out.println("ì°¨ëŸ‰ ì¢…ë¥˜ : " + truck_type);
-			System.out.println("?™”ë¬? ë¬´ê²Œ : " + cargo_weight);
-			System.out.println("?Š¹?•˜ì°? ?„?? : " + cargo_help);
+			System.out.println("?ï¿½ï¿½ï¿½? ë¬´ê²Œ : " + cargo_weight);
+			System.out.println("?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?? : " + cargo_help);
 			System.out.println("ê±°ë¦¬ : " + distance);
-			System.out.println("?‰ê·? ?†?„ : " + speed);
-			System.out.println("?†Œ?š” ?‹œê°? : " + time);
-			System.out.println("?„ì°? ?˜ˆ? • : " + ETA);
-			System.out.println("ê³µì¸?—°ë¹? : " + public_fuel_rate);
-			System.out.println("?—°ë¹? : " + fuel_rate);
-			System.out.println("?—°ë£Œë‹¨ê°? : " + fuel_cost_rate);
-			System.out.println("ê±°ë¦¬?‹¹ ?œ ì§?ë¹? : " + maintenance_rate);
-			System.out.println("?Š¹?•˜ì°? ?¸ê±´ë¹„ : " + help_cost);
-			System.out.println("?‹œê°„ë‹¹ ?¸ê±´ë¹„ : " + labor_rate);
-			System.out.println("?†¨ë¹? : " + toll_cost);
-			System.out.println("?—°ë£Œë¹„ : " + fuel_cost);
-			System.out.println("?œ ì§?ë¹? : " + maintenance_cost);
-			System.out.println("?¸ê±´ë¹„ : " + labor_cost);
-			System.out.println("?ˆ˜?ˆ˜ë£? : " + commission);
-			System.out.println("ë¶?ê°??„¸ : " + vat);
-			System.out.println("ì¶”ì²œ ?š´?„ : " + recommend_cost);
+			System.out.println("?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ : " + speed);
+			System.out.println("?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? : " + time);
+			System.out.println("?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ : " + ETA);
+			System.out.println("ê³µì¸?ï¿½ï¿½ï¿½? : " + public_fuel_rate);
+			System.out.println("?ï¿½ï¿½ï¿½? : " + fuel_rate);
+			System.out.println("?ï¿½ï¿½ë£Œë‹¨ï¿½? : " + fuel_cost_rate);
+			System.out.println("ê±°ë¦¬?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?ï¿½? : " + maintenance_rate);
+			System.out.println("?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ê±´ë¹„ : " + help_cost);
+			System.out.println("?ï¿½ï¿½ê°„ë‹¹ ?ï¿½ï¿½ê±´ë¹„ : " + labor_rate);
+			System.out.println("?ï¿½ï¿½ï¿½? : " + toll_cost);
+			System.out.println("?ï¿½ï¿½ë£Œë¹„ : " + fuel_cost);
+			System.out.println("?ï¿½ï¿½ï¿½?ï¿½? : " + maintenance_cost);
+			System.out.println("?ï¿½ï¿½ê±´ë¹„ : " + labor_cost);
+			System.out.println("?ï¿½ï¿½?ï¿½ï¿½ï¿½? : " + commission);
+			System.out.println("ï¿½?ï¿½??ï¿½ï¿½ : " + vat);
+			System.out.println("ì¶”ì²œ ?ï¿½ï¿½?ï¿½ï¿½ : " + recommend_cost);
 			
 			System.out.println("direction success");
 		}
