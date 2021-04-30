@@ -44,8 +44,6 @@
 	+ depart_time.substring(11,13) + "시 "
 	+ depart_time.substring(14,16) + "분";
 	
-	int intcost = Integer.parseInt((String)session.getAttribute("recommend_cost"));
-	String fix_cost = intcost/1000 + ",000원";	
 %>
 <!DOCTYPE html>
 <html>
@@ -85,7 +83,7 @@ function mobile_payment(){
     	<tr><td>승하차 도움</td>
     	<td><%= cargo_help %></td></tr>
     	<tr><td>화물 세부사항</td>
-    	<td><%= HanConv.toKor((String)session.getAttribute("cargo_spec")) %></td></tr>
+    	<td><%= (String)session.getAttribute("cargo_spec") %></td></tr>
     	<tr><td>출발지</td>
     	<td><%= HanConv.toKor((String)session.getAttribute("from_where")) + HanConv.toKor((String)session.getAttribute("from_spec"))%></td></tr>
     	<tr><td>도착지</td>
@@ -93,19 +91,19 @@ function mobile_payment(){
     	<tr><td>출발 시각</td>
     	<td><%= depart_time %></td></tr>
     	<tr><td>운송 거리</td>
-    	<td><%= session.getAttribute("distance") %>km</td></tr>
+    	<td><%= (String)session.getAttribute("distance") %>km</td></tr>
     	<tr><td>운송 시간</td>
     	<td><%= HanConv.toKor((String)session.getAttribute("time")) %></td></tr>
     	<tr><td>도착 예정 시각</td>
-    	<td><%= session.getAttribute("ETA") %></td></tr>
+    	<td><%= (String)session.getAttribute("ETA") %></td></tr>
     	<tr><td>고객 성명</td>
     	<td><%= HanConv.toKor((String)session.getAttribute("customer_name")) %></td></tr>
     	<tr><td>고객 연락처</td>
-    	<td><%= session.getAttribute("customer_telephone") %></td></tr>
+    	<td><%= (String)session.getAttribute("customer_telephone") %></td></tr>
     	<tr><td>운임</td>
-    	<td><%= fix_cost + " (부가가치세 포함)" %></td></tr>
+    	<td><%= (String)session.getAttribute("fix_cost") + "원 (부가가치세 포함)" %></td></tr>
 	</table>
-	<h1>결제 금액 : <%= fix_cost %></h1>
+	<h1>결제 금액 : <%= (String)session.getAttribute("fix_cost") + "원"%></h1>
 	<form name = "form" method = "post" action = "mobile_payment_ok.jsp">
 		<select name = "tel_company">
 			<option value = "tel_company">통신사</option>

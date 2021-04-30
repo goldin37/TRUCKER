@@ -26,7 +26,7 @@
 	String customer_name = HanConv.toKor((String)session.getAttribute("customer_name"));
 	String customer_telephone = (String)session.getAttribute("customer_telephone");
 	
-	DeliveryOrder.DeliveryOrderDB db = DeliveryOrder.DeliveryOrderDB.getInstance();
+	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
 	int result = db.createOrder(truck_type, cargo_type, cargo_weight, cargo_help, cargo_spec, from_where, from_spec, depart_time, to_where, to_spec, distance, time, ETA, recommend_cost, fix_cost, customer_name, customer_telephone);
 	//데이터베이스 입력 실패하면 실패 페이지
 	if(result == 0){

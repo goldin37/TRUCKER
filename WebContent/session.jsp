@@ -7,22 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%= session.getAttribute("truck_type") %>
-<%= session.getAttribute("cargo_type") %>
-<%= session.getAttribute("cargo_weight") %>
-<%= session.getAttribute("cargo_help") %>
-<%= session.getAttribute("cargo_spec") %>
-<%= session.getAttribute("from_where") %>
-<%= session.getAttribute("from_spec") %>
-<%= session.getAttribute("depart_time") %>
-<%= session.getAttribute("to_where") %>
-<%= session.getAttribute("to_spec") %>
-<%= session.getAttribute("distance") %>
-<%= session.getAttribute("time") %>
-<%= session.getAttribute("ETA") %>
-<%= session.getAttribute("recommend_cost") %>
-<%= session.getAttribute("fix_cost") %>
-<%= session.getAttribute("customer_name") %>
-<%= session.getAttribute("customer_telephone") %>
+<%= "truck_type " + session.getAttribute("truck_type") %>
+<%= "cargo_type " + session.getAttribute("cargo_type") %>
+<%= "cargo_weight " + session.getAttribute("cargo_weight") %>
+<%= "cargo_help " + session.getAttribute("cargo_help") %>
+<%= "cargo_spec " + session.getAttribute("cargo_spec") %>
+<%= "from_where " + session.getAttribute("from_where") %>
+<%= "from_spec " + session.getAttribute("from_spec") %>
+<%= "depart_time " + session.getAttribute("depart_time") %>
+<%= "to_where " + session.getAttribute("to_where") %>
+<%= "to_spec " + session.getAttribute("to_spec") %>
+<%= "distance " + session.getAttribute("distance") %>
+<%= "time " + session.getAttribute("time") %>
+<%= "ETA " + session.getAttribute("ETA") %>
+<%= "recommend_cost " + session.getAttribute("recommend_cost") %>
+<%= "fix_cost " + session.getAttribute("fix_cost") %>
+<%= "customer_name " + session.getAttribute("customer_name") %>
+<%= "customer_telephone " + session.getAttribute("customer_telephone") %>
 </body>
 </html>

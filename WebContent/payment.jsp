@@ -1,12 +1,15 @@
-m<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
 	//order4에서 넘겨준 값 세션에 저장
-	session.setAttribute("fix_cost", session.getAttribute("recommend_cost"));
+	session.setAttribute("distance", request.getParameter("distance"));
+	session.setAttribute("time", request.getParameter("time"));
+	session.setAttribute("ETA", request.getParameter("ETA"));
+	session.setAttribute("fix_cost", request.getParameter("fix_cost"));
 	session.setAttribute("customer_name", request.getParameter("name"));
 	session.setAttribute("customer_telephone", 
-		request.getParameter("tel1") + request.getParameter("tel2") + request.getParameter("tel3"));
+	request.getParameter("tel1") + request.getParameter("tel2") + request.getParameter("tel3"));
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,7 +21,6 @@ m<%@ page language="java" contentType="text/html; charset=EUC-KR"
 <script language="javascript">
 function mobile_payment(){
 	window.open("mobile_payment.jsp", "휴대전화 소액결제", "left = 100px, top = 100, width = 500px, height = 600px")
-	return
 }
 </script>
 </head>

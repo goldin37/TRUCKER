@@ -60,9 +60,6 @@
 		cargo_help = "승하차 후 집/창고까지 이동";
 	}
 	
-//	int intcost = Integer.parseInt((String)session.getAttribute("recommend_cost"));
-//	String recommend_cost = intcost/1000 + ",000원 (부가가치세 포함)";
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -72,22 +69,6 @@
     <title>화물접수(4/4)</title>
 <script language="javascript">
 	document.form.fix_cost.value = <%= request.getParameter("recommend_cost") %>
-
-function adjust(){
-	var adjust = Number(document.form.adjust_range.value)
-	if(adjust < 0){
-		document.form.adjust_text.value = -adjust + "% 할인"
-	} else if( adjust == 0){
-		document.form.adjust_text.value = "추천 요금 그대로"
-	} else{
-		document.form.adjust_text.value = adjust + "% 추가"
-	}
-	fix_cost = fix_cost * (100+adjust) / 100
-	var fix_cost_first = fix_cost / 1000
-	var fix_cost_last = fix_cost % 1000
-	if(fix_cost_last == 0) fix_cost_last = "000" 
-	document.form.fix_cost.value = fix_cost_first + "," + fix_cost_last + "원"
-}
 
 function order(){
 	//이름 없으면 경고
@@ -137,6 +118,7 @@ function order(){
     </nav>
     <section>
         <h1>화물 접수(4/4)</h1>
+    	<form name = "form" method = "post" action = "payment.jsp">
     <table>
     	<tr>
     		<th colspan = "2">운송 주문 내역</th>
@@ -158,18 +140,14 @@ function order(){
     	<tr><td>출발 시각</td>
     	<td><%= depart_time %></td></tr>
     	<tr><td>운송 거리</td>
-    	<td><%= dir.distance %>km</td></tr>
+    	<td><input type = "text" name = "distance" value = "<%= dir.distance %>" readonly>km</td></tr>
     	<tr><td>운송 시간</td>
-    	<td><%= dir.time %></td></tr>
+    	<td><input type = "text" name = "time" value = "<%= dir.time %>" readonly></td></tr>
     	<tr><td>도착 예정 시각</td>
-    	<td><%= dir.ETA %></td></tr>
+    	<td><input type = "text" name = "ETA" value = "<%= dir.ETA %>" readonly></td></tr>
     	<tr><td>운임</td>
-    	<td><h2><%= dir.recommend_cost %>원</h2></td></tr>
+    	<td><input type = "text" name = "fix_cost" value = "<%= dir.recommend_cost %>"></td></tr>
     	<tr><th colspan = "2">운송 주문</th></tr>
-
-    	<form name = "form" method = "post" action = "payment.jsp">
-    	<tr hidden><td>운임</td>
-    	<td><input type = "number" name = "fix_cost" value = "<%= request.getParameter("recommend_cost")%>" readonly>원</td></tr>
     	<tr><td>성명</td>
     	<td><input type = "text" name = "name" size = "6"></td>
     	</tr>
@@ -185,8 +163,8 @@ function order(){
 			<label><input type = "checkbox" name = "information"><a href = "personal_information.html">개인정보 처리방침</a>에 동의합니다.</label>    	
 		</td></tr>
 		<tr><td></td><td><input type = "button" value = "확인 및 결제" onClick = "order()"></td></tr>
-    	</form>
     </table>
+    	</form>
     </section>
     <footer>
     (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 

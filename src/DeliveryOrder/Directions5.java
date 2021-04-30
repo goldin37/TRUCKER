@@ -89,7 +89,7 @@ public class Directions5 {
 			if(speed > 80) speed = 80;
 
 			temptime = (int)(( distance / speed + 1 ) * 60 * 60);
-			time = temptime/3600 + "시간 " + temptime/60 + "분";
+			time = temptime/3600 + "시간 " + temptime/60%60 + "분";
 			ETA = LocalDateTime.parse(depart_time).plusSeconds(temptime).toString();
 			if(truck_type.equals("damas")) {
 				public_fuel_rate = 8.8;
