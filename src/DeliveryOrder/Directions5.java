@@ -16,7 +16,8 @@ public class Directions5 {
 	public String ETA;
 	public int distance;
 	public double speed;
-	public int time;
+	public int temptime;
+	public String time;
 	public int toll_cost;
 	
 	public double public_fuel_rate;
@@ -87,8 +88,9 @@ public class Directions5 {
 			speed = distance * 1.5;
 			if(speed > 80) speed = 80;
 
-			time = (int)(( distance / speed + 1 ) * 60 * 60);
-			ETA = LocalDateTime.parse(depart_time).plusSeconds(time).toString();
+			temptime = (int)(( distance / speed + 1 ) * 60 * 60);
+			time = temptime/3600 + "시간 " + temptime/60 + "분";
+			ETA = LocalDateTime.parse(depart_time).plusSeconds(temptime).toString();
 			if(truck_type.equals("damas")) {
 				public_fuel_rate = 8.8;
 				fuel_rate = public_fuel_rate * 865 / ( 865 + cargo_weight);
@@ -135,7 +137,7 @@ public class Directions5 {
 			}
 
 			labor_rate = 10000;
-			labor_cost = time * labor_rate / 60 / 60 + help_cost;
+			labor_cost = temptime * labor_rate / 60 / 60 + help_cost;
 
 			sub_total = toll_cost + fuel_cost + maintenance_cost + labor_cost;
 			commission = sub_total * 0.08;
