@@ -12,7 +12,7 @@ CREATE TABLE "DELIVERY_ORDER" (
 	"CARGO_SPEC"	varchar2(1000)		NULL,
 	"DISTANCE"	number(10)		NULL,
 	"TIME"	varchar2(100)		NULL,
-	"ETA"	varchar2(100)		NULL,
+	"ETA"	timestamp		NULL,
 	"RECOMMEND_COST"	number(10)		NULL,
 	"FIX_COST"	number(10)		NULL,
 	"CUSTOMER_NAME"	varchar2(100)		NULL,

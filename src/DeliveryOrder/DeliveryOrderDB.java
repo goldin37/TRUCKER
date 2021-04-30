@@ -85,7 +85,7 @@ public class DeliveryOrderDB {
 			pstmt.setString(11, to_spec);
 			pstmt.setInt(12, Integer.parseInt(distance));
 			pstmt.setString(13, time);
-			pstmt.setString(14, ETA);
+			pstmt.setTimestamp(14, Timestamp.valueOf(LocalDateTime.parse(ETA)));
 			pstmt.setInt(15, Integer.parseInt(fix_cost));
 			pstmt.setInt(16, Integer.parseInt(fix_cost));
 			pstmt.setString(17, customer_name);
