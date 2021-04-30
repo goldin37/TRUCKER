@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+m<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%

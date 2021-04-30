@@ -44,7 +44,7 @@
 	+ depart_time.substring(11,13) + "½Ã "
 	+ depart_time.substring(14,16) + "ºÐ";
 	
-	int intcost = Integer.parseInt((String)session.getAttribute("fix_cost"));
+	int intcost = Integer.parseInt((String)session.getAttribute("recommend_cost"));
 	String fix_cost = intcost/1000 + ",000¿ø";	
 %>
 <!DOCTYPE html>
