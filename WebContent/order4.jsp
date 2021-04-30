@@ -21,6 +21,10 @@
 			, Integer.parseInt((String)session.getAttribute("cargo_weight"))
 			, (String)session.getAttribute("cargo_help")
 			, depart_time);
+	
+	session.setAttribute("ETA", dir.ETA);
+	session.setAttribute("recommend_cost", dir.recommend_cost);
+	session.setAttribute("fix_cost", dir.recommend_cost);
 
 	//출발시각 변환
 	depart_time = depart_time.substring(0, 4) + "년 " + depart_time.substring(5,7) + "/" + depart_time.substring(8,10) + " " + depart_time.substring(11,13) + ":" + depart_time.substring(14,16);
@@ -59,6 +63,16 @@
 	} else if(cargo_help.equals("to_door")){
 		cargo_help = "승하차 후 집/창고까지 이동";
 	}
+	
+	int cost_left = dir.recommend_cost/1000;
+	int cost_right = dir.recommend_cost%1000;
+	String cost_right_text;
+	if(cost_right == 0){
+		cost_right_text = "000원";
+	} else{
+		cost_right_text = cost_right + "원";
+	}
+	String cost_text = cost_left + "," + cost_right_text;
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -144,9 +158,9 @@ function order(){
     	<tr><td>운송 시간</td>
     	<td><input type = "text" name = "time" value = "<%= dir.time %>" readonly></td></tr>
     	<tr><td>도착 예정 시각</td>
-    	<td><input type = "text" name = "ETA" value = "<%= dir.ETA %>" readonly></td></tr>
+    	<td><input type = "text" name = "ETA" value = "<%= dir.ETA.substring(0,4) + "년 " + dir.ETA.substring(5,7) + "월 " + dir.ETA.substring(8,10) + "일 " + dir.ETA.substring(11,13) + ":" + dir.ETA.substring(14,16) %>" readonly></td></tr>
     	<tr><td>운임</td>
-    	<td><input type = "text" name = "fix_cost" value = "<%= dir.recommend_cost %>"></td></tr>
+    	<td><input type = "text" name = "fix_cost" value = "<%= cost_text %>"></td></tr>
     	<tr><th colspan = "2">운송 주문</th></tr>
     	<tr><td>성명</td>
     	<td><input type = "text" name = "name" size = "6"></td>

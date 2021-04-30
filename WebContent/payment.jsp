@@ -2,11 +2,11 @@
     pageEncoding="EUC-KR"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
-	//order4에서 넘겨준 값 세션에 저장
+	//order4에서 넘겨준 값 세션에 저장 ETA는 앞에서 저장했음.
 	session.setAttribute("distance", request.getParameter("distance"));
 	session.setAttribute("time", request.getParameter("time"));
-	session.setAttribute("ETA", request.getParameter("ETA"));
-	session.setAttribute("fix_cost", request.getParameter("fix_cost"));
+//	session.setAttribute("ETA", request.getParameter("ETA"));
+//	session.setAttribute("fix_cost", request.getParameter("fix_cost"));
 	session.setAttribute("customer_name", request.getParameter("name"));
 	session.setAttribute("customer_telephone", 
 	request.getParameter("tel1") + request.getParameter("tel2") + request.getParameter("tel3"));
