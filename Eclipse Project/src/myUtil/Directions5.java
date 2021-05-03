@@ -13,33 +13,32 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class Directions5 {
+	// 거리 및 시간 계산 - 도착예정시각, 거리(km), 평균속도, 시간(초), 시간(문자열)
 	public String ETA;
 	public int distance;
 	public double speed;
 	public int temptime;
 	public String time;
-	public int toll_cost;
-	
+	// 도로비 및 유류비 - 톨비, 공인연비, 실연비, 리터당 연료비, 소모 연료비
+	public int toll_cost;	
 	public double public_fuel_rate;
 	public double fuel_rate;
-	public double fuel_cost_rate;
-	public double fuel_cost;	
-	
-	public double maintenance_rate;
-	public double maintenance_cost;
-	
+	public int fuel_cost_rate;
+	public int fuel_cost;	
+	// 유지비 및 인건비 - 키로당 유지비, 유지비, 승하차 도움비, 시간당 인건비, 인건비
+	public int maintenance_rate;
+	public int maintenance_cost;	
 	public int help_cost;
 	public int labor_rate;
-	public int labor_cost;
-	
-	public double sub_total;
-	
-	public double commission;
-	public double vat;
-	
+	public int labor_cost;	
+	// 합계요금 계산 - 임시합계, 수수료, 부가세, 추천요금
+	public int sub_total;	
+	public int commission;
+	public int vat;	
 	public int recommend_cost;
 	
-	public String result; //결과 JSON
+	//불러올 결과 JSON 데이터
+	public String result;
 	public void Direction(String from_where, String to_where, String truck_type, int cargo_weight, String cargo_help, String depart_time) {
 		//출발지, 도착지 좌표 받기
 		GeoCode from = new GeoCode();
@@ -122,7 +121,7 @@ public class Directions5 {
 				maintenance_rate = 8000000 / 70000;
 			}
 
-			fuel_cost = distance * fuel_cost_rate / fuel_rate; 
+			fuel_cost = (int)(distance * fuel_cost_rate / fuel_rate); 
 
 			maintenance_cost = distance * maintenance_rate;
 
@@ -130,19 +129,19 @@ public class Directions5 {
 				help_cost = 0;
 			}
 			if(cargo_help.equals("load_and_discharge")){
-				help_cost = 10000;
+				help_cost = cargo_weight * 15;
 			}
 			if(cargo_help.equals("to_door")){
-				help_cost = 30000;
+				help_cost = cargo_weight * 80;
 			}
 
 			labor_rate = 10000;
 			labor_cost = temptime * labor_rate / 60 / 60 + help_cost;
 
 			sub_total = toll_cost + fuel_cost + maintenance_cost + labor_cost;
-			commission = sub_total * 0.08;
+			commission = (int)(sub_total * 0.08);
 			sub_total += commission;
-			vat = sub_total * 0.1;
+			vat = (int)(sub_total * 0.1);
 			recommend_cost = (int)(sub_total + vat)/1000*1000;
 			System.out.println("차량 종류 : " + truck_type);
 			System.out.println("화물 무게 : " + cargo_weight);
