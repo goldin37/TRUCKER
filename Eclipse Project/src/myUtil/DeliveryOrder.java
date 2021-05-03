@@ -35,6 +35,37 @@ public class DeliveryOrder {
 	private Timestamp cancel_date_time;
 	private int customer_evaluation;
 	private String customer_comment;
+	public static int pageSize = 10; // 한페이지에 10개를 보여주기 위한 변수
+	public static int pageCount = 1; // 페이지 개수 카운트
+	public static int pageNum = 1; // 페이지 번호
+	
+	public static String pageNumber(int limit) {
+		//페이지 목록을 만들어주는 메소드
+		
+		String str = ""; //return값
+		int temp = (pageNum -1) % limit; // 시작 페이지 구하기 위해
+		int startPage = pageNum - temp; //시작페이지 설정
+		
+		if((startPage - limit) > 0) { // [이전]을 구현하기 위한 if문
+			str="<a href='orderlist.jsp?pageNum="+(startPage - 1)+"'>[이전]</a> &nbsp;&nbsp;";
+		}
+		for (int i = startPage; i < (startPage+limit); i++) {//페이지 개수를 나타냄
+			if(i== pageNum) {
+				str += "[" +i+"]&nbsp;&nbsp;"; 
+			}else {
+				str += "<a href='orderlist.jsp?pageNum ="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
+			}
+			if(i>=pageCount) {//페이지개수보다 크면 break
+				break;
+			}
+		}
+			if((startPage+limit)<=pageCount) { // [다음]을 구현하기 위한 if문
+				str +="<a href = 'orderlist.jsp?pageNum="+(startPage +limit)+"'>[다음]</a>";
+			}
+		return str;
+	}	
+	
+	
 	
 	// getter/setter
 	public int getOrder_id() {
