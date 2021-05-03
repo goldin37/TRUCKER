@@ -87,15 +87,15 @@ public class Directions5 {
 			
 			speed = distance * 1.5;
 			if(speed > 80) speed = 80;
-			
+
 			temptime = (int)(( distance / speed + 1 ) * 60 * 60);
-			time = temptime / 3600 + "시간 " + temptime / 60 + "분";
+			time = temptime/3600 + "시간 " + temptime/60%60 + "분";
 			ETA = LocalDateTime.parse(depart_time).plusSeconds(temptime).toString();
 			if(truck_type.equals("damas")) {
 				public_fuel_rate = 8.8;
 				fuel_rate = public_fuel_rate * 865 / ( 865 + cargo_weight);
 				fuel_cost_rate = 950;
-				maintenance_rate = 2000000 / 30000;	//연간 200만원, 3만 키로
+				maintenance_rate = 2000000 / 30000;	//키로당 유지비, 연간 200만원, 3만 키로
 			}
 			if(truck_type.equals("labo")) {
 				public_fuel_rate = 8.6;
@@ -107,19 +107,19 @@ public class Directions5 {
 				public_fuel_rate = 9.9;
 				fuel_rate = public_fuel_rate * 1825 / ( 1825 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 3500000 / 50000;
+				maintenance_rate = 4000000 / 50000;
 			}
 			if(truck_type.equals("1.4ton")) {
 				public_fuel_rate = 9.0;
 				fuel_rate = public_fuel_rate * 1800 / ( 1800 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 4000000 / 50000;
+				maintenance_rate = 5000000 / 50000;
 			}
 			if(truck_type.equals("2.5ton")) {
 				public_fuel_rate = 7.5;
 				fuel_rate = public_fuel_rate * 2500 / ( 2500 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 5000000 / 70000;
+				maintenance_rate = 8000000 / 70000;
 			}
 
 			fuel_cost = distance * fuel_cost_rate / fuel_rate; 

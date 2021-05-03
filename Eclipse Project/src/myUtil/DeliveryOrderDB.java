@@ -15,12 +15,12 @@ import javax.sql.DataSource;
 public class DeliveryOrderDB {
 	private static DeliveryOrderDB instance = new DeliveryOrderDB();
 
-	//객체 ?��?��
+	//객체 생성
 	public static DeliveryOrderDB getInstance() {
 		return instance;
 	}
 	
-	//DB ?���?
+	//DB 접속
 	public Connection getConnection() throws Exception{
 		Context ctx=new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
@@ -28,7 +28,7 @@ public class DeliveryOrderDB {
 	}
 	
 	public int createOrder(String truck_type, String cargo_type, String cargo_weight, String cargo_help, String cargo_spec, String from_where, String from_spec, String depart_time, String to_where, String to_spec, String distance, String time, String ETA, String recommend_cost, String fix_cost, String customer_name, String customer_telephone) throws Exception{
-		int re = 0; //order_id�?
+		int re = 0; //order_id
 
 		Connection con = null;
 		Statement stmt = null;
@@ -52,17 +52,17 @@ public class DeliveryOrderDB {
 				create_order_id = 1;
 			}
 			
-			//?��?�� ?��?��
+			//접속 종료
 			rs.close();
 			stmt.close();
 			con.close();
 			
-			//?��?�� ?���? 메시�?
-			System.out.println("마�?�? order_id : " + max_order_id);
-			System.out.println("?��?�� order_id : " + create_order_id);
-			System.out.println("DB 조회 ?���?");
+			//조회 성공 메시지
+			System.out.println("최대 order_id : " + max_order_id);
+			System.out.println("삽입 order_id : " + create_order_id);
+			System.out.println("DB 조회 성공");
 		} catch(Exception e) {
-			System.out.println("DB 조회 ?��?��");
+			System.out.println("DB 조회 실패");
 			e.printStackTrace();
 		}
 		//주문 insert
@@ -85,28 +85,28 @@ public class DeliveryOrderDB {
 			pstmt.setString(11, to_spec);
 			pstmt.setInt(12, Integer.parseInt(distance));
 			pstmt.setString(13, time);
-			pstmt.setString(14, ETA);
-			pstmt.setInt(15, Integer.parseInt(recommend_cost));
+			pstmt.setTimestamp(14, Timestamp.valueOf(LocalDateTime.parse(ETA)));
+			pstmt.setInt(15, Integer.parseInt(fix_cost));
 			pstmt.setInt(16, Integer.parseInt(fix_cost));
 			pstmt.setString(17, customer_name);
 			pstmt.setString(18, customer_telephone);
 			pstmt.setTimestamp(19, Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.executeUpdate();
 			
-			//?��?�� 종료
+			//접속 종료
 			rs.close();
 			pstmt.close();
 			con.close();
 
-			//?���? 메시�?
-			System.out.println("주문 ?��?�� ?���?");
+			//성공 메시지
+			System.out.println("주문 성공");
 			re = create_order_id;
 		} catch(Exception e){
-			System.out.println("주문 ?��?�� ?��?��");
+			System.out.println("주문 실패");
 			e.printStackTrace();
 		}
 		
-		//?��?��?�� order_id 리턴
+		//성공하면 order_id 리턴
 		return re;
 	}
 

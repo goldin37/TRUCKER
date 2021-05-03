@@ -21,12 +21,12 @@
 	String distance = (String)session.getAttribute("distance");
 	String time = HanConv.toKor((String)session.getAttribute("time"));
 	String ETA = HanConv.toKor((String)session.getAttribute("ETA"));
-	String recommend_cost = (String)session.getAttribute("recommend_cost");
-	String fix_cost = (String)session.getAttribute("fix_cost");
+	String recommend_cost = session.getAttribute("recommend_cost").toString();
+	String fix_cost = session.getAttribute("fix_cost").toString();
 	String customer_name = HanConv.toKor((String)session.getAttribute("customer_name"));
 	String customer_telephone = (String)session.getAttribute("customer_telephone");
-	
-	myUtil.DeliveryOrderDB db = myUtil.DeliveryOrderDB.getInstance();
+
+	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
 	int result = db.createOrder(truck_type, cargo_type, cargo_weight, cargo_help, cargo_spec, from_where, from_spec, depart_time, to_where, to_spec, distance, time, ETA, recommend_cost, fix_cost, customer_name, customer_telephone);
 	//데이터베이스 입력 실패하면 실패 페이지
 	if(result == 0){
