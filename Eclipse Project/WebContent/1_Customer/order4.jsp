@@ -84,6 +84,10 @@
 <script language="javascript">
 	document.form.fix_cost.value = <%= request.getParameter("recommend_cost") %>
 
+	function check_spec(){
+		form.spec.hidden = false;
+	}
+	
 function order(){
 	//이름 없으면 경고
 	if(document.form.name.value == ""){
@@ -160,7 +164,24 @@ function order(){
     	<tr><td>도착 예정 시각</td>
     	<td><input type = "text" name = "ETA" value = "<%= dir.ETA.substring(0,4) + "년 " + dir.ETA.substring(5,7) + "월 " + dir.ETA.substring(8,10) + "일 " + dir.ETA.substring(11,13) + ":" + dir.ETA.substring(14,16) %>" readonly></td></tr>
     	<tr><td>운임</td>
-    	<td><input type = "text" name = "fix_cost" value = "<%= cost_text %>"></td></tr>
+    	<td><input type = "text" name = "fix_cost" value = "<%= cost_text %>">
+    	<input type ="button" onClick="check_spec()" value = "세부운임 확인"></td></tr>
+
+    	<tr><td></td><td><output name = "spec" hidden><b>1. 교통비</b><br>
+    	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) + = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
+		톨비 + 유류비(운행거리 ÷ 연비 × 리터당 연료비)<br><br>
+		<b>2. 차량 유지비</b><br>
+		<%= dir.distance + "km × " + dir.maintenance_rate + "원 = <b>" + dir.maintenance_cost + "원</b>" %><br>
+		운행거리 × 거리당 유지비<br><br>
+		<b>3. 인건비</b><br>
+		<%= "( " + (double)(Math.round((double)dir.temptime/60/60*100))/100 + "시간 × 10,000원 ) + ( " + session.getAttribute("cargo_weight") + "kg × 작업비 ) = <b>" + dir.labor_cost + "원</b>"%><br>
+		운전비(운행시간 × 10,000원) + 수작업비(화물무게(kg) × 작업비)<br>
+		※작업비 : 승하차 15원, 문앞으로 50원<br><br>
+		<b>4. 합계 운임</b><br>
+		<%= (dir.toll_cost + dir.fuel_cost) + "원 + " + dir.maintenance_cost + "원 + " + dir.labor_cost + "원 + " + dir.commission + "원 + " + dir.vat + "원 = <b>" + dir.recommend_cost + "원</b>"%><br>
+		교통비 + 차량 유지비 + 인건비 + 수수료 + 부가세 ( 1,000원 미만 절사 )
+    	</output></td></tr>
+
     	<tr><th colspan = "2">운송 주문</th></tr>
     	<tr><td>성명</td>
     	<td><input type = "text" name = "name" size = "6"></td>
@@ -171,7 +192,7 @@ function order(){
     	 - <input type = "text" name = "tel3" size = "4">
     	</td></tr>
     	<tr><td>주문 확인</td>
-    	<td>
+    	<td class = "simple_link">
 			<label><input type = "checkbox" name = "confirm">위의 운송주문 내역을 확인하였습니다.</label><br>    	
     		<label><input type = "checkbox" name = "contract"><a href = "contract.html">화물운송 약관</a>에 동의합니다.</label><br>
 			<label><input type = "checkbox" name = "information"><a href = "personal_information.html">개인정보 처리방침</a>에 동의합니다.</label>    	

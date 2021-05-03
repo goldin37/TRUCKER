@@ -19,7 +19,7 @@ public class Directions5 {
 	public double speed;
 	public int temptime;
 	public String time;
-	// 도로비 및 유류비 - 톨비, 공인연비, 실연비, 리터당 연료비, 소모 연료비
+	// 교통비 - 톨비, 공인연비, 실연비, 리터당 연료비, 소모 연료비
 	public int toll_cost;	
 	public double public_fuel_rate;
 	public double fuel_rate;
@@ -118,7 +118,7 @@ public class Directions5 {
 				public_fuel_rate = 7.5;
 				fuel_rate = public_fuel_rate * 2500 / ( 2500 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 8000000 / 70000;
+				maintenance_rate = 7000000 / 60000;
 			}
 
 			fuel_cost = (int)(distance * fuel_cost_rate / fuel_rate); 
@@ -129,10 +129,10 @@ public class Directions5 {
 				help_cost = 0;
 			}
 			if(cargo_help.equals("load_and_discharge")){
-				help_cost = cargo_weight * 15;
+				help_cost = cargo_weight * 10;
 			}
 			if(cargo_help.equals("to_door")){
-				help_cost = cargo_weight * 80;
+				help_cost = cargo_weight * 50;
 			}
 
 			labor_rate = 10000;
