@@ -3,8 +3,8 @@
     pageEncoding="EUC-KR"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="DeliveryOrder.GeoCode"%>
-<%@page import="DeliveryOrder.Directions5"%>
+<%@page import="myUtil.GeoCode"%>
+<%@page import="myUtil.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
 	//order3에서 넘겨준 값 세션에 저장
@@ -15,8 +15,8 @@
 	//운송거리, 시간, ETA 계산
 	Directions5 dir = new Directions5();
 	
-	dir.Direction(HanConv.toKor((String)session.getAttribute("from_where"))
-			, HanConv.toKor((String)session.getAttribute("to_where"))
+	dir.Direction(HanConv.toKor(session.getAttribute("from_where").toString())
+			, HanConv.toKor(session.getAttribute("to_where").toString())
 			, (String)session.getAttribute("truck_type")
 			, Integer.parseInt((String)session.getAttribute("cargo_weight"))
 			, (String)session.getAttribute("cargo_help")
@@ -68,7 +68,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
     <title>화물접수(4/4)</title>
 <script language="javascript">
 	document.form.fix_cost.value = <%= request.getParameter("recommend_cost") %>

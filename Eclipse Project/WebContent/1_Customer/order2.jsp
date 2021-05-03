@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
     <title>화물접수(2/4)</title>
     <script language="javascript">
 

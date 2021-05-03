@@ -1,7 +1,7 @@
 <%@page import="javax.time.LocalDateTime"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="DeliveryOrder.GeoCode"%>
-<%@page import="DeliveryOrder.Directions5"%>
+<%@page import="myUtil.GeoCode"%>
+<%@page import="myUtil.Directions5"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%

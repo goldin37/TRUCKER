@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>화물운송 주문 접수 완료</title>
-    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
 </head>
 <body class = "order_complete">
     <header>

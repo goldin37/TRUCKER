@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
     <title>운송요금 결제</title>
 <script language="javascript">
 function mobile_payment(){
