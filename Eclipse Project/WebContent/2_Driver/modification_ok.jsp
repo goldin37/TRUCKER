@@ -1,17 +1,17 @@
-<%@page import="trucker.TruckerBean"%>
-<%@page import="trucker.TruckerDBBean"%>
+<%@page import="Driver.DriverBean"%>
+<%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<jsp:useBean id="trucker" class="trucker.TruckerBean"></jsp:useBean>
-<jsp:setProperty property="*" name="trucker"/>
+<jsp:useBean id="driver" class="Driver.DriverBean"></jsp:useBean>
+<jsp:setProperty property="*" name="driver"/>
 <%
 	String id = (String)session.getAttribute("id");
-	trucker.setDriver_id(id); // session에 있는 id값 받아옴.
+	driver.setDriver_id(id); // session에 있는 id값 받아옴.
 	
-	TruckerDBBean db = TruckerDBBean.getInstance();
-	TruckerBean tb = db.getTrucker(id); // 값을 가져옴
+	DriverDBBean db = DriverDBBean.getInstance();
+	DriverBean tb = db.getDriver(id); // 값을 가져옴
 	
-	int re = db.updateTrucker(trucker);
+	int re = db.updateDriver(driver);
 	
 	if(re == 1){ // 제대로 진행되었을 때
 		String name = tb.getDriver_name(); // 이름 출력 - >name

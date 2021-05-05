@@ -77,3 +77,17 @@ function modification_ok(){
 	}
 	document.form.submit();
 }
+
+function period_check_ok(){
+	if(document.form.period_start.value.length == 0){
+		alert("조회시작기간을 입력하세요");
+		form.period_start.focus();
+		return;
+	}
+	if(document.form.period_start.value.length == 0){
+		alert("조회마침시간을 입력하세요");
+		form.period_start.focus();
+		return;
+	}
+	document.form.submit();
+}

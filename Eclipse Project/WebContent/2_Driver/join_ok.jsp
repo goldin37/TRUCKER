@@ -1,12 +1,12 @@
-<%@page import="trucker.TruckerDBBean"%>
+<%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<jsp:useBean id="trucker" class="trucker.TruckerBean"></jsp:useBean>
-<jsp:setProperty property="*" name="trucker"/>
+<jsp:useBean id="driver" class="Driver.DriverBean"></jsp:useBean>
+<jsp:setProperty property="*" name="driver"/>
 <%
-	TruckerDBBean db = TruckerDBBean.getInstance();
+	DriverDBBean db = DriverDBBean.getInstance();
 	
-	if(db.confirmID(trucker.getDriver_id()) == 1){
+	if(db.confirmID(driver.getDriver_id()) == 1){
 %>
 		<script>
 			alert("중복되는 아이디가 존재합니다.");
@@ -14,7 +14,7 @@
 		</script>
 <%
 	}else{
-		int re = db.insertTrucker(trucker);
+		int re = db.insertDriver(driver);
 		//회원가입하는 경우 때문에 insert해야함.
 		if(re ==1){
 %>

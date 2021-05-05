@@ -24,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>배송리스트</title>
-    <link rel="stylesheet" href="css/trucker_orderlist.css" type = "text/css">
+    <link rel="stylesheet" href="css/mystyle.css" type = "text/css">
     <!-- style/mystyle.css 로 변경 -->
 </head>
 <body>

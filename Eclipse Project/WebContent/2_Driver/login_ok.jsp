@@ -1,18 +1,19 @@
-<%@page import="trucker.TruckerBean"%>
-<%@page import="trucker.TruckerDBBean"%>
+<%@page import="Driver.DriverBean"%>
+<%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<% //login.html의 값을 입력받은 id,password
+<%
+	//login.html의 값을 입력받은 id,password
 	String id = request.getParameter("driver_id");
-	String pwd = request.getParameter("driver_password");
+	String pwd = request.getParameter("driver_pwd");
 	
-	TruckerDBBean db = TruckerDBBean.getInstance();
+	DriverDBBean db = DriverDBBean.getInstance();
 	//DB의 객체를 받기 위해 생성
 	
 	int check = db.userCheck(id, pwd);
 	//유저가 있는지 확인하는 메소드
 	
-	TruckerBean tb = db.getTrucker(id);
+	DriverBean tb = db.getDriver(id);
 	
 	if(tb == null){ // id가 null이면
 %>

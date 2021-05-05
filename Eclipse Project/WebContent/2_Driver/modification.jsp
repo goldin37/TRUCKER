@@ -1,12 +1,12 @@
-<%@page import="trucker.TruckerBean"%>
-<%@page import="trucker.TruckerDBBean"%>
+<%@page import="Driver.DriverBean"%>
+<%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
 	String id = (String)session.getAttribute("id");
 	String name = (String)session.getAttribute("name");
-	TruckerDBBean db = TruckerDBBean.getInstance();
-	TruckerBean tb = db.getTrucker(id);	//아이디가 일치하는 멤버의 정보를 가져옴
+	DriverDBBean db = DriverDBBean.getInstance();
+	DriverBean tb = db.getDriver(id);	//아이디가 일치하는 멤버의 정보를 가져옴
 %>
 <html lang="en">
 <head>
@@ -14,8 +14,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정보수정</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_modify.css">
-	<script type="text/javascript" src="trucker.js" charset="utf-8"></script>
+    <link rel = "stylesheet" type = "text/css" href = "css/driver_modify.css">
+	<script type="text/javascript" src="Driver.js" charset="utf-8"></script>
 </head>
 <body>
     <header>
@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                     <td>주소 : </td>
-                    <td><input type="text" size="40" value="<%=tb.getDriver_address() %>" name="driver_address"></td>
+                    <td><input type="text" size="40" value="<%=tb.getDriver_addr() %>" name="driver_address"></td>
                 </tr>
                 <tr>
                     <td>이메일 : </td>
