@@ -141,7 +141,50 @@ button{
     border-radius: 5px;    
 }
 
-/* 占쎌뒄疫뀀뜃猿먲옙�젫 占쎈뮞占쏙옙占쎌뵬 */
+.login{
+    border-radius: 15px;
+    border: none;
+    width: 330px;
+}
+.login:hover{
+    background-color:rgb(153, 151, 151);
+    border-radius: 15px;
+    border: none;
+    width: 330px;
+}
+
+.join ul{
+	list-style: none;
+	margin-top: 8px;
+	padding-left: 5px;
+}
+.join li{
+ 
+	display: inline-block;
+	padding: 10px;
+}
+.join li a{
+	text-decoration: none;
+}
+.join table{
+	margin-left : 250px;
+}
+.join input{
+	margin-left	 : 50px;
+	width : 330px;
+}
+#join{
+    border-bottom: none;
+    border-radius: 10px;
+	width : 330px;
+    padding: 10px;
+    margin: 30px;
+}
+#join:hover{
+	width : 330px;
+   background-color: rgb(143, 142, 142);
+}
+
 .paymentbody{
     background: rgb(171, 196, 235);
 }
@@ -160,7 +203,6 @@ button{
     color: rgb(12, 33, 65);
 }
 
-/* 占쎌몧占쏙옙占쎌읈占쎌넅 野껉퀣�젫 占쎈뮞占쏙옙占쎌뵬 */
 .mobile_payment{
     padding: 20px;
 }
@@ -196,7 +238,6 @@ button{
     border-radius: 5px;       
 }
 
-/* 獄쏄퀣�꽊雅뚯눖揆 占쎌젔占쎈땾 占쎌끏�뙴占� */
 
 .order_complete order_number{
     font-size: 70px;
@@ -211,17 +252,88 @@ button{
     font-weight: 700;
 }
 
-/* 獄쏄퀣�꽊 鈺곌퀬�돳 占쎈뮞占쏙옙占쎌뵬 */
 .order_query point{
     color: rgb(18, 63, 129);
     font-weight: 700;
 }
 
 
-/* 占쎈쳳占쎄숲 */
 footer{
     background: rgb(12, 33, 65);
     color: rgb(243, 243, 243);
     padding: 20px 100px;
     text-align: center;
+}
+
+
+.question{
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.question ul{
+    list-style: circle;
+    
+}
+.question li{
+    font-size: 25px;
+    margin: 50px;
+}
+
+
+.now{   
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.now td{
+    width: 900px;
+    padding-left: 90px;
+    margin: 40px;
+    margin-top: 100px;
+}
+.click{
+    border-bottom: none;
+    border-radius: 10px;
+    width: 190px;
+    padding: 10px;
+    margin: 15px;
+    float: right;
+}
+.click:hover{
+    background-color: rgb(143, 142, 142);
+}
+#box{
+    margin: 50px;
+    font-size: 25px;
+    font-weight: normal;
+    background-color: rgb(28, 68, 129);
+    padding: 10px;
+    color: #fff;
+    border-radius: 15px;
+    margin-top: 0px;
+    text-align: center;
+}
+.box{
+    width: 1000px;
+    height: 530px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.box td{
+    width: 900px;
+    padding-left: 90px;
+    margin: 40px;
+    margin-top: 100px;
 }

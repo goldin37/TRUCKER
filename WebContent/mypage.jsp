@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_mypage.css">
+    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
 </head>
 <body>
     <header>
@@ -38,10 +38,11 @@
             </tr>
         </table>
       </nav>
-
-    <section>
-        <h2>개인정보</h2> 
-        <p>안녕하세요 <%= name %>(<%=id %>)님</p>
+    <section class="box">
+        <h2 id="box">개인정보</h2> 
+        <p style="font-weight: bolder; padding-left: 90px;">
+           	환영합니다 ! <%= name %>(<%=id %>)님 
+        </p>
         <table>
             <form method="post">
             <tr>
@@ -61,11 +62,11 @@
             </tr>
             </form>
         </table>
-        <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp'">
         <input type="button" value="로그아웃" class="click" onclick="location.href='logOut.jsp'">
+        <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp'">
     </section>
     <section class="now">
-        <h2>진행중인 운송</h2> 
+        <h2 id="box">진행중인 운송</h2> 
         <table>
             <form action="">
             <tr>
@@ -94,10 +95,10 @@
             </tr>
             <tr>
                 <td>
-                <input type="button" value="운송내역" class="finished">
-                <input type="button" value="취소" class="click">
-                <input type="button" value="배송완료" class="click">
-                <input type="button" value="배송접수" class="click">
+                    <input type="button" value="취소" class="click">
+                    <input type="button" value="배송완료" class="click">
+                    <input type="button" value="배송접수" class="click">
+                    <input type="button" value="운송내역" class="click">
                  </td>
              </tr>
             </form>
@@ -105,7 +106,7 @@
     </section>
 
     <section class="question">
-        <h2>문의사항</h2> 
+        <h2 id="box">문의사항</h2> 
         <ul>
             <li><a href="#"> 자주하는 질문</a></li>
             <li><a href="#"> Q & A 바로가기</a></li>

@@ -1,12 +1,12 @@
-<%@page import="trucker.TruckerBean"%>
-<%@page import="trucker.TruckerDBBean"%>
+<%@page import="Driver.DriverBean"%>
+<%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
 	String id = (String)session.getAttribute("id");
 	String name = (String)session.getAttribute("name");
-	TruckerDBBean db = TruckerDBBean.getInstance();
-	TruckerBean tb = db.getTrucker(id);	//아이디가 일치하는 멤버의 정보를 가져옴
+	DriverDBBean db = DriverDBBean.getInstance();
+	DriverBean tb = db.getDriver(id);	//아이디가 일치하는 멤버의 정보를 가져옴
 %>
 <html lang="en">
 <head>
@@ -14,8 +14,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정보수정</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_modify.css">
-	<script type="text/javascript" src="trucker.js" charset="utf-8"></script>
+    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+	<script type="text/javascript" src="Driver.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		function check_email(){
+			if(document.form.email.options[document.form.email.selectedIndex].value == '0'){
+			 document.form.email2.value = false;
+			 document.form.email2.value = "";
+			}
+			if(document.form.email.options[document.form.email.selectedIndex].value == '9'){
+			 document.form.email2.value = "";
+			 document.form.email2.focus();
+			} else{
+			 document.form.email2.value = document.form.email.options[document.form.email.selectedIndex].value;
+			}
+		}
+	</script>
 </head>
 <body>
     <header>
@@ -35,7 +49,7 @@
       </nav>
       <section>
           <h1>정보수정</h1>
-          <p> 변경하실 정보를 입력해주세요.</p>
+          <p style="margin-left:20px;"> 변경하실 정보를 입력해주세요.</p>
           <table>
               <form name = "form" method="post" action="modification_ok.jsp">
                 <tr>
@@ -53,19 +67,32 @@
 					<%=tb.getDriver_jumin() %>
                     </td>
                 </tr>
-                <tr>
+                 <tr>
                     <td>전화번호 : </td>
                     <td>
-                    <input type="text" name="driver_phone_number"size="40"  value="<%=tb.getDriver_phone_number() %>">
+                    <input type="text" name="phone1" value="010" size="1" maxlength="3"> -
+                    <input type="text" name="phone2" size="3" maxlength="4"> -
+                    <input type="text" name="phone3" size="3" maxlength="4">
                 </td>
                 </tr>
                 <tr>
                     <td>주소 : </td>
-                    <td><input type="text" size="40" value="<%=tb.getDriver_address() %>" name="driver_address"></td>
+                    <td><input type="text" size="40" value="<%=tb.getDriver_addr() %>" name="driver_addr"></td>
                 </tr>
-                <tr>
+               <tr>
                     <td>이메일 : </td>
-                    <td><input type="text" size="40" value="<%= tb.getDriver_email()%>" name="driver_email">
+                    <td>
+                    	<input name="email1" type="text" size="15"> @
+						<input name="email2" type="text" size="15">
+							<select name="email" id="" onchange="check_email()">
+							    <option value="0" selected>선택하세요</option>
+							    <option value="naver.com">naver.com</option>
+							    <option value="nate.com">nate.com</option>
+							    <option value="hanmail.com">hanmail.com</option>
+							    <option value="gmail.com">gmail.com</option>
+							    <option value="9">직접입력</option>
+							</select>	
+                    </td>
                 </tr>
                 <tr>
                     <td>주 활동지역 : </td>
@@ -103,14 +130,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="button" value="정보수정" class="join" onclick="modification_ok()"></td>
+                    <td colspan="3" style="text-align:center">
+                    <input type="button" value="정보수정" id="join" onclick="modification_ok()">
+                    <input type="button" value="돌아가기" id="join" onclick="location.href='mypage.jsp'">
+                    </td>
                 </tr>
               </form>
           </table>
       </section>
-
-
-
       <footer>
         (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
         통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 

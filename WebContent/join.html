@@ -5,8 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_join.css">
-    <script type="text/javascript" src="trucker.js" charset="utf-8"></script>
+    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+    <script type="text/javascript" src="Driver.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		function check_email(){
+			if(document.form.email.options[document.form.email.selectedIndex].value == '0'){
+			 document.form.email2.value = false;
+			 document.form.email2.value = "";
+			}
+			if(document.form.email.options[document.form.email.selectedIndex].value == '9'){
+			 document.form.email2.value = "";
+			 document.form.email2.focus();
+			} else{
+			 document.form.email2.value = document.form.email.options[document.form.email.selectedIndex].value;
+			}
+		}
+	</script>
+	<script  type="text/javascript">
+	function autoHypen(obj) {
+	    var number = obj.value.replace(/[^0-9]/g, "");
+	    var phone = "";
+
+	    if(number.length < 3) {
+	        return number;
+	    } else if(number.length < 10) {
+	        phone += number.substr(0, 2);
+	        phone += "-";
+	        phone += number.substr(2);
+	    } else if(number.length < 13) {
+	        phone += number.substr(0, 2);
+	        phone += "-";
+	        phone += number.substr(2, 6);
+	        phone += "-";
+	        phone += number.substr(8);
+	    } else {
+	        phone += number.substr(0, 2);
+	        phone += "-";
+	        phone += number.substr(8, 9);
+	        phone += "-";
+	        phone += number.substr(2);
+	    }
+	    obj.value = phone;
+	}
+	</script>
 </head>
 <body>
     <header>
@@ -26,20 +67,20 @@
       </nav>
       <section>
           <h1>회원가입</h1>
-          <p> 정보를 전부 입력해주세요.</p>
+          <p style="margin-left:20px;"> 정보를 전부 입력해주세요.</p>
           <table>
-              <form name="form" action="join_ok.jsp" method="post">
+              <form name="form" action="join_ok.jsp" method="post" enctype="multipart/form-data">
                 <tr>
                     <td>아이디 : </td>
                     <td><input type="text" size="12" name="driver_id"></td>
                 </tr>
                 <tr>
                     <td>비밀번호 : </td>
-                    <td><input type="text" size="12" name="driver_password"></td>
+                    <td><input type="password" size="12" name="driver_pwd"></td>
                 </tr>
                 <tr>
                     <td>비밀번호 확인 : </td>
-                    <td><input type="text" size="12" name="driver_password_check" ></td>
+                    <td><input type="password" size="12" name="driver_pwd_check" ></td>
                 </tr>
                 <tr>
                     <td>이름 : </td>
@@ -48,23 +89,37 @@
                 <tr>
                     <td>주민등록번호 : </td>
                     <td>
-                    <input type="text" size="40" maxlength="13" name = driver_jumin> 
+                    <input type="text" size="12" maxlength="6" name =jumin1> -
+                    <input type="password" size="12" maxlength="7" name =jumin2>
                     </td>
                 </tr>
                 <tr>
                     <td>전화번호 : </td>
                     <td>
-                    <input type="text" name="driver_phone_number" size="40"> 
+                    <input type="text" name="phone1" value="010" size="1" maxlength="3"> -
+                    <input type="text" name="phone2" size="3" maxlength="4"> -
+                    <input type="text" name="phone3" size="3" maxlength="4">
                 </td>
                 </tr>
                 <tr>
                     <td>주소 : </td>
-                    <td><input type="text" size="40" name= "driver_address"></td>
+                    <td>
+                    <input type="text" size="40" name= "driver_addr">
+                    </td>
                 </tr>
                 <tr>
                     <td>이메일 : </td>
                     <td>
-                    <input type="text" size="40" name= "driver_email">
+                    	<input name="email1" type="text" size="15"> @
+						<input name="email2" type="text" size="15">
+							<select name="email" id="" onchange="check_email()">
+							    <option value="0" selected>선택하세요</option>
+							    <option value="naver.com">naver.com</option>
+							    <option value="nate.com">nate.com</option>
+							    <option value="hanmail.com">hanmail.com</option>
+							    <option value="gmail.com">gmail.com</option>
+							    <option value="9">직접입력</option>
+							</select>	
                     </td>
                 </tr>
                 <tr>
@@ -98,27 +153,26 @@
                 </tr>
                 <tr>
                     <td>면허 사진 : </td>
-                    <td> 
-                        <sub>면허사진을 추가해주세요</sub>
-                        <input  type = 'file' accept=".png, .jpg, .jpeg"  name= "driver_picture">
-                </td>
+                    <td> 면허사진을 추가해주세요
+                        <input  type = 'file' name= "driver_photo">
+                	</td>
                 </tr> 
                 </tr>
                 <tr>
                     <td>면허번호 : </td>
                     <td>
-                        <input type="text" size="40" name="driver_license"> 
+                        <input type="text" size="40" name="driver_license" onKeyup="autoHypen(this)" maxlength="12"> 
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="button" value="회원가입" class="join" onclick="join_check_ok()"></td>
+                    <td colspan="3" style="text-align:center" >
+                        <input type="button" value="회원가입" id="join" onclick="join_check_ok()">
+                        <input type="button" value="가입취소" id="join" onclick="location.href='login.html'">
+                    </td>
                 </tr>
               </form>
           </table>
       </section>
-
-
-
       <footer>
         (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
         통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 

@@ -1,4 +1,4 @@
-<%@page import="trucker.TruckerDBBean"%>
+<%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
@@ -6,7 +6,7 @@
 	String name = request.getParameter("driver_name");
 	String jumin = request.getParameter("driver_jumin");
 
-	TruckerDBBean db = TruckerDBBean.getInstance();
+	DriverDBBean db = DriverDBBean.getInstance();
 	String password = db.searchPW(id, name, jumin);
 %>
 <html lang="en">
@@ -15,8 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정보수정</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_modify.css">
-	<script type="text/javascript" src="trucker.js" charset="utf-8"></script>
+    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+	<script type="text/javascript" src="Driver.js" charset="utf-8"></script>
 </head>
 <body>
     <header>
@@ -44,7 +44,7 @@
                 <tr align ="center">
                     <td>비밀번호를 찾았습니다.</td>
                 </tr>
-                <tr align = "center">
+                <tr align ="center">
                 	<td><%= password %></td>
                 </tr>
 <%
@@ -58,7 +58,9 @@
           	}
 %>
 				<tr>
-					<td><input type="submit" value="로그인 돌아가기"></td>
+					<td colspan="2" style="text-align:center" >
+					<input type="submit" value="로그인 돌아가기" id="join">
+					</td>
 				</tr>
               </form>
           </table>
