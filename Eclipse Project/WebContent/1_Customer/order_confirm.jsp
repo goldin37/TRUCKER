@@ -7,9 +7,9 @@
 <%@page import="myUtil.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
-	//order.jsp¿¡¼­ ³Ñ°ÜÁØ °ª ¼¼¼Ç¿¡ ÀúÀå
-	//from_where, from_spec, depart_time, to_where, to_spec
-	//truck-type, cargo_type, cargo_help, cargo_spec
+	//order3¿¡¼­ ³Ñ°ÜÁØ °ª ¼¼¼Ç¿¡ ÀúÀå
+	session.setAttribute("to_where", request.getParameter("to_where"));
+	session.setAttribute("to_spec", request.getParameter("to_spec"));
 	
 	String depart_time = (String)session.getAttribute("depart_time");
 	//¿î¼Û°Å¸®, ½Ã°£, ETA °è»ê
@@ -168,11 +168,7 @@ function order(){
     	<input type ="button" onClick="check_spec()" value = "¼¼ºÎ¿îÀÓ È®ÀÎ"></td></tr>
 
     	<tr><td></td><td><output name = "spec" hidden><b>1. ±³Åëºñ</b><br>
-<<<<<<< HEAD
-    	<%= dir.toll_cost + "¿ø + (" + dir.distance + "km ¡¿ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L ¡¿ " + dir.fuel_cost_rate + "¿ø/L) + = <b>" + (dir.toll_cost + dir.fuel_cost) + "¿ø</b>" %><br>
-=======
     	<%= dir.toll_cost + "¿ø + (" + dir.distance + "km ¡À " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L ¡¿ " + dir.fuel_cost_rate + "¿ø/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "¿ø</b>" %><br>
->>>>>>> parent of 0fcefb2 (Revert "ì´ê²ƒì €ê²ƒ")
 		Åçºñ + À¯·ùºñ(¿îÇà°Å¸® ¡À ¿¬ºñ ¡¿ ¸®ÅÍ´ç ¿¬·áºñ)<br><br>
 		<b>2. Â÷·® À¯Áöºñ</b><br>
 		<%= dir.distance + "km ¡¿ " + dir.maintenance_rate + "¿ø = <b>" + dir.maintenance_cost + "¿ø</b>" %><br>
