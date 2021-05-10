@@ -7,9 +7,9 @@
 <%@page import="myUtil.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
-	//order.jsp에서 넘겨준 값 세션에 저장
-	//from_where, from_spec, depart_time, to_where, to_spec
-	//truck-type, cargo_type, cargo_help, cargo_spec
+	//order3에서 넘겨준 값 세션에 저장
+	session.setAttribute("to_where", request.getParameter("to_where"));
+	session.setAttribute("to_spec", request.getParameter("to_spec"));
 	
 	String depart_time = (String)session.getAttribute("depart_time");
 	//운송거리, 시간, ETA 계산
