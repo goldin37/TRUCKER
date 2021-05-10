@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정보수정</title>
-    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
 	<script type="text/javascript" src="Driver.js" charset="utf-8"></script>
 	<script type="text/javascript">
 		function check_email(){

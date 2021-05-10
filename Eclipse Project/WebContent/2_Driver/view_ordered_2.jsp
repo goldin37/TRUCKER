@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운송내역조회(2/2)</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../css/mystyle.css">
 </head>
 <body>
     <header>
@@ -41,23 +41,23 @@
        		<tr>
                <td>조회 기간</td>
                <td>
-                   <input type = "datetime-local" value = "<%= PERIOD_START %>"> ~
-                   <input type = "datetime-local"  value = "<%= PERIOD_END %>">
+                   <input type = "datetime-local" value = "<%= "PERIOD_START" %>"> ~
+                   <input type = "datetime-local"  value = "<%= "PERIOD_END" %>">
                </td>
             </tr>
 		</table>
 		<table>
-		 	<tr><td>번호 : <%= ORDERED_NUM %></td></tr>
-            <tr><td>운송일자 : <%= COMPLETE_DATE_TIME %></td></tr>
-            <tr><td>고객이름 : <%= CUSTOMER_NAME %></td></tr>
-            <tr><td>고객연락처 : <%= CUSTOMER_TELEPHONE %></td></tr>
-            <tr><td>화물종류 : <%= CARGO_TYPE %></td></tr>
-            <tr><td>화물무게 : <%= CARGO_WEIGHT %></td></tr>
-            <tr><td>이동거리 : <%= DISTANCE %></td></tr>
-            <tr><td>출발지 : <%= FROM_WHERE %> <%= FROM_SPEC %></td></tr>
-            <tr><td>도착지 : <%= TO_WHERE %> <%= TO_SPEC %></td></tr>
-            <tr><td>승하차도움 : <%= CARGO_HELP %></td></tr>
-            <tr><td>운임 : <%= FIX_COST %></td></tr>         
+		 	<tr><td>번호 : <%= "ORDERED_NUM" %></td></tr>
+            <tr><td>운송일자 : <%= "COMPLETE_DATE_TIME" %></td></tr>
+            <tr><td>고객이름 : <%= "CUSTOMER_NAME" %></td></tr>
+            <tr><td>고객연락처 : <%= "CUSTOMER_TELEPHONE" %></td></tr>
+            <tr><td>화물종류 : <%= "CARGO_TYPE" %></td></tr>
+            <tr><td>화물무게 : <%= "CARGO_WEIGHT" %></td></tr>
+            <tr><td>이동거리 : <%= "DISTANCE" %></td></tr>
+            <tr><td>출발지 : <%= "FROM_WHERE" %> <%= "FROM_SPEC" %></td></tr>
+            <tr><td>도착지 : <%= "TO_WHERE" %> <%= "TO_SPEC" %></td></tr>
+            <tr><td>승하차도움 : <%= "CARGO_HELP" %></td></tr>
+            <tr><td>운임 : <%= "FIX_COST" %></td></tr>         
             <tr>
                 <td>
                 <input type="button" value="진행중인배송" class="finished" onclick="location.href='list.jsp'">
