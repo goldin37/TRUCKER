@@ -4,14 +4,14 @@ function join_check_ok(){
 		form.driver_id.focus();
 		return;
 	}
-	if(document.form.driver_password.value.length == 0){
+	if(document.form.driver_pwd.value.length == 0){
 		alert("비밀번호를 써주세요");
-		form.driver_password.focus();
+		form.driver_pwd.focus();
 		return;
 	}
-	if(document.form.driver_password.value != document.form.driver_password_check.value){
+	if(document.form.driver_pwd.value != document.form.driver_pwd_check.value){
 		alert("비밀번호가 틀립니다");
-		form.driver_password_check.focus();
+		form.driver_pwd_check.focus();
 		return;
 	}
 	if(document.form.driver_name.value.length == 0){
@@ -19,26 +19,31 @@ function join_check_ok(){
 		form.driver_name.focus();
 		return;
 	}
-	if(document.form.driver_jumin.value.length == 0){
+	if(document.form.jumin1.value.length == 0){
 		alert("주민등록번호를 입력하세요");
-		form.driver_jumin.focus();
+		form.jumin1.focus();
+		return;
+	}
+	if(document.form.jumin2.value.length == 0){
+		alert("주민등록번호를 입력하세요");
+		form.jumin2.focus();
 		return;
 	}
 
-	if(document.form.driver_phone_number.value.length == 0){
+	if(document.form.phone2.value.length == 0){
 		alert("전화번호를 입력하세요");
-		form.driver_phone_number.focus();
+		form.phone2.focus();
+		return;
+	}
+	if(document.form.phone3.value.length == 0){
+		alert("전화번호를 입력하세요");
+		form.phone3.focus();
 		return;
 	}
 
-	if(document.form.driver_address.value.length == 0){
+	if(document.form.driver_addr.value.length == 0){
 		alert("주소를 입력하세요");
-		form.driver_address.focus();
-		return;
-	}
-	if(document.form.driver_email.value.length == 0){
-		alert("이메일을 입력하세요");
-		form.driver_email.focus();
+		form.driver_addr.focus();
 		return;
 	}
 	if(document.form.truck_number.value.length == 0){
@@ -46,9 +51,9 @@ function join_check_ok(){
 		form.truck_number.focus();
 		return;
 	}
-	if(document.form.driver_picture.value.length == 0){
+	if(document.form.driver_photo.value.length == 0){
 		alert("면허사진을 입력하세요");
-		form.driver_picture.focus();
+		form.driver_photo.focus();
 		return;
 	}
 	if(document.form.driver_license.value.length == 0){
@@ -58,21 +63,22 @@ function join_check_ok(){
 	}
 	document.form.submit();
 }
+
 function modification_ok(){
-	if(document.form.driver_phone_number.value.length == 0){
+	if(document.form.phone2.value.length == 0){
 		alert("전화번호를 입력하세요");
-		form.driver_phone_number.focus();
+		form.phone2.focus();
+		return;
+	}
+	if(document.form.phone3.value.length == 0){
+		alert("전화번호를 입력하세요");
+		form.phone3.focus();
 		return;
 	}
 
-	if(document.form.driver_address.value.length == 0){
+	if(document.form.driver_addr.value.length == 0){
 		alert("주소를 입력하세요");
-		form.driver_address.focus();
-		return;
-	}
-	if(document.form.driver_email.value.length == 0){
-		alert("이메일을 입력하세요");
-		form.driver_email.focus();
+		form.driver_addr.focus();
 		return;
 	}
 	document.form.submit();

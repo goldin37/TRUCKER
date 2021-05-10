@@ -2,8 +2,7 @@
 <%@page import="Driver.DriverDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%
-	//login.html의 값을 입력받은 id,password
+<% //login.html의 값을 입력받은 id,password
 	String id = request.getParameter("driver_id");
 	String pwd = request.getParameter("driver_pwd");
 	

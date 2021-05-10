@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 찾기</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_searchPW.css">
+     <link rel = "stylesheet" type = "text/css" href ="style/mystyle.css">
 </head>
 <body>
     <header>
@@ -16,8 +16,8 @@
     <nav>
         <table>
             <tr>
-                <td><a href="#">아이디 찾기</a></td>
-                <td><a href="#">비밀번호 찾기</a></td>
+                <td><a href="searchID.html">아이디 찾기</a></td>
+                <td><a href="searchPW.html">비밀번호 찾기</a></td>
             </tr>
         </table>
     </nav>
@@ -26,7 +26,7 @@
 <table>
     <form action="searchPW_ok.jsp" method="post">
         <tr>
-            <p>회원에 입력된 정보를 입력해주세요.</p>
+            <p style="margin-left:20px;">회원에 입력된 정보를 입력해주세요.</p>
         </tr>
         <tr>
             <td>아이디를 입력하세요. </td>
@@ -41,8 +41,10 @@
             <td><input type="text" size="45" placeholder=" ' - '  빼고 입력해주세요" name="driver_jumin"> </td>
         </tr>
         <tr>
-            <td></td>
-            <td><input id="login" type="submit" value="찾 기" class="search"></td>
+            <td colspan="2" style="text-align:center">
+            	<input type="submit" value="찾 기" id="join">
+            	<input type="button" value="돌아가기" id="join" onclick="location.href='login.html'">
+            </td>
         </tr>
     </form>
 </table>

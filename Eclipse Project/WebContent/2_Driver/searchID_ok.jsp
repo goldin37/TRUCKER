@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정보수정</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/trucker_modify.css">
+    <link rel = "stylesheet" type = "text/css" href = "style/mystyle.css">
 	<script type="text/javascript" src="Driver.js" charset="utf-8"></script>
 </head>
 <body>
@@ -34,7 +34,6 @@
         </table>
       </nav>
       <section>
-          <h1>아이디 찾기</h1>
           <table>
               <form action="login.html">
 <%
@@ -57,7 +56,9 @@
           	}
 %>
 				<tr>
-					<td><input type="submit" value="로그인 돌아가기"></td>
+					<td colspan="2" style="text-align:center" >
+					<input type="submit" value="로그인 돌아가기" id="join">
+					</td>
 				</tr>
               </form>
           </table>

@@ -7,6 +7,8 @@
 <%
 	String id = (String)session.getAttribute("id");
 	driver.setDriver_id(id); // session에 있는 id값 받아옴.
+	driver.setDriver_phone_number(request.getParameter("phone1")+request.getParameter("phone2")+request.getParameter("phone3"));
+	driver.setDriver_email(request.getParameter("email1")+request.getParameter("email2"));
 	
 	DriverDBBean db = DriverDBBean.getInstance();
 	DriverBean tb = db.getDriver(id); // 값을 가져옴
@@ -19,6 +21,13 @@
 		String license = tb.getDriver_license(); // 면허
 		String truck_type = tb.getTruck_type(); //차량종류
 		String truck_number = tb.getTruck_number(); // 차량번호
+		
+		session.setAttribute("id", id);
+		session.setAttribute("name", name);
+		session.setAttribute("phone", phone);
+		session.setAttribute("license", license);
+		session.setAttribute("truck_type", truck_type);
+		session.setAttribute("truck_number", truck_number);
 %>
 		<script>
 			alert("입력하신대로 회원 정보가 수정되었습니다.");
