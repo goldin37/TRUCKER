@@ -1,3 +1,17 @@
+function login_check_ok(){
+	if(document.form.driver_id.value.length == 0){
+		alert("아이디를 써주세요");
+		form.driver_id.focus();
+		return;
+	}
+	if(document.form.driver_pwd.value.length == 0){
+		alert("비밀번호를 써주세요");
+		form.driver_pwd.focus();
+		return;
+	}
+	document.form.submit();
+}
+
 function join_check_ok(){
 	if(document.form.driver_id.value.length == 0){
 		alert("아이디를 써주세요");
