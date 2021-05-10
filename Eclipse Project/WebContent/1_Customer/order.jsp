@@ -8,13 +8,21 @@
     <title>화물 접수</title>
     <script>
     function next(){
-       	//무게 입력 안하면 경고       	
+       	//출발지 입력 안하면 경고       	
        	if(document.getElementById("from_where").value == ""){
-       		alert("비어있군!");
+       		alert("출발지를 입력해주세요.");
        		return;
        	}
      	//출발시각 비어있으면 경고
+       	if(document.getElementsByName("depart_time").value == ""){
+       		alert("출발시각을 입력해주세요.");
+       		return;
+       	}
     	//도착지 주소 비어있으면 경고
+       	if(document.getElementById("to_where").value == ""){
+       		alert("도착지를 입력해주세요.");
+       		return;
+       	}
     	
     	// 차량종류 선택 안하면 경고
     	var radio = document.getElementsByName("truck_type");
