@@ -112,7 +112,7 @@ public class Directions5 {
 				public_fuel_rate = 9.0;
 				fuel_rate = public_fuel_rate * 1800 / ( 1800 + cargo_weight/2);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 4500000 / 50000;
+				maintenance_rate = 5000000 / 50000;
 			}
 			if(truck_type.equals("2.5ton")) {
 				public_fuel_rate = 7.5;

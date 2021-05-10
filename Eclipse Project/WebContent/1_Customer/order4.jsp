@@ -7,9 +7,9 @@
 <%@page import="myUtil.Directions5"%>
 <jsp:useBean id="HanConv" class = "myUtil.HanConv"></jsp:useBean>
 <%
-	//order.jsp에서 넘겨준 값 세션에 저장
-	//from_where, from_spec, depart_time, to_where, to_spec
-	//truck-type, cargo_type, cargo_help, cargo_spec
+	//order3에서 넘겨준 값 세션에 저장
+	session.setAttribute("to_where", request.getParameter("to_where"));
+	session.setAttribute("to_spec", request.getParameter("to_spec"));
 	
 	String depart_time = (String)session.getAttribute("depart_time");
 	//운송거리, 시간, ETA 계산
@@ -168,7 +168,7 @@ function order(){
     	<input type ="button" onClick="check_spec()" value = "세부운임 확인"></td></tr>
 
     	<tr><td></td><td><output name = "spec" hidden><b>1. 교통비</b><br>
-    	<%= dir.toll_cost + "원 + (" + dir.distance + "km ÷ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
+    	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
 		톨비 + 유류비(운행거리 ÷ 연비 × 리터당 연료비)<br><br>
 		<b>2. 차량 유지비</b><br>
 		<%= dir.distance + "km × " + dir.maintenance_rate + "원 = <b>" + dir.maintenance_cost + "원</b>" %><br>
