@@ -83,7 +83,6 @@
     </script>
 </head>
 <body>
-
     <header>
         <h2>믿을 수 있는 화물 중개 플랫폼</h2>
         <h1>트럭커(TRUCKER)</h1>
