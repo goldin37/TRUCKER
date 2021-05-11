@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="myUtil.HanConv"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -64,15 +65,8 @@
 		cargo_help = "승하차 후 집/창고까지 이동";
 	}
 	
-	int cost_left = dir.recommend_cost/1000;
-	int cost_right = dir.recommend_cost%1000;
-	String cost_right_text;
-	if(cost_right == 0){
-		cost_right_text = "000원";
-	} else{
-		cost_right_text = cost_right + "원";
-	}
-	String cost_text = cost_left + "," + cost_right_text;
+	DecimalFormat df = new DecimalFormat(",###");
+	String cost_text = df.format(dir.recommend_cost) + "원";
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

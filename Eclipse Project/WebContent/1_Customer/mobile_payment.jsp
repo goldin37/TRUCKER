@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="myUtil.HanConv"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -51,10 +52,8 @@
 	+ ETA.substring(11,13) + "시 "
 	+ ETA.substring(14,16) + "분";
 	
-	
-	String cost_text = session.getAttribute("fix_cost") +"";
-	int temp_cost = Integer.parseInt(cost_text);
-	int cost_left = temp_cost / 1000;
+	DecimalFormat df = new DecimalFormat(",###");
+	String cost_text = df.format(session.getAttribute("fix_cost")) + "원";
 	
 	
 %>
@@ -114,9 +113,9 @@ function mobile_payment(){
     	<tr><td>고객 연락처</td>
     	<td><%= (String)session.getAttribute("customer_telephone") %></td></tr>
     	<tr><td>운임</td>
-    	<td><%= cost_left + ",000원 (부가가치세 포함)" %></td></tr>
+    	<td><%= cost_text + "(부가세 포함)" %></td></tr>
 	</table>
-	<h1>결제 금액 : <%= cost_left + ",000원"%></h1>
+	<h1>결제 금액 : <%= cost_text%></h1>
 	<form name = "form" method = "post" action = "mobile_payment_ok.jsp">
 		<select name = "tel_company">
 			<option value = "tel_company">통신사</option>
