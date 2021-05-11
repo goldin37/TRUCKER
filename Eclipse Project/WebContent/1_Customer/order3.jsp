@@ -59,9 +59,9 @@ function next(){
     		<tr>
 			    <td>도착지</td>
         	   	<td>
-					<input type="text"  name="to_where" size = "40" readonly>
+					<input type="text"  name="to_where" placeholder = "도로명 주소" size = "40" readonly>
 					<a onClick="toPopup();">주소 검색</a><br><br>
-					<input type="text" name="to_spec" size = "40">
+					<input type="text" name="to_spec" placeholder = "세부 주소" size = "40">
 					<a onClick="next()">다음</a>
 				</td>
 			</tr>
