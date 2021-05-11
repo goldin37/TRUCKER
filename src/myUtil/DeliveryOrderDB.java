@@ -16,12 +16,12 @@ import javax.sql.DataSource;
 public class DeliveryOrderDB {
 	private static DeliveryOrderDB instance = new DeliveryOrderDB();
 
-	//객체 ?��?��
+	//객체 생성
 	public static DeliveryOrderDB getInstance() {
 		return instance;
 	}
 	
-	//DB ?���?
+	//DB 접속
 	public Connection getConnection() throws Exception{
 		Context ctx=new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
@@ -29,7 +29,7 @@ public class DeliveryOrderDB {
 	}
 	
 	public int createOrder(String truck_type, String cargo_type, String cargo_weight, String cargo_help, String cargo_spec, String from_where, String from_spec, String depart_time, String to_where, String to_spec, String distance, String time, String ETA, String recommend_cost, String fix_cost, String customer_name, String customer_telephone) throws Exception{
-		int re = 0; //order_id�?
+		int re = 0; //order_id
 
 		Connection con = null;
 		Statement stmt = null;
@@ -53,17 +53,17 @@ public class DeliveryOrderDB {
 				create_order_id = 1;
 			}
 			
-			//?��?�� ?��?��
+			//접속 종료
 			rs.close();
 			stmt.close();
 			con.close();
 			
-			//?��?�� ?���? 메시�?
-			System.out.println("마�?�? order_id : " + max_order_id);
-			System.out.println("?��?�� order_id : " + create_order_id);
-			System.out.println("DB 조회 ?���?");
+			//조회 성공 메시지
+			System.out.println("최대 order_id : " + max_order_id);
+			System.out.println("삽입 order_id : " + create_order_id);
+			System.out.println("DB 조회 성공");
 		} catch(Exception e) {
-			System.out.println("DB 조회 ?��?��");
+			System.out.println("DB 조회 실패");
 			e.printStackTrace();
 		}
 		//주문 insert
@@ -86,28 +86,28 @@ public class DeliveryOrderDB {
 			pstmt.setString(11, to_spec);
 			pstmt.setInt(12, Integer.parseInt(distance));
 			pstmt.setString(13, time);
-			pstmt.setString(14, ETA);
-			pstmt.setInt(15, Integer.parseInt(recommend_cost));
+			pstmt.setTimestamp(14, Timestamp.valueOf(LocalDateTime.parse(ETA)));
+			pstmt.setInt(15, Integer.parseInt(fix_cost));
 			pstmt.setInt(16, Integer.parseInt(fix_cost));
 			pstmt.setString(17, customer_name);
 			pstmt.setString(18, customer_telephone);
 			pstmt.setTimestamp(19, Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.executeUpdate();
 			
-			//?��?�� 종료
+			//접속 종료
 			rs.close();
 			pstmt.close();
 			con.close();
 
-			//?���? 메시�?
-			System.out.println("주문 ?��?�� ?���?");
+			//성공 메시지
+			System.out.println("주문 성공");
 			re = create_order_id;
 		} catch(Exception e){
-			System.out.println("주문 ?��?�� ?��?��");
+			System.out.println("주문 실패");
 			e.printStackTrace();
 		}
 		
-		//?��?��?�� order_id 리턴
+		//성공하면 order_id 리턴
 		return re;
 	}
 	
@@ -140,27 +140,36 @@ public class DeliveryOrderDB {
 			}else {
 				DeliveryOrder.pageCount = dbCount / DeliveryOrder.pageSize + 1;
 			}
-			
+			if(pageNumber != null) {
+				DeliveryOrder.pageNum = Integer.parseInt(pageNumber);
+				absolutePage = (DeliveryOrder.pageNum -1) * DeliveryOrder.pageSize +1;
+			}
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			sql = "select * from delivery_order";
 			rs = stmt.executeQuery(sql);
+			
 			if(rs.next()) {
 				rs.absolute(absolutePage);
 				int count = 0;
 				while(count<DeliveryOrder.pageSize) {
 					DeliveryOrder deliveryorder = new DeliveryOrder();
 					
-					deliveryorder.setTruck_type(rs.getString(1));
-					deliveryorder.setCargo_type(rs.getString(2));
-					deliveryorder.setCargo_weight(rs.getInt(3));
-					deliveryorder.setCargo_help(rs.getString(4));
-					deliveryorder.setFrom(rs.getString(5));
-					deliveryorder.setTo(rs.getString(6));
-					deliveryorder.setDistance(rs.getInt(7));
-					deliveryorder.setTime(rs.getString(8));
-					deliveryorder.setETA(rs.getString(9));
-					deliveryorder.setDepart_time(rs.getTimestamp(10));
-					deliveryorder.setRecommend_cost(rs.getInt(11));
+					deliveryorder.setOrder_id(rs.getInt("order_id"));
+					deliveryorder.setTruck_type(rs.getString("truck_type"));
+					deliveryorder.setCargo_type(rs.getString("cargo_type"));
+					deliveryorder.setCargo_weight(rs.getInt("cargo_weight"));
+					deliveryorder.setCargo_help(rs.getString("cargo_help"));
+					deliveryorder.setFrom_where(rs.getString("from_where"));
+					deliveryorder.setFrom_spec(rs.getString("from_spec"));
+					deliveryorder.setTo_where(rs.getString("to_where"));
+					deliveryorder.setTo_spec(rs.getString("to_spec"));
+					deliveryorder.setDistance(rs.getInt("distance"));
+					deliveryorder.setTime(rs.getString("time"));
+					deliveryorder.setETA(rs.getString("ETA"));
+					deliveryorder.setDepart_time(rs.getTimestamp("depart_time"));
+					deliveryorder.setFix_cost(rs.getInt("fix_cost"));
+					deliveryorder.setOrder_state(rs.getString("order_state"));
+					deliveryorder.setCargo_spec(rs.getString("cargo_spec"));
 					
 					orderList.add(deliveryorder);
 					if(rs.isLast()) {
@@ -196,25 +205,31 @@ public class DeliveryOrderDB {
 			con = getConnection();
 			sql = "select * from delivery_order where order_id =?";
 			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, order_id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				deliveryorder = new DeliveryOrder();
 				
-				deliveryorder.setTruck_type(rs.getString(1));
-				deliveryorder.setCargo_type(rs.getString(2));
-				deliveryorder.setCargo_weight(rs.getInt(3));
-				deliveryorder.setCargo_help(rs.getString(4));
-				deliveryorder.setCargo_spec(rs.getString(5));
-				deliveryorder.setFrom(rs.getString(6));
-				deliveryorder.setTo(rs.getString(7));
-				deliveryorder.setDistance(rs.getInt(8));
-				deliveryorder.setTime(rs.getString(9));
-				deliveryorder.setETA(rs.getString(10));
-				deliveryorder.setDepart_time(rs.getTimestamp(11));
-				deliveryorder.setRecommend_cost(rs.getInt(12));
-				deliveryorder.setCustomer_name(rs.getString(13));
-				deliveryorder.setCustomer_telephone(rs.getString(14));
+				deliveryorder.setOrder_id(rs.getInt("order_id"));
+				deliveryorder.setTruck_type(rs.getString("truck_type"));
+				deliveryorder.setCargo_type(rs.getString("cargo_type"));
+				deliveryorder.setCargo_weight(rs.getInt("cargo_weight"));
+				deliveryorder.setCargo_help(rs.getString("cargo_help"));
+				deliveryorder.setFrom_where(rs.getString("from_where"));
+				deliveryorder.setFrom_spec(rs.getString("from_spec"));
+				deliveryorder.setTo_where(rs.getString("to_where"));
+				deliveryorder.setTo_spec(rs.getString("to_spec"));
+				deliveryorder.setDistance(rs.getInt("distance"));
+				deliveryorder.setTime(rs.getString("time"));
+				deliveryorder.setETA(rs.getString("ETA"));
+				deliveryorder.setDepart_time(rs.getTimestamp("depart_time"));
+				deliveryorder.setFix_cost(rs.getInt("fix_cost"));
+				deliveryorder.setOrder_state(rs.getString("order_state"));
+				deliveryorder.setCustomer_name(rs.getString("customer_name"));
+				deliveryorder.setCustomer_telephone(rs.getString("customer_telephone"));
+				deliveryorder.setCargo_spec(rs.getString("cargo_spec"));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -229,4 +244,5 @@ public class DeliveryOrderDB {
 		}
 		return deliveryorder;
 	}
+
 }

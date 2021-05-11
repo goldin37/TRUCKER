@@ -1,7 +1,5 @@
 package Driver;
 
-import java.sql.Timestamp;
-
 public class DriverBean {
 	private String driver_id;
 	private String driver_pwd;
@@ -17,42 +15,7 @@ public class DriverBean {
 	private String truck_number; 
 	private String driver_photo; 
 	private String driver_evalue;
-	private String cargo_type;
-	private Timestamp period_start;
-	private Timestamp period_end;
-	private int order_number;
-	private int ordered_number;
 	
-	public String getCargo_type() {
-		return cargo_type;
-	}
-	public void setCargo_type(String cargo_type) {
-		this.cargo_type = cargo_type;
-	}
-	public Timestamp getPeriod_start() {
-		return period_start;
-	}
-	public void setPeriod_start(Timestamp period_start) {
-		this.period_start = period_start;
-	}
-	public Timestamp getPeriod_end() {
-		return period_end;
-	}
-	public void setPeriod_end(Timestamp period_end) {
-		this.period_end = period_end;
-	}
-	public int getOrder_number() {
-		return order_number;
-	}
-	public void setOrder_number(int order_number) {
-		this.order_number = order_number;
-	}
-	public int getOrdered_number() {
-		return ordered_number;
-	}
-	public void setOrdered_number(int ordered_number) {
-		this.ordered_number = ordered_number;
-	}
 	public String getDriver_id() {
 		return driver_id;
 	}

@@ -31,8 +31,7 @@ public class DriverDBBean {
 		PreparedStatement pstmt = null;
 		String sql = "insert into driver(driver_id, driver_pwd, driver_jumin, driver_license,"
 				+ " driver_pwd_check, driver_name, driver_phone_number, driver_addr, driver_email, driver_position, "
-				+ "truck_type, truck_number,driver_photo)" + " values(?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
-		//for test without driver_evalue   please add driver_evalue !!!!!
+				+ "truck_type, truck_number,driver_photo, driver_evalue)" + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		int re = -1;
 
 		try {
@@ -48,11 +47,11 @@ public class DriverDBBean {
 			pstmt.setString(7, driver.getDriver_phone_number());
 			pstmt.setString(8, driver.getDriver_addr());
 			pstmt.setString(9, driver.getDriver_email());
-			pstmt.setString(10,driver.getDriver_position());
+			pstmt.setString(10, driver.getDriver_position());
 			pstmt.setString(11, driver.getTruck_type());
 			pstmt.setString(12, driver.getTruck_number());
 			pstmt.setString(13, driver.getDriver_photo());
-			//pstmt.setString(14, driver.getDriver_evalue());
+			pstmt.setString(14, driver.getDriver_evalue());
 
 			pstmt.executeUpdate();
 			re = 1;
@@ -163,7 +162,7 @@ public class DriverDBBean {
 				driver.setTruck_type(rs.getString(11));
 				driver.setTruck_number(rs.getString(12));
 				driver.setDriver_photo(rs.getString(13));
-				//driver.setDriver_evalue(rs.getString(14));
+				driver.setDriver_evalue(rs.getString(14));
 
 			}
 			rs.close();

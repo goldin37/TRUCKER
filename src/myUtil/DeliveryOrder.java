@@ -6,10 +6,10 @@ public class DeliveryOrder {
 	//DELIVERY_ORDER 컬럼 내용들을 전부 멤버변수로
 	private int order_id;
 	private String truck_type;
-	private String from;
+	private String from_where;
 	private String from_spec;
 	private Timestamp depart_time;
-	private String to;
+	private String to_where;
 	private String to_spec;
 	private String cargo_type;
 	private int cargo_weight;
@@ -65,8 +65,6 @@ public class DeliveryOrder {
 		return str;
 	}	
 	
-	
-	
 	// getter/setter
 	public int getOrder_id() {
 		return order_id;
@@ -80,12 +78,15 @@ public class DeliveryOrder {
 	public void setTruck_type(String truck_type) {
 		this.truck_type = truck_type;
 	}
-	public String getFrom() {
-		return from;
+
+	public String getFrom_where() {
+		return from_where;
 	}
-	public void setFrom(String from) {
-		this.from = from;
+
+	public void setFrom_where(String from_where) {
+		this.from_where = from_where;
 	}
+
 	public String getFrom_spec() {
 		return from_spec;
 	}
@@ -98,12 +99,15 @@ public class DeliveryOrder {
 	public void setDepart_time(Timestamp depart_time) {
 		this.depart_time = depart_time;
 	}
-	public String getTo() {
-		return to;
+
+	public String getTo_where() {
+		return to_where;
 	}
-	public void setTo(String to) {
-		this.to = to;
+
+	public void setTo_where(String to_where) {
+		this.to_where = to_where;
 	}
+
 	public String getTo_spec() {
 		return to_spec;
 	}

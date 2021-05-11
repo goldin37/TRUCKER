@@ -13,33 +13,32 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class Directions5 {
+	// 거리 및 시간 계산 - 도착예정시각, 거리(km), 평균속도, 시간(초), 시간(문자열)
 	public String ETA;
 	public int distance;
 	public double speed;
 	public int temptime;
 	public String time;
-	public int toll_cost;
-	
+	// 교통비 - 톨비, 공인연비, 실연비, 리터당 연료비, 소모 연료비
+	public int toll_cost;	
 	public double public_fuel_rate;
 	public double fuel_rate;
-	public double fuel_cost_rate;
-	public double fuel_cost;	
-	
-	public double maintenance_rate;
-	public double maintenance_cost;
-	
+	public int fuel_cost_rate;
+	public int fuel_cost;	
+	// 유지비 및 인건비 - 키로당 유지비, 유지비, 승하차 도움비, 시간당 인건비, 인건비
+	public int maintenance_rate;
+	public int maintenance_cost;	
 	public int help_cost;
 	public int labor_rate;
-	public int labor_cost;
-	
-	public double sub_total;
-	
-	public double commission;
-	public double vat;
-	
+	public int labor_cost;	
+	// 합계요금 계산 - 임시합계, 수수료, 부가세, 추천요금
+	public int sub_total;	
+	public int commission;
+	public int vat;	
 	public int recommend_cost;
 	
-	public String result; //결과 JSON
+	//불러올 결과 JSON 데이터
+	public String result;
 	public void Direction(String from_where, String to_where, String truck_type, int cargo_weight, String cargo_help, String depart_time) {
 		//출발지, 도착지 좌표 받기
 		GeoCode from = new GeoCode();
@@ -87,15 +86,15 @@ public class Directions5 {
 			
 			speed = distance * 1.5;
 			if(speed > 80) speed = 80;
-			
+
 			temptime = (int)(( distance / speed + 1 ) * 60 * 60);
-			time = temptime / 3600 + "시간 " + temptime / 60 + "분";
+			time = temptime/3600 + "시간 " + temptime/60%60 + "분";
 			ETA = LocalDateTime.parse(depart_time).plusSeconds(temptime).toString();
 			if(truck_type.equals("damas")) {
 				public_fuel_rate = 8.8;
 				fuel_rate = public_fuel_rate * 865 / ( 865 + cargo_weight);
 				fuel_cost_rate = 950;
-				maintenance_rate = 2000000 / 30000;	//연간 200만원, 3만 키로
+				maintenance_rate = 2000000 / 30000;	//키로당 유지비, 연간 200만원, 3만 키로
 			}
 			if(truck_type.equals("labo")) {
 				public_fuel_rate = 8.6;
@@ -107,22 +106,22 @@ public class Directions5 {
 				public_fuel_rate = 9.9;
 				fuel_rate = public_fuel_rate * 1825 / ( 1825 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 3500000 / 50000;
+				maintenance_rate = 4000000 / 50000;
 			}
 			if(truck_type.equals("1.4ton")) {
 				public_fuel_rate = 9.0;
 				fuel_rate = public_fuel_rate * 1800 / ( 1800 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 4000000 / 50000;
+				maintenance_rate = 5000000 / 50000;
 			}
 			if(truck_type.equals("2.5ton")) {
 				public_fuel_rate = 7.5;
 				fuel_rate = public_fuel_rate * 2500 / ( 2500 + cargo_weight);
 				fuel_cost_rate = 1300;
-				maintenance_rate = 5000000 / 70000;
+				maintenance_rate = 7000000 / 60000;
 			}
 
-			fuel_cost = distance * fuel_cost_rate / fuel_rate; 
+			fuel_cost = (int)(distance * fuel_cost_rate / fuel_rate); 
 
 			maintenance_cost = distance * maintenance_rate;
 
@@ -130,19 +129,19 @@ public class Directions5 {
 				help_cost = 0;
 			}
 			if(cargo_help.equals("load_and_discharge")){
-				help_cost = 10000;
+				help_cost = cargo_weight * 10;
 			}
 			if(cargo_help.equals("to_door")){
-				help_cost = 30000;
+				help_cost = cargo_weight * 50;
 			}
 
 			labor_rate = 10000;
 			labor_cost = temptime * labor_rate / 60 / 60 + help_cost;
 
 			sub_total = toll_cost + fuel_cost + maintenance_cost + labor_cost;
-			commission = sub_total * 0.08;
+			commission = (int)(sub_total * 0.08);
 			sub_total += commission;
-			vat = sub_total * 0.1;
+			vat = (int)(sub_total * 0.1);
 			recommend_cost = (int)(sub_total + vat)/1000*1000;
 			System.out.println("차량 종류 : " + truck_type);
 			System.out.println("화물 무게 : " + cargo_weight);
