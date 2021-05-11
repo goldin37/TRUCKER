@@ -54,29 +54,14 @@ nav a{
 
 }
 
-nav a:hover{
-	animation: link_hover 300ms;
-		font-weight: 700;
-		color : rgb(18, 63, 129);
-	    background: white;
-}
-
-@keyframes link_hover{
-	from{
-		font-weight: 700;
-		color : white;
-	    background: rgb(18, 63, 129);
-	}
-	to{
-		font-weight: 700;
-		color : rgb(18, 63, 129);
-	    background: white;
-    }
-}
-
 nav a:link{
 }
 nav a:visited{
+}
+nav a:hover{
+	font-weight: 700;
+	color : rgb(18, 63, 129);
+    background: white;
 }
 nav a:active{
 }
@@ -254,6 +239,14 @@ button{
     color: rgb(131, 167, 218);
 }
 
+.order_complete a{
+	background: none;
+	padding : none;
+    text-decoration: none;
+    color: rgb(18, 63, 129);
+    font-weight: 700;
+}
+
 /* 獄쏄퀣�꽊 鈺곌퀬�돳 占쎈뮞占쏙옙占쎌뵬 */
 .order_query point{
     color: rgb(18, 63, 129);
@@ -267,6 +260,7 @@ footer{
     color: rgb(243, 243, 243);
     padding: 20px 100px;
     text-align: center;
+<<<<<<< HEAD
 }
 footer a{
     color: white;
@@ -277,3 +271,6 @@ footer a:hover{
     text-decoration: underline;
 }
 
+=======
+}
+>>>>>>> parent of 83db30c (푸터 링크 추가, 차량정보 경로 수정)
