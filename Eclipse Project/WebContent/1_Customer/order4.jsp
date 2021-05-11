@@ -169,11 +169,8 @@ function order(){
 
     	<tr><td></td><td><output name = "spec" hidden><b>1. 교통비</b><br>
     	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) + = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
-<<<<<<< HEAD
-=======
     	<%= dir.toll_cost + "원 + (" + dir.distance + "km ÷ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
     	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
->>>>>>> 4925abc8ea4fe76b9123f0c071c535fc550f1709
 		톨비 + 유류비(운행거리 ÷ 연비 × 리터당 연료비)<br><br>
 		<b>2. 차량 유지비</b><br>
 		<%= dir.distance + "km × " + dir.maintenance_rate + "원 = <b>" + dir.maintenance_cost + "원</b>" %><br>
