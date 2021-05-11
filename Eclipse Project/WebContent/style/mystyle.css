@@ -23,6 +23,22 @@ header h2{
     font-size: 40px;
     text-shadow: 2px 2px 2px #000;
 }
+
+nav div{
+	position: fixed;
+	float: right;
+	
+	right: 200px;
+	width: 60px;
+	height: 60px;
+	
+	
+	background: white;
+	border-radius: 60px;
+	padding: 10px;
+	color: black;
+}
+
 /* 네비 부분 : 메뉴 링크 */
 nav{
     background: rgb(18, 63, 129);
@@ -260,3 +276,4 @@ footer a:hover{
     color: white;
     text-decoration: underline;
 }
+

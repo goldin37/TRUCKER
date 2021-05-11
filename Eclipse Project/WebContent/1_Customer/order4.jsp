@@ -169,10 +169,14 @@ function order(){
 
     	<tr><td></td><td><output name = "spec" hidden><b>1. ±³Åëºñ</b><br>
 <<<<<<< HEAD
+<<<<<<< HEAD
     	<%= dir.toll_cost + "¿ø + (" + dir.distance + "km ¡¿ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L ¡¿ " + dir.fuel_cost_rate + "¿ø/L) + = <b>" + (dir.toll_cost + dir.fuel_cost) + "¿ø</b>" %><br>
 =======
     	<%= dir.toll_cost + "¿ø + (" + dir.distance + "km ¡À " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L ¡¿ " + dir.fuel_cost_rate + "¿ø/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "¿ø</b>" %><br>
 >>>>>>> parent of 0fcefb2 (Revert "ì´ê²ƒì €ê²ƒ")
+=======
+    	<%= dir.toll_cost + "¿ø + (" + dir.distance + "km ¡¿ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L ¡¿ " + dir.fuel_cost_rate + "¿ø/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "¿ø</b>" %><br>
+>>>>>>> parent of ecba9a6 (Revert "ìŠ¤íƒ€ì¼, ìš´ì„ê³„ì‚° ì¼ë¶€ ìˆ˜ì •")
 		Åçºñ + À¯·ùºñ(¿îÇà°Å¸® ¡À ¿¬ºñ ¡¿ ¸®ÅÍ´ç ¿¬·áºñ)<br><br>
 		<b>2. Â÷·® À¯Áöºñ</b><br>
 		<%= dir.distance + "km ¡¿ " + dir.maintenance_rate + "¿ø = <b>" + dir.maintenance_cost + "¿ø</b>" %><br>
