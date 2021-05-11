@@ -169,6 +169,11 @@ function order(){
 
     	<tr><td></td><td><output name = "spec" hidden><b>1. 교통비</b><br>
     	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) + = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
+<<<<<<< HEAD
+=======
+    	<%= dir.toll_cost + "원 + (" + dir.distance + "km ÷ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
+    	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
+>>>>>>> 4925abc8ea4fe76b9123f0c071c535fc550f1709
 		톨비 + 유류비(운행거리 ÷ 연비 × 리터당 연료비)<br><br>
 		<b>2. 차량 유지비</b><br>
 		<%= dir.distance + "km × " + dir.maintenance_rate + "원 = <b>" + dir.maintenance_cost + "원</b>" %><br>
@@ -202,11 +207,11 @@ function order(){
     	</form>
     </section>
     <footer>
-        (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
+    (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
         통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 
         전화번호 : 1588-3333 | 팩스 : 070-1234-1234 | 대표메일 : trucker@naver.com <br>
-        <a href = "contract.html">화물운송약관</a> | <a href = "personal_information.html">개인정보 처리방침</a><br>
-        COPYRIGHT(C) TRUCKER LTD. ALL RIGHT RESERVED.
+        화물운송약관 | 개인정보 처리방침<br>
+    COPYRIGHT(C) TRUCKER LTD. ALL RIGHT RESERVED.
     </footer>
 
 </body>
