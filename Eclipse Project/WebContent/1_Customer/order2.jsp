@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
@@ -74,7 +75,7 @@ function next(){
 			<tr>
 				<td>출발일시</td>
 				<td>
-				<input type = "datetime-local" name = "depart_time">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input type = "datetime-local" name = "depart_time" value = "<%= LocalDateTime.now() %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 				<input type = "button" value = "다음" onClick = "next();">
 				</td>
 			</tr>
