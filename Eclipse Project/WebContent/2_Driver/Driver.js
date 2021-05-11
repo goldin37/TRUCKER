@@ -78,6 +78,44 @@ function join_check_ok(){
 	document.form.submit();
 }
 
+function check_email(){
+	if(document.form.email.options[document.form.email.selectedIndex].value == '0'){
+	 document.form.email2.value = false;
+	 document.form.email2.value = "";
+	}
+	if(document.form.email.options[document.form.email.selectedIndex].value == '9'){
+	 document.form.email2.value = "";
+	 document.form.email2.focus();
+	} else{
+	 document.form.email2.value = document.form.email.options[document.form.email.selectedIndex].value;
+	}
+}
+
+function autoHypen(obj) {
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+
+    if(number.length < 3) {
+        return number;
+    } else if(number.length < 10) {
+        phone += number.substr(0, 2);
+        phone += "-";
+        phone += number.substr(2);
+    } else if(number.length < 13) {
+        phone += number.substr(0, 2);
+        phone += "-";
+        phone += number.substr(2, 6);
+        phone += "-";
+        phone += number.substr(8);
+    } else {
+        phone += number.substr(0, 2);
+        phone += "-";
+        phone += number.substr(8, 9);
+        phone += "-";
+        phone += number.substr(2);
+    }
+    obj.value = phone;
+}
 function modification_ok(){
 	if(document.form.phone2.value.length == 0){
 		alert("전화번호를 입력하세요");
@@ -97,7 +135,6 @@ function modification_ok(){
 	}
 	document.form.submit();
 }
-
 function period_check_ok(){
 	if(document.form.period_start.value.length == 0){
 		alert("조회시작기간을 입력하세요");
