@@ -12,9 +12,8 @@
 	}
 	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
 	ArrayList<DeliveryOrder> orderList = db.listOrder(pageNum);
-	
-	String truck_type,cargo_type,cargo_help,cargo_spec,to_where,from_where,time,eta, order_state;
-	int order_id, cargo_weight,distance,fix_cost;
+	String truck_type,cargo_type,cargo_help,cargo_spec,to,from,time,eta;
+	int cargo_weight,distance,recommend_cost;
 	Timestamp depart_time;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -25,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>배송리스트</title>
-    <link rel="stylesheet" href="../style/mystyle.css" type = "text/css">
+    <link rel="stylesheet" href="css/trucker_orderlist.css" type = "text/css">
     <!-- style/mystyle.css 로 변경 -->
 </head>
 <body>
@@ -44,42 +43,41 @@
             </tr>
         </table>
       </nav>
-  <section class="orderlist">
+    <section>
         <table>
             <form>
                 <tr>
-                    <td>주문번호</td>
                     <td>차량종류</td>
                     <td>화물종류</td>
                     <td>화물무게</td>
+                    <td>승하차도움</td>
                     <td>출발지</td>
                     <td>도착지</td>
-                    <td>예상 시간</td>
                     <td>출발일시</td>
+                    <td>예상거리</td>
+                    <td>예상 소요시간</td>
+                    <td>예상 도착시간</td>
                     <td>요금</td>
-                    <td>진행상태</td>
                 </tr>
 <%
 				for(int i=0 ; i<orderList.size() ; i++){
 					DeliveryOrder deliverorder = orderList.get(i); //한행씩 가져옴
-					
-					order_id = deliverorder.getOrder_id();
 					truck_type = deliverorder.getTruck_type();
 					cargo_type = deliverorder.getCargo_type();
 					cargo_weight = deliverorder.getCargo_weight();
-					from_where = deliverorder.getFrom_spec();
-					to_where = deliverorder.getTo_spec();
+					cargo_help = deliverorder.getCargo_help();
+					from =  deliverorder.getFrom();
+					to = deliverorder.getTo();
 					distance = deliverorder.getDistance();
 					time = deliverorder.getTime();
 					eta = deliverorder.getETA();
-					fix_cost = deliverorder.getFix_cost();
+					recommend_cost = deliverorder.getRecommend_cost();
 					depart_time = deliverorder.getDepart_time();
-					order_state = deliverorder.getOrder_state();
 %>
-				<tr bgcolor="#f7f7f7"> 
-			 	<td align="center"  id="click">
-                    <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>"><%= order_id %></a>
-			 	</td>
+				<tr bgcolor="#f7f7f7"
+			 onmouseout="this.style.backgroundColor = '#f7f7f7'"
+			 onmouseover="this.style.backgroundColor = '#eeeeef'"> 
+				<!-- 마우스 올렸을때랑 기본 색 지정-->
 			 	<td align="center">
 			 		<%= truck_type %>
 			 	</td>
@@ -87,27 +85,31 @@
 			 		<%= cargo_type %>
 			 	</td>
 			 	<td>
-			 		<%= cargo_weight %> kg
+			 		<a href="ordershow.jsp?&pageNum=<%=pageNum%>"><%= cargo_weight %></a>
 			 	</td>
 			 	<td align="center">
-					<%=from_where %>
+					<%=cargo_help %>
 			 	</td>
 			 	<td align="center">
-					<%=to_where %>
+					<%=from %>
 			 	</td>
-
+			 	<td align="center">
+					<%=to %>
+			 	</td>
+			 	<td align="center">
+					<%=distance %>
+			 	</td>
 			 	<td align="center">
 					<%= time%>
 			 	</td>
-
+			 	<td align="center">
+					<%=eta %>
+			 	</td>
 			 	<td align="center">
 					<%= sdf.format(depart_time) %>
 			 	</td>
 			 	<td align="center">
-					<%= fix_cost %>원
-			 	</td>
-			 	<td align="center">
-					<%= order_state %>
+					<%= recommend_cost %>
 			 	</td>
 			</tr>
 	<%

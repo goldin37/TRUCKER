@@ -12,7 +12,7 @@
 <jsp:setProperty property="*" name="trucker"/>
 --%>
 <%	
-	String path = request.getRealPath("images");
+	String path = request.getRealPath("driver_photo");
 	int size = 1024* 1024 *10;
 	String file ="";
 	

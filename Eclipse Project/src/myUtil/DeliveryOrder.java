@@ -6,10 +6,10 @@ public class DeliveryOrder {
 	//DELIVERY_ORDER 컬럼 내용들을 전부 멤버변수로
 	private int order_id;
 	private String truck_type;
-	private String from_where;
+	private String from;
 	private String from_spec;
 	private Timestamp depart_time;
-	private String to_where;
+	private String to;
 	private String to_spec;
 	private String cargo_type;
 	private int cargo_weight;
@@ -35,35 +35,6 @@ public class DeliveryOrder {
 	private Timestamp cancel_date_time;
 	private int customer_evaluation;
 	private String customer_comment;
-	public static int pageSize = 10; // 한페이지에 10개를 보여주기 위한 변수
-	public static int pageCount = 1; // 페이지 개수 카운트
-	public static int pageNum = 1; // 페이지 번호
-	
-	public static String pageNumber(int limit) {
-		//페이지 목록을 만들어주는 메소드
-		
-		String str = ""; //return값
-		int temp = (pageNum -1) % limit; // 시작 페이지 구하기 위해
-		int startPage = pageNum - temp; //시작페이지 설정
-		
-		if((startPage - limit) > 0) { // [이전]을 구현하기 위한 if문
-			str="<a href='orderlist.jsp?pageNum="+(startPage - 1)+"'>[이전]</a> &nbsp;&nbsp;";
-		}
-		for (int i = startPage; i < (startPage+limit); i++) {//페이지 개수를 나타냄
-			if(i== pageNum) {
-				str += "[" +i+"]&nbsp;&nbsp;"; 
-			}else {
-				str += "<a href='orderlist.jsp?pageNum ="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
-			}
-			if(i>=pageCount) {//페이지개수보다 크면 break
-				break;
-			}
-		}
-			if((startPage+limit)<=pageCount) { // [다음]을 구현하기 위한 if문
-				str +="<a href = 'orderlist.jsp?pageNum="+(startPage +limit)+"'>[다음]</a>";
-			}
-		return str;
-	}	
 	
 	// getter/setter
 	public int getOrder_id() {
@@ -78,15 +49,12 @@ public class DeliveryOrder {
 	public void setTruck_type(String truck_type) {
 		this.truck_type = truck_type;
 	}
-
-	public String getFrom_where() {
-		return from_where;
+	public String getFrom() {
+		return from;
 	}
-
-	public void setFrom_where(String from_where) {
-		this.from_where = from_where;
+	public void setFrom(String from) {
+		this.from = from;
 	}
-
 	public String getFrom_spec() {
 		return from_spec;
 	}
@@ -99,15 +67,12 @@ public class DeliveryOrder {
 	public void setDepart_time(Timestamp depart_time) {
 		this.depart_time = depart_time;
 	}
-
-	public String getTo_where() {
-		return to_where;
+	public String getTo() {
+		return to;
 	}
-
-	public void setTo_where(String to_where) {
-		this.to_where = to_where;
+	public void setTo(String to) {
+		this.to = to;
 	}
-
 	public String getTo_spec() {
 		return to_spec;
 	}
