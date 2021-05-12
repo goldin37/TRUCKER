@@ -49,11 +49,10 @@
         </p>
         <table>
             <tr>
-               <td>조회 기간:</td>
-               <td>
-                   <input type = "datetime-local" value = "<%= period_start %>"> ~
-                   <input type = "datetime-local"  value = "<%= period_end %>">
-               </td>
+               <td style="font-weight: bolder; padding-left: 90px;">조회 기간:</td>
+               <td><input type = "datetime-local" value = "<%= period_start %>"></td>
+               <td>~</td>
+			   <td><input type = "datetime-local"  value = "<%= period_end %>"></td>
             </tr>
             <tr><td>번호 : <%= "ordered_num" %></td></tr>
             <tr><td>운송일자 : <%= "complete_date_time" %></td></tr>

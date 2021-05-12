@@ -37,8 +37,8 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "orderlist.jsp">배송조회</a></td>
-                <td><a href = "#">mypage</a></td>
+                <td><a href = "orderlist.jsp">접수현황</a></td>
+                <td><a href = "#">마이페이지</a></td>
                 <td><a href = "#">고객센터</a></td>
                 <td><a href = "#">회사소개</a></td>
             </tr>
