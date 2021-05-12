@@ -12,25 +12,27 @@
 	DeliveryOrder deliveryorder = db.getOrder(orderid);
 	
 	String truck_type ="",cargo_type ="",cargo_help ="",cargo_spec ="",
-			to ="",from ="",time ="",eta ="",customer_name ="",customer_tel ="";
-	int cargo_weight = 0,distance = 0,recommend_cost = 0;
+			to_where ="",from_where ="",time ="",eta ="",customer_name ="",customer_tel ="";
+	int order_id = 0, cargo_weight = 0, distance = 0,fix_cost = 0;
 	Timestamp depart_time = null;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 	
 	if(deliveryorder != null){
+		order_id = deliveryorder.getOrder_id();
 		truck_type = deliveryorder.getTruck_type();
 		cargo_type = deliveryorder.getCargo_type();
 		cargo_weight =deliveryorder.getCargo_weight();
 		cargo_help = deliveryorder.getCargo_help();
 		cargo_spec = deliveryorder.getCargo_spec();
-		to = deliveryorder.getTo();
-		from = deliveryorder.getFrom();
+		to_where = deliveryorder.getTo_where() + deliveryorder.getTo_spec();
+		from_where = deliveryorder.getFrom_where() + deliveryorder.getTo_spec();
+		depart_time = deliveryorder.getDepart_time();
 		time = deliveryorder.getTime();
 		distance = deliveryorder.getDistance();
 		eta = deliveryorder.getETA();
 		customer_name = deliveryorder.getCustomer_name();
 		customer_tel = deliveryorder.getCustomer_telephone();
-		recommend_cost = deliveryorder.getRecommend_cost();
+		fix_cost = deliveryorder.getFix_cost();
 		
 	}
 %>
@@ -40,7 +42,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/trucker_orderlist.css" type = "text/css">
+    <link rel="stylesheet" href="../style/mystyle.css" type = "text/css">
     <!-- style/mystyle.css 로 변경 -->
 </head>
 <body>
@@ -59,56 +61,60 @@
             </tr>
         </table>
       </nav>
-    <section>
+   <section class="ordershow">
         <h1>요청된 배송</h1>
-        <table cellspacing="0" border="1" width="1000">
+        <table>
             <form>
-                <tr align ="center">
-                    <td width="200">작성자</td>
-                    <td><%=customer_name %></td>
-                    <td width="200">전화번호</td>
-                    <td><%=customer_tel %></td>
+                <tr>
+                    <td width="130">주문번호</td>
+                    <td><%=orderid%></td>
                 </tr>
                 <tr>
-                   <td>화물종류 </td>
-                   <td><%=cargo_type%></td>
-                   <td>화물무게 </td>
-                   <td><%=cargo_weight%></td>
+                    <td width="130">작성자</td>
+                    <td><%= customer_name %></td>
+                    <td width="130">연락처</td>
+                    <td><%= customer_tel %></td>
                 </tr>
                 <tr>
-                    <td>승하차 도움</td>
-                    <td><%=cargo_help%></td>
-                    <td>요금</td>
-                    <td><%=recommend_cost%></td>
+                   <td width="130">화물종류 </td>
+                   <td><%= cargo_type %></td>
+                   <td width="130">화물무게 </td>
+                   <td><%= cargo_weight%>kg</td>
                 </tr>
                 <tr>
-                    <td>출발지</td>
-                    <td><%=from%></td>
+                    <td width="130">승하차 도움</td>
+                    <td><%=cargo_help %></td>
+                    <td width="130">요금</td>
+                    <td><%= fix_cost%>원</td>
                 </tr>
                 <tr>
-                    <td>도착지</td>
-                    <td><%=to%></td>
+                    <td width="130">출발지</td>
+                    <td colspan="4"><%=from_where %></td>
                 </tr>
                 <tr>
-                    <td>출발일시</td>
+                    <td width="130">도착지</td>
+                    <td colspan="4"><%= to_where%></td>
+                </tr>
+                <tr>
+                    <td width="130">출발일시</td>
                     <td><%= sdf.format(depart_time) %></td>
-                    <td>예상거리</td>
-                    <td><%=distance%></td>
+                    <td width="130">예상거리</td>
+                    <td><%=distance %>km</td>
                 </tr>
                 <tr>
-                    <td>예상 소요시간</td>
-                    <td><%=time%></td>
-                    <td>예상 도착시간</td>
-                    <td><%=eta%></td>
+                    <td width="130">예상 소요시간</td>
+                    <td><%= time%></td>
+                    <td width="130">예상 도착시간</td>
+                    <td><%= eta %></td>
                 </tr>
                 <tr>
-                    <td>세부사항</td>
-                    <td><%=cargo_spec%></td>
+                    <td width="130">세부사항</td>
+   		            <td><%=cargo_spec %></td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="button" value="수락" onclick="">
-                        <input type="button" value="글목록" onclick="javascript:windows.location='orderlist.jsp?pageNum<%= pageNum%>'">
+                    <td colspan="5">
+                        <input type="button" value="수락" onclick="" id="order" >
+                        <input type="button" value="글목록" id="order" onclick="location.href='orderlist.jsp?pageNum=<%= pageNum %>'">
                     </td>
                 </tr>
             </form>
