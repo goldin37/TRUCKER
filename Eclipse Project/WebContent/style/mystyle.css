@@ -1,0 +1,396 @@
+body{
+	padding: 0px;
+	margin: 0px;
+}
+/* 헤버 부분 (이미지) */
+header{
+    margin : 0px;
+    padding : 0px;
+    padding-right: 100px;
+    background: url("../images/topimage.jpg") no-repeat;
+    background-size: 100%;
+    height:450px;
+}
+header h1{
+    text-align: right;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 2px 2px 2px #000;
+}
+header h2{
+    text-align: right;
+    color: #fff;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px #000;
+}
+
+nav div{
+	position: fixed;
+	float: right;
+	
+	right: 200px;
+	width: 60px;
+	height: 60px;
+	
+	
+	background: white;
+	border-radius: 60px;
+	padding: 10px;
+	color: black;
+}
+
+/* 네비 부분 : 메뉴 링크 */
+nav{
+    background: rgb(18, 63, 129);
+    padding: 10px;
+    margin: 0px;
+}
+nav a{
+    font-size: 20px;
+    color : rgb(255, 255, 255);
+    text-decoration: none;
+    padding : 15px 30px;
+    border-radius: 40px;
+
+}
+
+nav a:hover{
+	animation: link_hover 300ms;
+		font-weight: 700;
+		color : rgb(18, 63, 129);
+	    background: white;
+}
+
+@keyframes link_hover{
+	from{
+		font-weight: 700;
+		color : white;
+	    background: rgb(18, 63, 129);
+	}
+	to{
+		font-weight: 700;
+		color : rgb(18, 63, 129);
+	    background: white;
+    }
+}
+
+nav a:link{
+}
+nav a:visited{
+}
+nav a:active{
+}
+
+nav table{
+    width : 1000px;
+    margin: auto;
+    text-align: center;
+}
+nav td{
+    padding : 20px;
+}
+
+/* 본문 스타일 */
+
+section{
+    width : 1000px;
+    margin : auto;
+    margin-top : 80px;
+    margin-bottom : 80px;
+}
+
+section table{
+    width : 1000px;
+
+}
+
+section th{
+    color: rgb(255, 255, 255);
+    background: rgb(18, 63, 129);
+    font-size: larger;
+    padding: 10px;
+    border-radius: 10px;
+    width: 500px;
+}
+section td{
+    font-size: larger;
+    padding: 20px;
+}
+
+section a{
+    color: rgb(255, 255, 255);
+    background: rgb(18, 63, 129);
+    text-decoration: none;
+    padding : 5px 15px;
+    border-radius: 5px;    
+}
+section a:hover{
+    background: rgb(131, 167, 218);
+}
+
+section input[type="text"]{
+    font-size: larger;
+    border: solid 0px;
+    border-bottom: solid 2px rgb(18, 63, 129);
+}
+section input[type="number"]{
+    font-size: larger;
+    border: solid 0px;
+    border-bottom: solid 2px rgb(18, 63, 129);
+}
+section input[type="password"]{
+   font-size: larger;
+    border: solid 0px;
+    border-bottom: solid 2px rgb(18, 63, 129);
+}
+section input[type="button"]{
+	font-size: larger;
+    color: rgb(255, 255, 255);
+    background: rgb(18, 63, 129);
+    text-decoration: none;
+    margin: 5px;
+    padding : 5px 15px;
+    border: none;
+    border-radius: 5px;   
+}
+
+section textarea{
+    font-size: larger;
+    border: solid 2px rgb(18, 63, 129);
+    barder-radius: 20px;
+    padding: 20px;
+}
+
+h1{
+    text-align:center;
+}
+p{
+    font-size:larger;
+    color:rgb(22, 22, 22);
+}
+
+section truckname{
+    background: rgb(18, 63, 129);
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin: auto;
+    color :rgb(255, 255, 255);
+    text-align: center;
+}
+
+button{
+    color: rgb(255, 255, 255);
+    background: rgb(18, 63, 129);
+    font-size: large;
+    border: none;
+    text-decoration: none;
+    padding : 5px 15px;
+    border-radius: 5px;    
+}
+
+.simple_link a{
+    color: rgb(18, 63, 129);
+    background: white;
+    text-decoration: none;
+    padding : 0px;
+}
+.simple_link a:hover{
+    text-decoration: underline;
+    background: none;
+}
+
+.paymentbody{
+    background: rgb(171, 196, 235);
+}
+.payment{
+    border: 20px solid rgb(171, 196, 235);
+    border-collapse: collapse;
+}
+.payment td{
+    background: rgb(255, 255, 255);
+    width: 220px;
+    padding: 10px;
+    text-align: center;
+}
+.payment a{
+    text-decoration: none;
+    color: rgb(12, 33, 65);
+}
+
+.mobile_payment{
+    padding: 20px;
+}
+
+.mobile_payment table{
+    border: 2px solid rgb(12, 33, 65);
+    border-collapse: collapse;
+    padding : 5px;
+    margin : 5px;
+
+}
+
+.mobile_payment th{
+    text-align: right;
+    padding: 10px;
+}
+
+.mobile_payment td{
+    padding: 10px 20px;
+}
+
+.mobile_payment a{
+    text-decoration: none;
+    color: rgb(18, 63, 129);
+    font-weight: 700;
+}
+
+.mobile_payment input[type="button"]{
+    color: rgb(255, 255, 255);
+    background: rgb(18, 63, 129);
+    padding : 5px 15px;
+    border: none;
+    border-radius: 5px;       
+}
+
+
+.order_complete order_number{
+    font-size: 70px;
+    color: rgb(131, 167, 218);
+}
+
+.order_query point{
+    color: rgb(18, 63, 129);
+    font-weight: 700;
+}
+
+
+footer{
+    background: rgb(12, 33, 65);
+    color: rgb(243, 243, 243);
+    padding: 20px 100px;
+    text-align: center;
+}
+footer a{
+    color: white;
+    text-decoration: none;
+}
+footer a:hover{
+    color: white;
+    text-decoration: underline;
+}
+.question{
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.question ul{
+    list-style: circle;
+    
+}
+.question li{
+    font-size: 25px;
+    margin: 50px;
+}
+
+
+.now{   
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.now td{
+    width: 900px;
+    padding-left: 90px;
+    margin: 40px;
+    margin-top: 100px;
+}
+.click{
+    border-bottom: none;
+    border-radius: 10px;
+    width: 190px;
+    padding: 10px;
+    margin: 15px;
+    float: right;
+}
+.click:hover{
+    background-color: rgb(143, 142, 142);
+}
+#box{
+    margin: 50px;
+    font-size: 25px;
+    font-weight: normal;
+    background-color: rgb(28, 68, 129);
+    padding: 10px;
+    color: #fff;
+    border-radius: 15px;
+    margin-top: 0px;
+    text-align: center;
+}
+.box{
+    width: 1000px;
+    height: 530px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.box td{
+    width: 900px;
+    padding-left: 90px;
+    margin: 40px;
+    margin-top: 100px;
+}
+
+.login{
+    border-radius: 15px;
+    border: none;
+    width: 330px;
+}
+.login:hover{
+    background-color:rgb(153, 151, 151);
+    border-radius: 15px;
+    border: none;
+    width: 330px;
+}
+
+.join ul{
+	list-style: none;
+	margin-top: 8px;
+	padding-left: 5px;
+}
+.join li{
+ 
+	display: inline-block;
+	padding: 10px;
+}
+.join li a{
+	text-decoration: none;
+}
+.join table{
+	margin-left : 250px;
+}
+.join input{
+	margin-left	 : 50px;
+	width : 330px;
+}
+#join{
+    border-bottom: none;
+    border-radius: 10px;
+	width : 330px;
+    padding: 10px;
+    margin: 30px;
+}
+#join:hover{
+	width : 330px;
+   background-color: rgb(143, 142, 142);
+}
+
