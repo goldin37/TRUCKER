@@ -2,7 +2,7 @@ body{
 	padding: 0px;
 	margin: 0px;
 }
-/* Çì¹ö ºÎºÐ (ÀÌ¹ÌÁö) */
+/* ï¿½ï¿½ï¿½ ï¿½Îºï¿½ (ï¿½Ì¹ï¿½ï¿½ï¿½) */
 header{
     margin : 0px;
     padding : 0px;
@@ -39,7 +39,7 @@ nav div{
 	color: black;
 }
 
-/* ³×ºñ ºÎºÐ : ¸Þ´º ¸µÅ© */
+/* ï¿½×ºï¿½ ï¿½Îºï¿½ : ï¿½Þ´ï¿½ ï¿½ï¿½Å© */
 nav{
     background: rgb(18, 63, 129);
     padding: 10px;
@@ -90,7 +90,7 @@ nav td{
     padding : 20px;
 }
 
-/* º»¹® ½ºÅ¸ÀÏ */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 
 section{
     width : 1000px;
@@ -393,4 +393,17 @@ footer a:hover{
 	width : 330px;
    background-color: rgb(143, 142, 142);
 }
-
+.ordered_2{   
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
+    padding: 50px;
+    border: silver solid;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.orderd_2 td{
+    width: 900px;
+    padding-left: 90px;
+    margin-top: 100px;
+}
