@@ -32,8 +32,8 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "#">화물접수</a></td>
-                <td><a href = "#">배송조회</a></td>
+                <td><a href = "#">접수현황</a></td>
+                <td><a href = "#">마이페이지</a></td>
                 <td><a href = "#">고객센터</a></td>
                 <td><a href = "#">회사소개</a></td>
             </tr>
