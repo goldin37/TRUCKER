@@ -346,12 +346,13 @@ footer a:hover{
 }
 
 .login{
+    margin-left: 30px;
     border-radius: 15px;
     border: none;
     width: 330px;
 }
 .login:hover{
-    background-color:rgb(153, 151, 151);
+    background: rgb(131, 167, 218);
     border-radius: 15px;
     border: none;
     width: 330px;
@@ -388,7 +389,7 @@ footer a:hover{
 	width : 330px;
    background-color: rgb(143, 142, 142);
 }
-<<<<<<< HEAD
+
 .orderlist {
     width: 1000px;
     font-size: small;
@@ -415,13 +416,18 @@ footer a:hover{
     width: 330px;
 }
 #click{
-    background-color:#dbd9d9;
+    background-color:#f1eeee;
 }
 #click a{
-    background-color: #dbd9d9;
+    background-color: #f1eeee;
 }
 #click a:hover{
-    background-color: #f7f7f7;
+    color: rgb(131, 167, 218);;
+}
+.ordershow table{
+    border: 1px solid;
+    border-radius: 15px;
+    margin-bottom: 30px;
 }
 .ordered_2{   
     width: 1000px;
