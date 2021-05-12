@@ -40,7 +40,7 @@
            	환영합니다 ! <%= name %>(<%=id %>)님 
         </p>
         <table>
-        	<form method="post">
+        	<form name="form" action="view_ordered_2.jsp" method="post" enctype="multipart/form-data">
 	       		<tr>
 	               <td>조회 기간:
 	                   <input type = "datetime-local" name="period_start"> ~

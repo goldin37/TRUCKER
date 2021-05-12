@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-
+<%
+	String period_start = request.getParameter("period_start");
+	String period_end = request.getParameter("period_end");
+%>
 <%
 	if(session.getAttribute("id") == null){
 %>
@@ -39,7 +42,7 @@
             </tr>
         </table>
       </nav>
-    <section class="box">
+    <section class="ordered_2">
         <h2 id="box">운송내역조회</h2> 
         <p style="font-weight: bolder; padding-left: 90px;">
            	환영합니다 ! <%= name %>(<%=id %>)님 
@@ -48,16 +51,10 @@
             <tr>
                <td>조회 기간:</td>
                <td>
-                   <input type = "datetime-local" value = "<%= "period_start" %>"> ~
-                   <input type = "datetime-local"  value = "<%= "period_end" %>">
+                   <input type = "datetime-local" value = "<%= period_start %>"> ~
+                   <input type = "datetime-local"  value = "<%= period_end %>">
                </td>
             </tr>
-<!--         </table> -->
-<!--     </section> -->
-<!--     <section class="now"> -->
-<!--         <h2 id="box">운송세부내역</h2>  -->
-<!--         <table> -->
-            <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
             <tr><td>번호 : <%= "ordered_num" %></td></tr>
             <tr><td>운송일자 : <%= "complete_date_time" %></td></tr>
             <tr><td>고객이름 : <%= "CUSTOMER_NAME" %></td></tr>
@@ -74,7 +71,6 @@
                 <input type="button" value="진행중인배송" class="finished" onclick="location.href='list.jsp'">
                 </td>
              </tr>
-            </form>
         </table>
     </section>
 
