@@ -1,4 +1,3 @@
-<%@page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
@@ -67,15 +66,15 @@ function next(){
     		<tr>
 			    <td>출발지</td>
         	   	<td>
-					<input type="text"  name="from_where" placeholder = "도로명 주소" size = "40" readonly>
+					<input type="text"  name="from_where" size = "40" readonly>
 					<a onClick="fromPopup();">주소 검색</a><br><br>
-					<input type="text" name="from_spec" placeholder = "세부 주소" size = "40">
+					<input type="text" name="from_spec" size = "40">
 				</td>
 			</tr>
 			<tr>
 				<td>출발일시</td>
 				<td>
-				<input type = "datetime-local" name = "depart_time" value = "<%= LocalDateTime.now() %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input type = "datetime-local" name = "depart_time">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 				<input type = "button" value = "다음" onClick = "next();">
 				</td>
 			</tr>
@@ -89,7 +88,7 @@ function next(){
         (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
         통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 
         전화번호 : 1588-3333 | 팩스 : 070-1234-1234 | 대표메일 : trucker@naver.com <br>
-        화물운송약관 | 개인정보 처리방침<br>
+        <a href = "contract.html">화물운송약관</a> | <a href = "personal_information.html">개인정보 처리방침</a><br>
         COPYRIGHT(C) TRUCKER LTD. ALL RIGHT RESERVED.
     </footer>
 

@@ -1,19 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%
-	if(session.getAttribute("id") == null){
-%>
-		<jsp:forward page ="login.html"></jsp:forward>
-<%
-	}
-
 	String id = (String)session.getAttribute("id");
 	String name =(String)session.getAttribute("name");
 	String license = (String)session.getAttribute("license");
 	String truck_type = (String)session.getAttribute("truck_type");
 	String truck_number = (String)session.getAttribute("truck_number");
 	String phone = (String)session.getAttribute("phone");
-	
 %>
 <html lang="en">
 <head>
@@ -21,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운송내역조회(2/2)</title>
-    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../css/mystyle.css">
 </head>
 <body>
     <header>
@@ -31,35 +24,31 @@
     </header>
       <nav>
           <table>
-            <tr>
-                <td><a href = "#">접수현황</a></td>
-                <td><a href = "#">마이페이지</a></td>
+           <tr>
+                <td><a href = "#">배송조회</a></td>
+                <td><a href = "#">mypage</a></td>
                 <td><a href = "#">고객센터</a></td>
                 <td><a href = "#">회사소개</a></td>
             </tr>
         </table>
       </nav>
-    <section class="box">
-        <h2 id="box">운송내역조회</h2> 
-        <p style="font-weight: bolder; padding-left: 90px;">
-           	환영합니다 ! <%= name %>(<%=id %>)님 
-        </p>
+
+    <section>
+        <form method="post">
+        <h2>운송내역조회</h2> 
+        <p>안녕하세요 <%= name %>(<%=id %>)님</p>
         <table>
-            <tr>
-               <td>조회 기간:</td>
+       		<tr>
+               <td>조회 기간</td>
                <td>
-                   <input type = "datetime-local" value = "<%= "period_start" %>"> ~
-                   <input type = "datetime-local"  value = "<%= "period_end" %>">
+                   <input type = "datetime-local" value = "<%= "PERIOD_START" %>"> ~
+                   <input type = "datetime-local"  value = "<%= "PERIOD_END" %>">
                </td>
             </tr>
-<!--         </table> -->
-<!--     </section> -->
-<!--     <section class="now"> -->
-<!--         <h2 id="box">운송세부내역</h2>  -->
-<!--         <table> -->
-            <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
-            <tr><td>번호 : <%= "ordered_num" %></td></tr>
-            <tr><td>운송일자 : <%= "complete_date_time" %></td></tr>
+		</table>
+		<table>
+		 	<tr><td>번호 : <%= "ORDERED_NUM" %></td></tr>
+            <tr><td>운송일자 : <%= "COMPLETE_DATE_TIME" %></td></tr>
             <tr><td>고객이름 : <%= "CUSTOMER_NAME" %></td></tr>
             <tr><td>고객연락처 : <%= "CUSTOMER_TELEPHONE" %></td></tr>
             <tr><td>화물종류 : <%= "CARGO_TYPE" %></td></tr>
@@ -78,6 +67,16 @@
         </table>
     </section>
 
+    <section class="question">
+        <h2>문의사항</h2> 
+        <ul>
+            <li><a href="#"> 자주하는 질문</a></li>
+            <li><a href="#"> Q & A 바로가기</a></li>
+            <li>고객센터 운영시간 09:00~18:00</li>
+            <li>전화번호 1555-1555</li>
+            <input type="button" value="바로가기" class="click">
+        </ul>
+    </section>
 <footer>
     (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
     통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 

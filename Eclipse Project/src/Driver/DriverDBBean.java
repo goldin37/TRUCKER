@@ -43,14 +43,14 @@ public class DriverDBBean {
 			pstmt.setString(3, driver.getDriver_jumin());
 			pstmt.setString(4, driver.getDriver_license());
 			pstmt.setString(5, driver.getDriver_pwd_check());
-			pstmt.setString(6, HanConv.toKor(driver.getDriver_name()));
+			pstmt.setString(6, driver.getDriver_name());
 			pstmt.setString(7, driver.getDriver_phone_number());
-			pstmt.setString(8, HanConv.toKor(driver.getDriver_addr()));
+			pstmt.setString(8, driver.getDriver_addr());
 			pstmt.setString(9, driver.getDriver_email());
-			pstmt.setString(10, HanConv.toKor(driver.getDriver_position()));
+			pstmt.setString(10, driver.getDriver_position());
 			pstmt.setString(11, driver.getTruck_type());
-			pstmt.setString(12, HanConv.toKor(driver.getTruck_number()));
-			pstmt.setString(13, HanConv.toKor(driver.getDriver_photo()));
+			pstmt.setString(12, driver.getTruck_number());
+			pstmt.setString(13, driver.getDriver_photo());
 			pstmt.setString(14, driver.getDriver_evalue());
 
 			pstmt.executeUpdate();
@@ -177,7 +177,7 @@ public class DriverDBBean {
 	public int updateDriver(DriverBean driver) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update driver set driver_phone_number=?, driver_addr=?, driver_email=?, truck_type=? where driver_id=?";
+		String sql = "update driver set driver_phone_number=?, driver_addr=?, driver_email=?, truck_type=?, truck_number=? where driver_id=?";
 		int re = -1;
 
 		try {
@@ -187,7 +187,8 @@ public class DriverDBBean {
 			pstmt.setString(2, HanConv.toKor(driver.getDriver_addr()));
 			pstmt.setString(3, driver.getDriver_email());
 			pstmt.setString(4, HanConv.toKor(driver.getTruck_type()));
-			pstmt.setString(5, driver.getDriver_id());
+			pstmt.setString(5, HanConv.toKor(driver.getTruck_number()));
+			pstmt.setString(6, driver.getDriver_id());
 
 			re = pstmt.executeUpdate();
 

@@ -6,7 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
-    <script type="text/javascript" src="driver.js" charset="utf-8"></script>
+    <script type="text/javascript" src="Driver.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		function check_email(){
+			if(document.form.email.options[document.form.email.selectedIndex].value == '0'){
+			 document.form.email2.value = false;
+			 document.form.email2.value = "";
+			}
+			if(document.form.email.options[document.form.email.selectedIndex].value == '9'){
+			 document.form.email2.value = "";
+			 document.form.email2.focus();
+			} else{
+			 document.form.email2.value = document.form.email.options[document.form.email.selectedIndex].value;
+			}
+		}
+	</script>
+	<script  type="text/javascript">
+	function autoHypen(obj) {
+	    var number = obj.value.replace(/[^0-9]/g, "");
+	    var phone = "";
+
+	    if(number.length < 3) {
+	        return number;
+	    } else if(number.length < 10) {
+	        phone += number.substr(0, 2);
+	        phone += "-";
+	        phone += number.substr(2);
+	    } else if(number.length < 13) {
+	        phone += number.substr(0, 2);
+	        phone += "-";
+	        phone += number.substr(2, 6);
+	        phone += "-";
+	        phone += number.substr(8);
+	    } else {
+	        phone += number.substr(0, 2);
+	        phone += "-";
+	        phone += number.substr(8, 9);
+	        phone += "-";
+	        phone += number.substr(2);
+	    }
+	    obj.value = phone;
+	}
+	</script>
 </head>
 <body>
     <header>

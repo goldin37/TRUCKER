@@ -15,8 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>운송내역조회(1/2)</title>
-    <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
-    <script type="text/javascript" src="driver.js" charset="utf-8" ></script>
+    <link rel = "stylesheet" type = "text/css" href = "../css/mystyle.css">
 </head>
 <body>
     <header>
@@ -28,17 +27,16 @@
           <table>
            <tr>
                 <td><a href = "#">접수현황</a></td>
-                <td><a href = "#">마이페이지</a></td>
+                <td><a href = "#">mypage</a></td>
                 <td><a href = "#">고객센터</a></td>
                 <td><a href = "#">회사소개</a></td>
             </tr>
         </table>
       </nav>
-    <section class="box">
-        <h2 id="box">운송내역조회</h2> 
-        <p style="font-weight: bolder; padding-left: 90px;">
-           	환영합니다 ! <%= name %>(<%=id %>)님 
-        </p>
+    <script type="text/javascript" src="Driver.js" charset="utf-8" ></script>
+    <section>
+        <h2>운송내역조회</h2> 
+        <p>안녕하세요 <%= name %>(<%=id %>)님</p>
         <table>
         	<form method="post">
 	       		<tr>
