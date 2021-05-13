@@ -1,3 +1,4 @@
+<%@page import="SENS.Send"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -24,5 +25,8 @@
 <%= "fix_cost " + session.getAttribute("fix_cost") %>
 <%= "customer_name " + session.getAttribute("customer_name") %>
 <%= "customer_telephone " + session.getAttribute("customer_telephone") %>
+<%
+	Send.SMS("01048516339", "메시지 잘 보내지나요??", "ncp:sms:kr:262195421504:message_sender", "1zB1FNZZofZBbLlwgesB", "wRREJhsLJRf46hyM28laTvoqp5yIpnndEuRYeM9A");
+%>
 </body>
 </html>
