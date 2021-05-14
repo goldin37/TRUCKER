@@ -444,3 +444,12 @@ footer a:hover{
     margin-top: 100px;
 
 }
+
+.shipping {
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;   
+  background: rgb(18, 63, 129);
+  color: rgb(229, 238, 238);
+  font-size: 15px;
+}
