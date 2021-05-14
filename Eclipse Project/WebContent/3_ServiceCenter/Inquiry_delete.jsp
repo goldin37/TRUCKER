@@ -8,7 +8,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 	<script type="text/javascript" src="board.js" charset="utf-8"></script>
-    <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/board.css">
 </head>
 <body>
     <header>
