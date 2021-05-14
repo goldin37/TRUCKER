@@ -67,9 +67,9 @@ function next(){
     		<tr>
 			    <td>免惯瘤</td>
         	   	<td>
-					<input type="text"  name="from_where" size = "40" readonly>
+					<input type="text"  name="from_where" placeholder = "档肺疙 林家" size = "40" readonly>
 					<a onClick="fromPopup();">林家 八祸</a><br><br>
-					<input type="text" name="from_spec" size = "40">
+					<input type="text" name="from_spec" placeholder = "技何 林家" size = "40">
 				</td>
 			</tr>
 			<tr>
