@@ -5,6 +5,8 @@
 <%@page import="board.Notice"%>
 <%@page import="board.NoticeDB"%>
 <%
+	String pageNum = request.getParameter("pageNum");
+
 	int bid = Integer.parseInt(request.getParameter("notice_number"));
 	NoticeDB db = NoticeDB.getInstance();
 	Notice notice = db.getBoard(bid, true);
@@ -40,10 +42,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "">배송조회</a></td>
-                <td><a href = "M-Notice_main.jsp">고객센터</a></td>
-                <td><a href = "companyIntroduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
+                <td><a href = "Notice_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -60,9 +62,9 @@
                     <td class="aL aR2" colspan="2"><%= notice.getNotice_content().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>") %></td>
                 </tr>
             </table><br><br>
-            <input type="button" value="수정" class="shipping" onclick="location.href='Notice_edit.jsp?notice_number=<%= notice_number %>'">
-            <input type="button" value="삭제" class="shipping pd" onclick="location.href='Notice_delete.jsp?notice_number=<%= notice_number %>'">
-            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-Notice_main.jsp'"><br>
+            <input type="button" value="수정" class="shipping" onclick="location.href='Notice_edit.jsp?notice_number=<%= notice_number %>&pageNum=<%= pageNum %>'">
+            <input type="button" value="삭제" class="shipping pd" onclick="location.href='Notice_delete.jsp?notice_number=<%= notice_number %>&pageNum=<%= pageNum %>'">
+            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-Notice_main.jsp?pageNum=<%= pageNum %>'"><br>
         </form>
     </section>
     <footer>

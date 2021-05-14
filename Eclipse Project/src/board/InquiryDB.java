@@ -95,33 +95,70 @@ public class InquiryDB {
 		return 1;
 	}
 	
-	public ArrayList<Inquiry> listBoardInq(){
+	public ArrayList<Inquiry> listBoardInq(String pageNumber){
 		Connection con=null;
 		Statement stmt=null;
 		ResultSet rs=null;
+		ResultSet pageSet=null;
+		int dbCount=0;
+		int absoultePage=1;
 		
 		ArrayList<Inquiry> boardList = new ArrayList<Inquiry>();
 		
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
+			
+			pageSet = stmt.executeQuery("select count(inquiry_number) from Inquiry_Board");
+			
+			if (pageSet.next()) {
+				dbCount = pageSet.getInt(1);
+				pageSet.close();
+				stmt.close();
+			}
+			
+			if (dbCount % Inquiry.pageSize2 == 0) {
+				Inquiry.pageCount2 = dbCount / Inquiry.pageSize2;
+			}else {
+				Inquiry.pageCount2 = dbCount / Inquiry.pageSize2 + 1;
+			}
+			
+			if (pageNumber != null) {
+				Inquiry.pageNum2 = Integer.parseInt(pageNumber);
+				absoultePage = (Inquiry.pageNum2-1) * Inquiry.pageSize2 + 1;
+			}
+			
+//			stmt = con.createStatement();
+			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			
 			String sql="select * from Inquiry_Board order by inquiry_ref desc, inquiry_step asc";
 			rs = stmt.executeQuery(sql);
 			
-			while (rs.next()) {
-				Inquiry inquiry=new Inquiry();
-				inquiry.setInquiry_number(rs.getInt(1));
-				inquiry.setInquiry_name(rs.getString(2));
-				inquiry.setInquiry_title(rs.getString(3));
-				inquiry.setInquiry_content(rs.getString(4));
-				inquiry.setInquiry_pwd(rs.getString(5));
-				inquiry.setInquiry_date(rs.getTimestamp(6));
-				inquiry.setInquiry_hit(rs.getInt(7));
-				inquiry.setInquiry_ref(rs.getInt(8));
-				inquiry.setInquiry_step(rs.getInt(9));
-				inquiry.setInquiry_level(rs.getInt(10));
-				
-				boardList.add(inquiry);
+			if (rs.next()) {
+				rs.absolute(absoultePage);
+				int count = 0;
+				while (count < Inquiry.pageSize2) {
+					Inquiry inquiry=new Inquiry();
+					inquiry.setInquiry_number(rs.getInt(1));
+					inquiry.setInquiry_name(rs.getString(2));
+					inquiry.setInquiry_title(rs.getString(3));
+					inquiry.setInquiry_content(rs.getString(4));
+					inquiry.setInquiry_pwd(rs.getString(5));
+					inquiry.setInquiry_date(rs.getTimestamp(6));
+					inquiry.setInquiry_hit(rs.getInt(7));
+					inquiry.setInquiry_ref(rs.getInt(8));
+					inquiry.setInquiry_step(rs.getInt(9));
+					inquiry.setInquiry_level(rs.getInt(10));
+					
+					boardList.add(inquiry);
+					
+					if (rs.isLast()) {
+						break;
+					}else {
+						rs.next();
+					}
+					count++;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

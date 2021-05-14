@@ -5,6 +5,8 @@
 <%@page import="board.Inquiry"%>
 <%@page import="board.InquiryDB"%>
 <%
+	String pageNum2 = request.getParameter("pageNum2");
+
 	int bid = Integer.parseInt(request.getParameter("inquiry_number"));
 	InquiryDB inq = InquiryDB.getInstance();
 	Inquiry inquiry = inq.getBoard(bid, true);
@@ -41,10 +43,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "">배송조회</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
                 <td><a href = "Notice_main.jsp">고객센터</a></td>
-                <td><a href = "companyIntroduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -64,10 +66,10 @@
                     <td class="aL aR2" colspan="2"><%= inquiry.getInquiry_content().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>") %></td>
                 </tr>
             </table><br><br>
-            <input type="button" value="답변" class="shipping" onclick="location.href='Inquiry_write.jsp?inquiry_number=<%= inquiry_number %>'" >
-            <input type="button" value="수정" class="shipping pd" onclick="location.href='Inquiry_edit.jsp?inquiry_number=<%= inquiry_number %>'">
-            <input type="button" value="삭제" class="shipping pd" onclick="location.href='Inquiry_delete.jsp?inquiry_number=<%= inquiry_number %>'">
-            <input type="button" value="목록" class="shipping pd" onclick="location.href='Notice_main.jsp'"><br>
+            <input type="button" value="답변" class="shipping" onclick="location.href='Inquiry_write.jsp?inquiry_number=<%= inquiry_number %>&pageNum2=<%= pageNum2 %>'" >
+            <input type="button" value="수정" class="shipping pd" onclick="location.href='Inquiry_edit.jsp?inquiry_number=<%= inquiry_number %>&pageNum2=<%= pageNum2 %>'">
+            <input type="button" value="삭제" class="shipping pd" onclick="location.href='Inquiry_delete.jsp?inquiry_number=<%= inquiry_number %>&pageNum2=<%= pageNum2 %>'">
+            <input type="button" value="목록" class="shipping pd" onclick="location.href='Notice_main.jsp?pageNum2=<%= pageNum2 %>'"><br>
         </form>
     </section>
     <footer>

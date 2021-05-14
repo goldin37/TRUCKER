@@ -3,6 +3,8 @@
 <%@page import="board.Inquiry"%>
 <%@page import="board.InquiryDB"%>
 <%
+	String pageNum2 = request.getParameter("pageNum2");
+	
 	int inquiry_number = Integer.parseInt(request.getParameter("inquiry_number"));
 	
 	InquiryDB inq = InquiryDB.getInstance();
@@ -26,10 +28,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "">배송조회</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
                 <td><a href = "Notice_main.jsp">고객센터</a></td>
-                <td><a href = "companyIntroduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -57,7 +59,7 @@
                 </tr>
             </table><br><br>
             <input type="button" value="작성" class="shipping" onclick="inq_ok1()"></td>
-            <input type="button" value="목록" class="shipping pd" onclick="location.href='Notice_main.jsp'"></td><br>
+            <input type="button" value="목록" class="shipping pd" onclick="location.href='Notice_main.jsp?pageNum2=<%= pageNum2 %>'"></td><br>
         </form>
     </section>
     <footer>

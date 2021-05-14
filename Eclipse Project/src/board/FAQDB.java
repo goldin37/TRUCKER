@@ -66,27 +66,62 @@ public class FAQDB {
 		return 1;
 	}
 
-	public ArrayList<FAQ> listBoard(){
+	public ArrayList<FAQ> listBoard(String pageNumber){
 		Connection con=null;
 		Statement stmt=null;
 		ResultSet rs=null;
+		ResultSet pageSet=null;
+		int dbCount=0;
+		int absoultePage=1;
 		
 		ArrayList<FAQ> faqlist = new ArrayList<FAQ>();
 		
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
-			String sql="select * from FAQ_Board order by faq_number desc";
+			pageSet = stmt.executeQuery("select count(faq_number) from FAQ_Board");
 			
+			if (pageSet.next()) {
+				dbCount = pageSet.getInt(1);
+				pageSet.close();
+				stmt.close();
+			}
+			
+			if (dbCount % FAQ.pageSize == 0) {
+				FAQ.pageCount = dbCount / FAQ.pageSize;
+			}else {
+				FAQ.pageCount = dbCount / FAQ.pageSize + 1;
+			}
+			
+			if (pageNumber != null) {
+				FAQ.pageNum = Integer.parseInt(pageNumber);
+				absoultePage = (FAQ.pageNum-1) * FAQ.pageSize + 1;
+			}
+			
+//			stmt = con.createStatement();
+			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			
+			String sql="select * from FAQ_Board order by faq_number desc";
 			rs = stmt.executeQuery(sql);
 			
-			while (rs.next()) {
-				FAQ faq= new FAQ();
-				faq.setFaq_number(rs.getInt(1));
-				faq.setFaq_title(rs.getString(2));
-				faq.setFaq_content(rs.getString(3));
-				
-				faqlist.add(faq);
+			if (rs.next()) {
+				rs.absolute(absoultePage);
+				int count = 0;
+				while (count < FAQ.pageSize) {
+					FAQ faq= new FAQ();
+					faq.setFaq_number(rs.getInt(1));
+					faq.setFaq_title(rs.getString(2));
+					faq.setFaq_content(rs.getString(3));
+					
+					faqlist.add(faq);
+					
+					if (rs.isLast()) {
+						break;
+					}else {
+						rs.next();
+					}
+					count++;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
