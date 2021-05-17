@@ -41,7 +41,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
- <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+ <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
 </head>
 </head>
 <body class = "order_query">
@@ -53,9 +53,9 @@
         <table>
             <tr>
                 <td><a href = "order.html">화물접수</a></td>
-                <td><a href = "order_query.html">배송조회</a></td>
-                <td><a href = "">고객센터</a></td>
-                <td><a href = "">회사소개</a></td>
+                <td><a href = "order-query.jsp">배송조회</a></td>
+                <td><a href = "../3_ServiceCenter/Notice_main.jsp">고객센터</a></td>
+                <td><a href = "companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -96,13 +96,73 @@
                 <tr><th colspan="2">배송 정보</th></tr>
             <td colspan="2">
                 배송 번호 : <point><%= order_id %></point><br><br>
-                <img src = "./img/assign.png" width="100%">
-                고객님의 화물은 <point><%= order_state %></point> 되었습니다.<br><br>
-                배송 접수 : <%= order_date_time %><br>
-                배차 완료 : <%= accept_date_time %><br>
-                배송 시작 : <%= depart_date_time %><br>
-                배송 완료 : <%= arrive_date_time %><br>
-                배송 확인 : <%= complete_date_time %><br>
+                
+                <!-- 배송상태에 맞는 이미지 -->
+                <% if(order_state.equals("order")){
+                	%> <img src = "../images/assign1.png" width="100%"> <%
+                }else if(order_state.equals("accept")){
+                	%> <img src = "../images/assign2.png" width="100%"> <%
+                }else if(order_state.equals("depart")){
+                	%> <img src = "../images/assign3.png" width="100%"> <%
+                }else if(order_state.equals("arrive")){
+                	%> <img src = "../images/assign4.png" width="100%"> <%
+                }else{
+                	%> <img src = "../images/assign5.png" width="100%"> <%
+                } %>
+                <br><br>
+                
+                
+                <!-- 배송상태 메세지 -->
+                고객님의 화물은 <point><% if(order_state.equals("order")){
+                	%> 배송 접수 <%
+                }else if(order_state.equals("accept")){
+                	%> 배차 완료 <%
+                }else if(order_state.equals("depart")){
+                	%> 배송 시작 <%
+                }else if(order_state.equals("arrive")){
+                	%> 배송 완료 <%
+                }else{
+                	%> 배송 확인 <%
+                } %>
+                
+              </point> 되었습니다.<br><br><br>
+              
+               <!-- null값시 아무것도 출력x -->
+                배송 접수 : <% if(order_date_time == null){
+                	
+                } else {
+                	%><%= order_date_time %> <%
+                }
+                %><br>
+                
+                배차 완료 : <% if(accept_date_time == null){
+                	
+                } else {
+                	%><%= accept_date_time %> <%
+                }
+                %><br>
+                
+                배송 시작 : <% if(depart_date_time == null){
+                	
+                } else {
+                	%><%= depart_date_time %> <%
+                }
+                %><br>  
+                
+                
+                배송 완료 : <% if(arrive_date_time == null){
+                	
+                } else {
+                	%><%= arrive_date_time %> <%
+                }
+                %><br> 
+                
+                배송 확인 : <% if(complete_date_time == null){
+                	
+                } else {
+                	%><%= complete_date_time %> <%
+                }
+                %><br> 
             </td>
         </table>
         </form>

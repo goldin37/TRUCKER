@@ -3,6 +3,8 @@
 <%@page import="board.FAQDB"%>
 <%@page import="board.FAQ"%>
 <%
+	String pageNum = request.getParameter("pageNum");	
+
 	int faq_number = Integer.parseInt(request.getParameter("faq_number"));
 
 	FAQDB db=FAQDB.getInstance();
@@ -15,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 작성</title>
     <script type="text/javascript" src="board.js" charset="utf-8"></script>
-    <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/board.css">
 </head>
 <body>
     <header>
@@ -26,10 +28,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "">배송조회</a></td>
-                <td><a href = "M-Notice_main.jsp">고객센터</a></td>
-                <td><a href = "companyIntroduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
+                <td><a href = "Notice_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -50,7 +52,7 @@
                 </tr>
             </table><br><br>
             <input type="button" value="작성" class="shipping" onclick="check_ok1()"></td>
-            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-FAQ_main.jsp'"></td><br>
+            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-FAQ_main.jsp?pageNum=<%= pageNum %>'"></td><br>
         </form>
     </section>
     <footer>

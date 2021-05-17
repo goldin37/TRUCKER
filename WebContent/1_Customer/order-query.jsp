@@ -17,9 +17,9 @@
         <table>
             <tr>
                 <td><a href = "order.html">화물접수</a></td>
-                <td><a href = "order_query.html">배송조회</a></td>
-                <td><a href = "">고객센터</a></td>
-                <td><a href = "">회사소개</a></td>
+                <td><a href = "order-query.jsp">배송조회</a></td>
+                <td><a href = "../3_ServiceCenter/Notice_main.jsp">고객센터</a></td>
+                <td><a href = "companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>

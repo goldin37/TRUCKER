@@ -8,7 +8,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 	<script type="text/javascript" src="board.js" charset="utf-8"></script>
-    <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/board.css">
 </head>
 <body>
     <header>
@@ -19,10 +19,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "">배송조회</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
                 <td><a href = "Notice_main.jsp">고객센터</a></td>
-                <td><a href = "companyIntroduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>

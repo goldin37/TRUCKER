@@ -13,6 +13,37 @@ public class Inquiry {
 	private int inquiry_ref;
 	private int inquiry_step;
 	private int inquiry_level;
+	public static int pageSize2 = 10;
+	public static int pageCount2 = 1;
+	public static int pageNum2 = 1;
+	
+	public static String pageNumberI(int limit) {
+		String str="";
+		int temp = (pageNum2 - 1) % limit;
+		int startPage = pageNum2 - temp; //pageNum - (pageNum - 1) % limit
+		
+		if((startPage - limit) > 0) {
+			str="<a href='Notice_main.jsp?pageNum2="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
+		}
+		
+		for(int i=startPage; i<(startPage+limit); i++) {
+			if (i == pageNum2) {
+				str+=i + "&nbsp;&nbsp;";
+			}else {
+				str+="<a href='Notice_main.jsp?pageNum2="+i+"'>"+i+"</a>&nbsp;&nbsp;";
+			}
+			
+			if (i >= pageCount2) {
+				break;
+			}
+		}
+		
+		if ((startPage + limit) <= pageCount2) {
+			str += "<a href='Notice_main.jsp?pageNum2="+(startPage+limit)+"'>[다음]</a>";
+		}
+		
+		return str;
+	}
 	
 	public int getInquiry_number() {
 		return inquiry_number;

@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="myUtil.HanConv"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -64,15 +65,8 @@
 		cargo_help = "승하차 후 집/창고까지 이동";
 	}
 	
-	int cost_left = dir.recommend_cost/1000;
-	int cost_right = dir.recommend_cost%1000;
-	String cost_right_text;
-	if(cost_right == 0){
-		cost_right_text = "000원";
-	} else{
-		cost_right_text = cost_right + "원";
-	}
-	String cost_text = cost_left + "," + cost_right_text;
+	DecimalFormat df = new DecimalFormat(",###");
+	String cost_text = df.format(dir.recommend_cost) + "원";
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -168,7 +162,7 @@ function order(){
     	<input type ="button" onClick="check_spec()" value = "세부운임 확인"></td></tr>
 
     	<tr><td></td><td><output name = "spec" hidden><b>1. 교통비</b><br>
-    	<%= dir.toll_cost + "원 + (" + dir.distance + "km × " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) + = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
+    	<%= dir.toll_cost + "원 + (" + dir.distance + "km ÷ " + (double)Math.round(dir.fuel_rate*100)/100 + "km/L × " + dir.fuel_cost_rate + "원/L) = <b>" + (dir.toll_cost + dir.fuel_cost) + "원</b>" %><br>
 		톨비 + 유류비(운행거리 ÷ 연비 × 리터당 연료비)<br><br>
 		<b>2. 차량 유지비</b><br>
 		<%= dir.distance + "km × " + dir.maintenance_rate + "원 = <b>" + dir.maintenance_cost + "원</b>" %><br>
@@ -202,11 +196,11 @@ function order(){
     	</form>
     </section>
     <footer>
-        (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
+    (주)트럭커 부산시 해운대구 마린시티3로 45 | 사업자번호 : 123-45-12345 | <br> 
         통신판매업 : 2021 - 부산 동래-01234 | 화물운송주선 제160236호 | <br> 
         전화번호 : 1588-3333 | 팩스 : 070-1234-1234 | 대표메일 : trucker@naver.com <br>
-        <a href = "contract.html">화물운송약관</a> | <a href = "personal_information.html">개인정보 처리방침</a><br>
-        COPYRIGHT(C) TRUCKER LTD. ALL RIGHT RESERVED.
+        화물운송약관 | 개인정보 처리방침<br>
+    COPYRIGHT(C) TRUCKER LTD. ALL RIGHT RESERVED.
     </footer>
 
 </body>

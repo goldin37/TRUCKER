@@ -8,15 +8,25 @@
 <%@page import="board.Inquiry" %>
 <%@page import="board.InquiryDB" %>
 <%
+	String pageNum = request.getParameter("pageNum");
+	if(pageNum == null){
+		pageNum = "1";
+	}
+	
+	String pageNum2 = request.getParameter("pageNum2");
+	if(pageNum2 == null){
+		pageNum2 = "1";
+	}
+
 	FAQDB db = FAQDB.getInstance();
-	ArrayList<FAQ> boardList = db.listBoard();
+	ArrayList<FAQ> boardList = db.listBoard(pageNum);
 	int i, faq_number;
 	String faq_title, faq_content;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	InquiryDB idb = InquiryDB.getInstance();
-	ArrayList<Inquiry> inqList = idb.listBoardInq();
+	ArrayList<Inquiry> inqList = idb.listBoardInq(pageNum2);
 	int j, inquiry_number, inquiry_hit, inquiry_level;
 	String inquiry_name, inquiry_title, inquiry_content;
 	Timestamp inquiry_date;
@@ -27,7 +37,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자주하는 질문</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/board.css">
 </head>
 <body>
     <header>
@@ -38,10 +48,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "shipping check.html">배송조회</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
                 <td><a href = "Notice_main.jsp">고객센터</a></td>
-                <td><a href = "companyIntroduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -62,8 +72,8 @@
                 		<input type="hidden" name="b_id" value="<%= faq_number %>">
                 	</td>
                 	<td  class="">
-                		<a href="FAQ_show.jsp?faq_number=<%= faq_number %>">
-                		<strong>Q.</strong> <%= faq_title %>
+                		<a href="FAQ_show.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>">
+                		<strong>Q.</strong><%= faq_title %>
                 	</td>
                 </tr>
                 
@@ -71,6 +81,8 @@
                 	}
              	%>
             </table>
+            <br><br>
+            	<%= FAQ.pageNumber(5) %>
             <br><br><br>
             <h3 class="deco1">문의사항</h3><br><br>
             <table>
@@ -108,7 +120,7 @@
 							<%		
 								}
 							%>
-							<a href="Inquiry_show.jsp?inquiry_number=<%= inquiry_number %>">
+							<a href="Inquiry_show.jsp?inquiry_number=<%= inquiry_number %>&pageNum2=<%= pageNum2 %>">
 							<%= inquiry_title %>
 							</a>
                 	</td>
@@ -127,7 +139,9 @@
              	%>
             </table>
             <br><br>
-            <input type="button" value="작성" class="shipping" onclick="location.href='Inquiry_write.jsp'">
+            	<%= Inquiry.pageNumberI(5) %>
+            <br><br>
+            <input type="button" value="작성" class="shipping" onclick="location.href='Inquiry_write.jsp?pageNum2=<%= pageNum2 %>'">
         </form>
     </section>
     <footer>

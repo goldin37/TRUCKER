@@ -15,21 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정보수정</title>
     <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
-	<script type="text/javascript" src="Driver.js" charset="utf-8"></script>
-	<script type="text/javascript">
-		function check_email(){
-			if(document.form.email.options[document.form.email.selectedIndex].value == '0'){
-			 document.form.email2.value = false;
-			 document.form.email2.value = "";
-			}
-			if(document.form.email.options[document.form.email.selectedIndex].value == '9'){
-			 document.form.email2.value = "";
-			 document.form.email2.focus();
-			} else{
-			 document.form.email2.value = document.form.email.options[document.form.email.selectedIndex].value;
-			}
-		}
-	</script>
+	<script type="text/javascript" src="driver.js" charset="utf-8"></script>
 </head>
 <body>
     <header>

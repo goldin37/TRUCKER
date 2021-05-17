@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+
 <%
 	if(session.getAttribute("id") == null){
 %>
@@ -13,6 +13,7 @@
 	String truck_type = (String)session.getAttribute("truck_type");
 	String truck_number = (String)session.getAttribute("truck_number");
 	String phone = (String)session.getAttribute("phone");
+	
 %>
 <html lang="en">
 <head>
@@ -31,8 +32,8 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "#">화물접수</a></td>
-                <td><a href = "#">배송조회</a></td>
+                <td><a href = "#">접수현황</a></td>
+                <td><a href = "#">마이페이지</a></td>
                 <td><a href = "#">고객센터</a></td>
                 <td><a href = "#">회사소개</a></td>
             </tr>
@@ -44,7 +45,7 @@
            	환영합니다 ! <%= name %>(<%=id %>)님 
         </p>
         <table>
-            <form method="post">
+            <form method=post>
             <tr>
                 <td>이름 : <%=name %></td>
             </tr>
@@ -68,7 +69,7 @@
     <section class="now">
         <h2 id="box">진행중인 운송</h2> 
         <table>
-            <form action="">
+            <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
             <tr>
                 <td>출발일자 : 받는값</td>
             </tr>
@@ -95,10 +96,11 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="취소" class="click">
-                    <input type="button" value="배송접수" class="click">
-                    <input type="button" value="배송완료" class="click">
-                    <input type="button" value="운송내역" class="click">
+                    <input type="button" value="운송취소" class="click" onclick="">
+                    <input type="button" value="운송완료" class="click" onclick="">
+                    <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp'">
+                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered_1.jsp'">
+                    
                  </td>
              </tr>
             </form>

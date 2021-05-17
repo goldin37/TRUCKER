@@ -25,7 +25,7 @@
 		cargo_help = deliveryorder.getCargo_help();
 		cargo_spec = deliveryorder.getCargo_spec();
 		to_where = deliveryorder.getTo_where() + deliveryorder.getTo_spec();
-		from_where = deliveryorder.getFrom_where() + deliveryorder.getTo_spec();
+		from_where = deliveryorder.getFrom_where() + deliveryorder.getFrom_spec();
 		depart_time = deliveryorder.getDepart_time();
 		time = deliveryorder.getTime();
 		distance = deliveryorder.getDistance();
@@ -64,7 +64,7 @@
    <section class="ordershow">
         <h1>요청된 배송</h1>
         <table>
-            <form>
+            <form action= "order_ok.jsp?order_id=<%=order_id %>" method="post">
                 <tr>
                     <td width="130">주문번호</td>
                     <td><%=orderid%></td>
@@ -113,7 +113,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <input type="button" value="수락" onclick="" id="order" >
+                        <input type="submit" value="수락" id="order">
                         <input type="button" value="글목록" id="order" onclick="location.href='orderlist.jsp?pageNum=<%= pageNum %>'">
                     </td>
                 </tr>

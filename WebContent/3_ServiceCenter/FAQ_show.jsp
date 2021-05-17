@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+	String pageNum = request.getParameter("pageNum");	
+
 	int bid = Integer.parseInt(request.getParameter("faq_number"));
 	FAQDB db = FAQDB.getInstance();
 	FAQ	faq= db.getBoard(bid);
@@ -23,7 +25,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/mystyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "../style/board.css">
 </head>
 <body>
     <header>
@@ -34,10 +36,10 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "">화물접수</a></td>
-                <td><a href = "">배송조회</a></td>
-                <td><a href = "customer service.html">고객센터</a></td>
-                <td><a href = "company introduction.html">회사소개</a></td>
+                <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
+                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
+                <td><a href = "Notice_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
@@ -53,9 +55,9 @@
                     <td class="aL aR2"><%= faq.getFaq_content().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>") %></td>
                 </tr>
             </table><br><br>
-            <input type="button" value="수정" class="shipping" onclick="location.href='FAQ_edit.jsp?faq_number=<%= faq_number %>'">
-            <input type="button" value="삭제" class="shipping pd" onclick="location.href='FAQ_delete.jsp?faq_number=<%= faq_number %>'">
-            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-FAQ_main.jsp'"><br>
+            <input type="button" value="수정" class="shipping" onclick="location.href='FAQ_edit.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>'">
+            <input type="button" value="삭제" class="shipping pd" onclick="location.href='FAQ_delete.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>'">
+            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-FAQ_main.jsp?pageNum=<%= pageNum %>'"><br>
         </form>
     </section>
     <footer>

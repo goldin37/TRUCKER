@@ -112,6 +112,7 @@ public class DeliveryOrderDB {
 	}
 	
 	
+	
 	public ArrayList<DeliveryOrder> listOrder(String pageNumber){
 		//오더리스트에 추가하는 메소드
 		
@@ -146,6 +147,87 @@ public class DeliveryOrderDB {
 			}
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			sql = "select * from delivery_order";
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				rs.absolute(absolutePage);
+				int count = 0;
+				while(count<DeliveryOrder.pageSize) {
+					DeliveryOrder deliveryorder = new DeliveryOrder();
+					
+					deliveryorder.setOrder_id(rs.getInt("order_id"));
+					deliveryorder.setTruck_type(rs.getString("truck_type"));
+					deliveryorder.setCargo_type(rs.getString("cargo_type"));
+					deliveryorder.setCargo_weight(rs.getInt("cargo_weight"));
+					deliveryorder.setCargo_help(rs.getString("cargo_help"));
+					deliveryorder.setFrom_where(rs.getString("from_where"));
+					deliveryorder.setFrom_spec(rs.getString("from_spec"));
+					deliveryorder.setTo_where(rs.getString("to_where"));
+					deliveryorder.setTo_spec(rs.getString("to_spec"));
+					deliveryorder.setDistance(rs.getInt("distance"));
+					deliveryorder.setTime(rs.getString("time"));
+					deliveryorder.setETA(rs.getString("ETA"));
+					deliveryorder.setDepart_time(rs.getTimestamp("depart_time"));
+					deliveryorder.setFix_cost(rs.getInt("fix_cost"));
+					deliveryorder.setOrder_state(rs.getString("order_state"));
+					deliveryorder.setCargo_spec(rs.getString("cargo_spec"));
+					
+					orderList.add(deliveryorder);
+					if(rs.isLast()) {
+						break;
+					}else {
+						rs.next();
+					}
+					count++;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				if(con !=null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return orderList;
+	}
+	public ArrayList<DeliveryOrder> listOrder_onlyorder(String pageNumber){
+		//order에 해당하는 orderlist를 불러오는 메소드
+		
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		ResultSet pageSet = null; // 페이지를 받기 위해
+		int dbCount = 0; // 페이지 번호의 개수를 받기 위한 변수
+		int absolutePage = 1; // 출력할 페이지
+		ArrayList<DeliveryOrder> orderList = new ArrayList<DeliveryOrder>();
+		
+		try {
+			con = getConnection();
+			stmt = con.createStatement();
+			String sql = "select count(order_id) from delivery_order";
+			pageSet  = stmt.executeQuery(sql);
+			
+			if(pageSet.next()) {
+				dbCount = pageSet.getInt(1);
+				pageSet.close();
+				stmt.close();
+			}
+			
+			if(dbCount % DeliveryOrder.pageSize ==0 ) { //페이지 개수를 알려주기 위해
+				DeliveryOrder.pageCount  = dbCount / DeliveryOrder.pageSize;
+			}else {
+				DeliveryOrder.pageCount = dbCount / DeliveryOrder.pageSize + 1;
+			}
+			if(pageNumber != null) {
+				DeliveryOrder.pageNum = Integer.parseInt(pageNumber);
+				absolutePage = (DeliveryOrder.pageNum -1) * DeliveryOrder.pageSize +1;
+			}
+			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			sql = "select * from delivery_order where order_state='order'";
 			rs = stmt.executeQuery(sql);
 			
 			if(rs.next()) {
@@ -244,5 +326,30 @@ public class DeliveryOrderDB {
 		}
 		return deliveryorder;
 	}
-
+	public int startOrder(DeliveryOrder deliveryorder) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "update delivery_order set order_state=? where order_id=?";
+		int re = -1;
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "shipping");
+			pstmt.setInt(2, deliveryorder.getOrder_id());
+			pstmt.executeUpdate();
+			re = 1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con!=null) con.close();
+				if(pstmt != null) pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return re;
+	}
 }

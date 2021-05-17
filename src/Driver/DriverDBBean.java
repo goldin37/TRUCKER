@@ -177,7 +177,7 @@ public class DriverDBBean {
 	public int updateDriver(DriverBean driver) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update driver set driver_phone_number=?, driver_addr=?, driver_email=?, truck_type=?, truck_number=? where driver_id=?";
+		String sql = "update driver set driver_phone_number=?, driver_addr=?, driver_email=?, truck_type=? ,truck_number=? where driver_id=?";
 		int re = -1;
 
 		try {

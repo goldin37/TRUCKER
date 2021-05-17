@@ -1,3 +1,4 @@
+<%@page import="SENS.Send"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="myUtil.HanConv"%>
@@ -37,5 +38,16 @@
 	else if(result != 0){
 		session.setAttribute("order_id", result);
 		response.sendRedirect("order_complete.jsp");
+		Send.LMS(customer_telephone
+				, customer_name + "님의 주문이 완료되었습니다.\n"
+				+ "운송번호 : " + result + "\n"
+				+ "차량 : " + truck_type + "\n"
+				+ "출발 : " + from_where + from_spec + "\n"
+				+ depart_time.substring(0, 16) + "\n"
+				+ "도착 : " + to_where + to_spec + "\n"
+				+ "운송번호로 홈페이지에서 상태를 조회하실 수 있습니다.\n"
+				+ "배차가 완료되면 문자메시지로 안내 드리겠습니다.\n"
+				+ "믿을 수 있는 화물중개 플랫폼, 트러커"
+				, "ncp:sms:kr:262195421504:message_sender", "1zB1FNZZofZBbLlwgesB", "wRREJhsLJRf46hyM28laTvoqp5yIpnndEuRYeM9A");
 	}
 %>

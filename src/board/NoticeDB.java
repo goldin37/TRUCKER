@@ -69,29 +69,66 @@ public class NoticeDB {
 		return 1;
 	}
 
-	public ArrayList<Notice> listBoard(){
+	public ArrayList<Notice> listBoard(String pageNumber){
 		Connection con=null;
 		Statement stmt=null;
 		ResultSet rs=null;
+		ResultSet pageSet=null;
+		int dbCount=0;
+		int absoultePage=1;
 		
 		ArrayList<Notice> boardList = new ArrayList<Notice>();
 		
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
+			
+			pageSet = stmt.executeQuery("select count(notice_number) from Notice_Board");
+			
+			if (pageSet.next()) {
+				dbCount = pageSet.getInt(1);
+				pageSet.close();
+				stmt.close();
+			}
+			
+			if (dbCount % Notice.pageSize == 0) {
+				Notice.pageCount = dbCount / Notice.pageSize;
+			}else {
+				Notice.pageCount = dbCount / Notice.pageSize + 1;
+			}
+			
+			if (pageNumber != null) {
+				Notice.pageNum = Integer.parseInt(pageNumber);
+				absoultePage = (Notice.pageNum-1) * Notice.pageSize + 1;
+			}
+			
+//			stmt = con.createStatement();
+			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
 			String sql="select * from Notice_Board order by notice_number desc";
 			
 			rs = stmt.executeQuery(sql);
 			
-			while (rs.next()) {
-				Notice notice = new Notice();
-				notice.setNotice_number(rs.getInt(1));
-				notice.setNotice_title(rs.getString(2));
-				notice.setNotice_content(rs.getString(3));
-				notice.setNotice_date(rs.getTimestamp(4));
-				notice.setNotice_hit(rs.getInt(5));
-				
-				boardList.add(notice);
+			if (rs.next()) {
+				rs.absolute(absoultePage);
+				int count = 0;
+				while (count < Notice.pageSize) {
+					Notice notice = new Notice();
+					notice.setNotice_number(rs.getInt(1));
+					notice.setNotice_title(rs.getString(2));
+					notice.setNotice_content(rs.getString(3));
+					notice.setNotice_date(rs.getTimestamp(4));
+					notice.setNotice_hit(rs.getInt(5));
+					
+					boardList.add(notice);
+					
+					if (rs.isLast()) {
+						break;
+					}else {
+						rs.next();
+					}
+					count++;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
