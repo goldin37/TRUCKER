@@ -16,6 +16,7 @@
     <title>정보수정</title>
     <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
 	<script type="text/javascript" src="driver.js" charset="utf-8"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
     <header>
@@ -63,13 +64,16 @@
                 </tr>
                 <tr>
                     <td>주소 : </td>
-                    <td><input type="text" size="40" value="<%=tb.getDriver_addr() %>" name="driver_addr"></td>
-                </tr>
+                    <td>
+                    	<input type="text" id="sample6_address" name="addr1" placeholder="주소" size="40" readonly>&nbsp;&nbsp;
+                    	<a onclick="sample6_execDaumPostcode()">주소 검색</a><br>
+						<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소" size="10">
+                    </td>
                <tr>
                     <td>이메일 : </td>
                     <td>
                     	<input name="email1" type="text" size="15"> @
-						<input name="email2" type="text" size="15">
+						<input name="email2" type="text" size="15" readonly>
 							<select name="email" id="" onchange="check_email()">
 							    <option value="0" selected>선택하세요</option>
 							    <option value="naver.com">naver.com</option>

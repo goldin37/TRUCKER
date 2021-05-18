@@ -8,6 +8,7 @@
     <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
     <script type="text/javascript" src="driver.js" charset="utf-8"></script>
 </head>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body>
     <header>
         <br><br><br><br><br><br><br><br><br><br><br>
@@ -63,14 +64,16 @@
                 <tr>
                     <td>林家 : </td>
                     <td>
-                    <input type="text" size="40" name= "driver_addr">
+                    	<input type="text" id="sample6_address" name="addr1" placeholder="林家" size="30" readonly>&nbsp;&nbsp;
+                    	<a onclick="sample6_execDaumPostcode()">林家 八祸</a><br>
+						<input type="text" id="sample6_detailAddress" name="addr2" placeholder="惑技林家" size="15">
                     </td>
                 </tr>
                 <tr>
                     <td>捞皋老 : </td>
                     <td>
                     	<input name="email1" type="text" size="15"> @
-						<input name="email2" type="text" size="15">
+						<input name="email2" type="text" size="15" readonly>
 							<select name="email" id="" onchange="check_email()">
 							    <option value="0" selected>急琶窍技夸</option>
 							    <option value="naver.com">naver.com</option>

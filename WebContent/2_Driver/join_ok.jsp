@@ -34,7 +34,7 @@
 	trucker.setDriver_pwd_check(multi.getParameter("driver_pwd_check"));
 	trucker.setDriver_name(multi.getParameter("driver_name"));
 	trucker.setDriver_phone_number(multi.getParameter("phone1")+multi.getParameter("phone2")+multi.getParameter("phone3"));
-	trucker.setDriver_addr(multi.getParameter("driver_addr"));
+	trucker.setDriver_addr(multi.getParameter("addr1") +multi.getParameter("addr2"));
 	trucker.setDriver_email(multi.getParameter("email1")+multi.getParameter("email2"));
 	trucker.setDriver_position(multi.getParameter("driver_position"));
 	trucker.setTruck_type(multi.getParameter("truck_type"));
