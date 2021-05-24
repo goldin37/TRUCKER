@@ -6,12 +6,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+// 오류 발생시 sdf.format(depart_time)에서 sdf.format를 삭제해보세요.
+
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
 		pageNum = "1";
 	}
 	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
-	ArrayList<DeliveryOrder> orderList = db.listOrder(pageNum);
+	ArrayList<DeliveryOrder> orderList = db.listOrder_onlyorder(pageNum);
 	
 	String truck_type,cargo_type,cargo_help,cargo_spec,to_where,from_where,time,eta, order_state;
 	int order_id, cargo_weight,distance,fix_cost;
@@ -38,9 +40,9 @@
           <table>
             <tr>
                 <td><a href = "orderlist.jsp">접수현황</a></td>
-                <td><a href = "#">마이페이지</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href = "mypage.jsp">마이페이지</a></td>
+                <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
       </nav>

@@ -54,17 +54,17 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "#">배송조회</a></td>
-                <td><a href = "#">mypage</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href = "orderlist.jsp">배송조회</a></td>
+                <td><a href = "mypage.jsp">마이페이지</a></td>
+                <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
       </nav>
    <section class="ordershow">
         <h1>요청된 배송</h1>
         <table>
-            <form>
+            <form action= "order_ok.jsp?order_id=<%=order_id %>" method="post">
                 <tr>
                     <td width="130">주문번호</td>
                     <td><%=orderid%></td>
@@ -113,7 +113,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <input type="button" value="수락" onclick="" id="order" >
+                        <input type="submit" value="수락" id="order">
                         <input type="button" value="글목록" id="order" onclick="location.href='orderlist.jsp?pageNum=<%= pageNum %>'">
                     </td>
                 </tr>

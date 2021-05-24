@@ -8,6 +8,7 @@
     <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
     <script type="text/javascript" src="driver.js" charset="utf-8"></script>
 </head>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body>
     <header>
         <br><br><br><br><br><br><br><br><br><br><br>
@@ -19,8 +20,8 @@
             <tr>
                 <td><a href = "#">화물접수</a></td>
                 <td><a href = "#">배송조회</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
       </nav>
@@ -63,14 +64,16 @@
                 <tr>
                     <td>주소 : </td>
                     <td>
-                    <input type="text" size="40" name= "driver_addr">
+                    	<input type="text" id="sample6_address" name="addr1" placeholder="주소" size="30" readonly>&nbsp;&nbsp;
+                    	<a onclick="sample6_execDaumPostcode()">주소 검색</a><br>
+						<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소" size="15">
                     </td>
                 </tr>
                 <tr>
                     <td>이메일 : </td>
                     <td>
                     	<input name="email1" type="text" size="15"> @
-						<input name="email2" type="text" size="15">
+						<input name="email2" type="text" size="15" readonly>
 							<select name="email" id="" onchange="check_email()">
 							    <option value="0" selected>선택하세요</option>
 							    <option value="naver.com">naver.com</option>
