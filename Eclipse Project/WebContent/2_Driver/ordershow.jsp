@@ -54,10 +54,10 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "#">배송조회</a></td>
-                <td><a href = "#">mypage</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href = "orderlist.jsp">배송조회</a></td>
+                <td><a href = "mypage.jsp">마이페이지</a></td>
+                <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
       </nav>
