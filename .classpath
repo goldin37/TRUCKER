@@ -8,6 +8,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="cos.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.5.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.5.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.5.2.jar"/>

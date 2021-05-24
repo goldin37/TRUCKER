@@ -345,15 +345,14 @@ footer a:hover{
     margin-top: 100px;
 }
 
-.login{
-    margin-left: 30px;
+.login button{
     border-radius: 15px;
     border: none;
     width: 330px;
 }
 .login:hover{
     background: rgb(131, 167, 218);
-    border-radius: 15px;
+    border-radius: 5px;
     border: none;
     width: 330px;
 }
@@ -405,12 +404,17 @@ footer a:hover{
     background: none;
     color: black;
 }
-#order{
+.order{
+  	font-size: larger;
+    color: rgb(255, 255, 255);
+    background: rgb(18, 63, 129);
+    text-decoration: none;
     border: none;
+    border-radius: 5px; 
     width: 330px;
     margin-left: 100px;
 }
-#order:hover{
+.order:hover{
     background: rgb(171, 196, 235);
     border: none;
     width: 330px;

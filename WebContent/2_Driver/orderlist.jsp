@@ -6,6 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+// 오류 발생시 sdf.format(depart_time)에서 sdf.format를 삭제해보세요.
+	String id = request.getParameter("driver_id");
+
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
 		pageNum = "1";
@@ -38,9 +41,9 @@
           <table>
             <tr>
                 <td><a href = "orderlist.jsp">접수현황</a></td>
-                <td><a href = "#">마이페이지</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href = "mypage.jsp">마이페이지</a></td>
+                <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
+                <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
       </nav>
@@ -78,7 +81,7 @@
 %>
 				<tr bgcolor="#f7f7f7"> 
 			 	<td align="center"  id="click">
-                    <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>"><%= order_id %></a>
+                    <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>&driver_id=<%=id %>" ><%= order_id %></a>
 			 	</td>
 			 	<td align="center">
 			 		<%= truck_type %>
