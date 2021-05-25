@@ -110,7 +110,17 @@
 					<%= fix_cost %>원
 			 	</td>
 			 	<td align="center">
-					<%= order_state %>
+					<%
+						String orderstate = "";
+						if(order_state.equals("order")){
+							orderstate = "신청중";
+						}else if(order_state.equals("shipping")){
+							orderstate = "배송중";
+						}else if(order_state.equals("complete")){
+							orderstate = "배송완료";
+						}
+					%>
+					<%= orderstate %>
 			 	</td>
 			</tr>
 	<%
