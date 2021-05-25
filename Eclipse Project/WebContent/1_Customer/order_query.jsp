@@ -4,8 +4,17 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>배송접수조회</title>
 <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
+<script>
+function orderid_check(){
+	if(document.form.order_id.value.length == 0){
+			alert("배송번호를 입력해주세요");
+			return;
+	}
+	 document.form.submit();
+}
+</script>
 </head>
 <body class = "order_query">
     <header>
@@ -15,7 +24,7 @@
     <nav>
         <table>
             <tr>
-                <td><a href = "order.html">화물접수</a></td>
+                <td><a href = "order1.jsp">화물접수</a></td>
                 <td><a href = "order_query.jsp">배송조회</a></td>
                 <td><a href = "../3_ServiceCenter/Notice_main.jsp">고객센터</a></td>
                 <td><a href = "companyIntroduction.html">회사소개</a></td>
@@ -23,14 +32,13 @@
         </table>
     </nav>
     <section><br>
-    	<form action="order_query_Search_order_id.jsp" method="post">
-	      <h1>배송 조회</h1>
+    	<form name="form" action="order_query_Search_order_id.jsp" method="post">
+	      <h1>배송 접수 조회</h1>
 	      <table>
 	   		<tr>
-               <td rowspan = 4 width = 250px>배송 번호
+               <td rowspan = 4 width = 250px>배송 번호:
 	               <input type="text" size = 5 name="order_id">
-<!-- 	               <input type="button" value="조회" class="shipping" onclick="order_id_check_ok()">     -->
-	               <input type="submit" value="조회" class="shipping">    
+	               <input type="button" value="조회" class="shipping" onClick="orderid_check()">   
                </td>
                <td> </td>
             </tr>
@@ -42,17 +50,19 @@
 	            </tr>
 	            <tr>
 	                <td>
-                    	이름 <input type = "text" size = 3 name="customer_name"> 
-	                   	전화번호 
+                    	이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름: 
+                    	<input type = "text" size = 4 name="customer_name" width="100"><br>
+	                   	전화번호: 
 	                   	<input type = "text" size = 3 name="phone1" maxlength="3">-
 	                   	<input type = "text" size = 4 name="phone2" maxlength="4">-
 	                   	<input type = "text" size = 4 name=phone3 maxlength="4">
 	                    <input type="submit" value="조회" class="shipping">
+	                    
 	                </td>
 	            </tr>
 	            <tr>
 	                <td>
-	                    2021년 5월 12일 14:22 &nbsp;&nbsp;&nbsp;부산 > 김천 &nbsp;&nbsp;&nbsp;<point>B53PK</point>
+	                   
 	                </td>
 	            </tr>
         	</table>

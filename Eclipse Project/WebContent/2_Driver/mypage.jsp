@@ -129,7 +129,7 @@
                     <input type="button" value="款价秒家" class="click" onclick="location.href='delete_order.jsp'">
                     <input type="button" value="款价肯丰" class="click" onclick="location.href='completed_order.jsp'">
                     <input type="button" value="款价立荐犬牢" class="click" onclick="location.href='orderlist.jsp'">
-                    <input type="button" value="款价郴开犬牢" class="click" onclick="location.href='view_ordered_1.jsp'">
+                    <input type="button" value="款价郴开犬牢" class="click" onclick="location.href='view_ordered.jsp'">
                     
                  </td>
              </tr>

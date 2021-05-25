@@ -60,7 +60,8 @@
                     <td>예상 시간</td>
                     <td>출발일시</td>
                     <td>요금</td>
-                    <td>진행상태</td>
+                    <td>진행<br>상태</td>
+                    <
                 </tr>
 <%
 				for(int i=0 ; i<orderList.size() ; i++){
@@ -113,7 +114,7 @@
 					<%
 						String orderstate = "";
 						if(order_state.equals("order")){
-							orderstate = "신청중";
+							orderstate = "배송요청";
 						}else if(order_state.equals("shipping")){
 							orderstate = "배송중";
 						}else if(order_state.equals("complete")){

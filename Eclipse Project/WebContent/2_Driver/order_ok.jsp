@@ -25,11 +25,9 @@
 		<script>
 			var answer = confirm("배송을 진행하시겠습니까?");
 			if(answer == true){
-				int re = db.startOrder(deliveryorder);
-				if(re == 1){
-					alert("배송을 선택하셨습니다.");	 
-					document.location.href="mypage.jsp"
-				}
+				db.startOrder(deliveryorder);
+				alert("배송을 선택하셨습니다.");	 
+				document.location.href="mypage.jsp"
 			}else { 
 				alert("배송을 선택하시지 않았습니다. \n 글목록으로 돌아갑니다.");
 				document.location.href="orderlist.jsp"
