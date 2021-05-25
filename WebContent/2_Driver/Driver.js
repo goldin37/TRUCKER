@@ -206,3 +206,24 @@ function period_check_ok(){
             }
         }).open();
     }
+
+ function delete_order_ok(){
+ 		
+ 		if(confirm("배송을 취소하시겠습니까?") == true){
+ 			alert("배송을 취소하셨습니다.");
+ 			document.location.href="delete_order.jsp";				
+ 		}else{
+ 			alert("배송을 취소하지 않으셨습니다.");
+ 			document.location.href="mypage.jsp";				
+ 		}
+  }
+  function complete_order_ok(){
+ 		
+ 		if(confirm("배송을 완료하시겠습니까?") == true){
+ 			alert("배송을 완료하셨습니다.");
+ 			document.location.href="completed_order.jsp";				
+ 		}else{
+ 			alert("배송을 완료하지 않으셨습니다.");
+ 			document.location.href="mypage.jsp";				
+ 		}
+  }

@@ -17,7 +17,7 @@
 	
 	// 진행중인 배송
 		
-	String cargo_type="",cargo_help="",to_where="",from_where="",customer_name="",customer_telephone="";
+	String cargo_type="",cargo_help="",to_where="",from_where="",customer_name="",customer_tel="";
 	int cargo_weight=0,fix_cost=0;
 	Timestamp depart_time=null;
 	
@@ -38,7 +38,7 @@
 			from_where = deliveryorder.getFrom_where() + deliveryorder.getFrom_spec();
 			depart_time = deliveryorder.getDepart_time();
 			customer_name = deliveryorder.getCustomer_name();
-			//customer_tel = deliveryorder.getCustomer_telephone();
+			customer_tel = deliveryorder.getCustomer_telephone();
 			fix_cost = deliveryorder.getFix_cost();
 			
 		}
@@ -51,6 +51,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
     <link rel = "stylesheet" type = "text/css" href = "../style/mystyle.css">
+    <script type="text/javascript" src="driver.js" charset="utf-8"></script>
+    
 </head>
 <body>
     <header>
@@ -96,16 +98,29 @@
         <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp'">
     </section>
     <section class="now">
-        <h2 id="box">진행중인 운송</h2> 
+        <%
+            	if(depart_time != null){
+       		%>
+       				<h2 id="box">진행 중인 배송</h2>
+       		<%
+            	}else{
+            %>
+            		<h2 id="box">진행중인 배송이 없습니다.</h2>
+            <%
+            	}
+            %>
         <table>
             <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
-            <tr>
-                <td>출발일자 : <%=depart_time %></td>
-            </tr>
+            
             <tr>
                 <td>고객이름 : <%=customer_name %></td>
             </tr>
-           	
+            <tr>
+                <td>고객연락처 : <%=customer_tel %></td>
+            </tr>
+            <tr>
+                <td>출발일자 : <%=depart_time %></td>
+            </tr>
             <tr>
                 <td>화물종류 : <%=cargo_type %></td>
             </tr>
@@ -126,9 +141,9 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="운송취소" class="click" onclick="location.href='delete_order.jsp'">
-                    <input type="button" value="운송완료" class="click" onclick="location.href='completed_order.jsp'">
-                    <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp'">
+                    <input type="button" value="운송취소" class="click" onclick="location.href='delete_order.jsp?driver_id=<%=id%>'">
+                    <input type="button" value="운송완료" class="click" onclick="location.href='completed_order.jsp?driver_id=<%=id%>'">
+                    <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp?driver_id=<%=id%>'">
                     <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered_1.jsp'">
                     
                  </td>

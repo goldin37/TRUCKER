@@ -5,15 +5,23 @@
 <jsp:setProperty property="*" name="deliveryorder"/>
 <%
 	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
+	String id = request.getParameter("driver_id");
+	System.out.println(id);
+	if(db.deleteOrder(id) == 1 ){
 %>
 		<script>
-			var answer = confirm("배송을 취소하시겠습니까?");
-			if(answer == true){
-				alert("배송을 취소하셨습니다.");
-				db.deleteOrder(deliveryorder);
-				history.go(-1);				
-			}else{
-				alert("배송을 선택하시지 않았습니다. \n 글목록으로 돌아갑니다.");
-				history.go(-1);				
-			}
+			alert("배송을 취소하셨습니다.");
 		</script>
+<%
+		response.sendRedirect("mypage.jsp");		
+	}else{
+%>
+		<script>
+			alert("배송을 취소하지 못하였습니다.");
+		</script>
+<%
+		response.sendRedirect("mypage.jsp");		
+	}
+%>
+		
+				
