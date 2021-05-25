@@ -330,19 +330,18 @@ public class DeliveryOrderDB {
 		return deliveryorder;
 	}
 	public int startOrder(DeliveryOrder deliveryorder) {
+		//order -> shipping 변환 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "update delivery_order set order_state=?,driver_id=? where order_id=?";
 		int re = -1;
-		
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "shipping");
 			pstmt.setString(2, deliveryorder.getDriver_id());
 			pstmt.setInt(3, deliveryorder.getOrder_id());
-			pstmt.executeUpdate();
-			re = 1;
+			re = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -358,6 +357,7 @@ public class DeliveryOrderDB {
 	}
 
 	public DeliveryOrder shipping(String driver_id) {
+		//shipping만 불러오기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -399,11 +399,11 @@ public class DeliveryOrderDB {
 		return deliveryorder;
 	}
 	
-	
-	public int deleteOrder(DeliveryOrder deliveryorder) throws Exception{
+	public int deleteOrder(String driver_id) {
+		//shipping -> order로 변환 + 배정된 driver_id 삭제
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update delivery_order set order_state='order', driver_id =? where driver_id=?";
+		String sql = "update delivery_order set order_state=?, driver_id =? where driver_id=?";
 		int re = -1;
 		
 		try {
@@ -411,7 +411,7 @@ public class DeliveryOrderDB {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "order");
 			pstmt.setString(2, null);
-			pstmt.setString(3, deliveryorder.getDriver_id());
+			pstmt.setString(3, driver_id);
 			pstmt.executeUpdate();
 			re = 1;
 			
@@ -428,19 +428,20 @@ public class DeliveryOrderDB {
 		return re;
 	}
 	
-	public int completeOrder(DeliveryOrder deliveryorder) throws Exception{
+	public int completeOrder(String driver_id) throws Exception{
+		//shipping -> complete 변환
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update delivery_order set order_state=? where order_id=?";
+		String sql = "update delivery_order set order_state=? where driver_id=?";
 		int re = -1;
 		
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "completed");
-			pstmt.setInt(2, deliveryorder.getOrder_id());
-			pstmt.executeUpdate();
-			re = 1;
+			pstmt.setString(1, "complete");
+			pstmt.setString(2, driver_id);
+			re = pstmt.executeUpdate();
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

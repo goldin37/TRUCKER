@@ -96,16 +96,29 @@
         <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp'">
     </section>
     <section class="now">
-        <h2 id="box">진행중인 운송</h2> 
+        <%
+            	if(depart_time != null){
+       		%>
+       				<h2 id="box">진행 중인 배송</h2>
+       		<%
+            	}else{
+            %>
+            		<h2 id="box">진행중인 배송이 없습니다.</h2>
+            <%
+            	}
+            %>
         <table>
             <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
-            <tr>
-                <td>출발일자 : <%=depart_time %></td>
-            </tr>
+            
             <tr>
                 <td>고객이름 : <%=customer_name %></td>
             </tr>
-           	
+            <tr>
+                <td>고객연락처 : <%=customer_tel %></td>
+            </tr>
+            <tr>
+                <td>출발일자 : <%=depart_time %></td>
+            </tr>
             <tr>
                 <td>화물종류 : <%=cargo_type %></td>
             </tr>
@@ -126,10 +139,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="운송취소" class="click" onclick="location.href='delete_order.jsp'">
-                    <input type="button" value="운송완료" class="click" onclick="location.href='completed_order.jsp'">
-                    <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp'">
-                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered.jsp'">
+                    <input type="button" value="운송취소" class="click" onclick="location.href='delete_order.jsp?driver_id=<%=id%>'">
+                    <input type="button" value="운송완료" class="click" onclick="location.href='completed_order.jsp?driver_id=<%=id%>'">
+                    <!-- @##@##@##@##@##@##@ here!!!#@#@#@#@#@#@# 운송완료 누르면 completed_order로 넘어가서 complete로 바뀝니다. @#@#@#@#@#@#@#@#@#@#
+                    		메소드는 deliveryOrderDB에 completeorder()입니다. @#@!#@!#!@#!@$!@#@!#!@#!@#!@#!@#-->
+                    <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp?driver_id=<%=id%>'">
+                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered_1.jsp'">
                     
                  </td>
              </tr>
