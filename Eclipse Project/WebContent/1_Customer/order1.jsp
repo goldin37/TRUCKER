@@ -89,6 +89,7 @@
         <h1>트럭커(TRUCKER)</h1>
     </header>
     <nav>
+    	<a href = "../2_Driver/login.html"><div>기사용페이지</div></a>
         <table>
             <tr>
                 <td><a href = "order1.jsp">화물접수</a></td>

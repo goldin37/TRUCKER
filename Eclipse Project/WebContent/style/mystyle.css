@@ -26,14 +26,13 @@ header h2{
 nav div{
 	position: fixed;
 	float: right;
-	
+	font-size: large;
+	text-align:center;
 	right: 200px;
 	width: 60px;
 	height: 60px;
-	
-	
 	background: white;
-	border-radius: 60px;
+	border-radius: 30px;
 	padding: 10px;
 	color: black;
 }
