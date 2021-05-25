@@ -22,6 +22,11 @@
 function mobile_payment(){
 	window.open("mobile_payment.jsp", "휴대전화 소액결제", "left = 100px, top = 100, width = 500px, height = 600px")
 }
+function pre_payment(){
+	
+		alert("해당 결제방법은 준비중입니다..");
+	
+	}
 </script>
 </head>
 <body>
@@ -48,9 +53,9 @@ function mobile_payment(){
     		<th colspan = "4">결제수단 선택</th>
     	</tr>
     	<tr>
-    		<td><img src = "../images/transfer.png" width = 250px><br><br><center><a>실시간 계좌이체</a></center></td>
-    		<td><img src = "../images/virtual_transfer.png" width = 250px><br><br><center><a>가상계좌 입금</a></center></td>
-    		<td><img src = "../images/credit_card.png" width = 250px><br><center><a>카드 결제</a></center></td>
+    		<td><img src = "../images/transfer.png" width = 250px><br><br><center><a onclick = "pre_payment()">실시간 계좌이체</a></center></td>
+    		<td><img src = "../images/virtual_transfer.png" width = 250px><br><br><center><a onclick = "pre_payment()">가상계좌 입금</a></center></td>
+    		<td><img src = "../images/credit_card.png" width = 250px><br><center><a onclick = "pre_payment()">카드 결제</a></center></td>
     		<td><img src = "../images/mobile.png" width = 250px><br><br><center><a onClick = "mobile_payment()">휴대전화 소액결제</a></center></td>
     	</tr>
     	<th colspan = "4">휴대전화 소액결제</th>
