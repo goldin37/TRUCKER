@@ -392,12 +392,19 @@ footer a:hover{
 .orderlist {
     width: 1000px;
     font-size: small;
+    
 }
 .orderlist table{
 	width: 1300px;
 }
 .orderlist td{
 	width: 400px;
+/*     background: rgb(18, 63, 129); */
+    border: 1px solid;
+    border-color: rgb(171, 196, 235);
+    border-radius: 15px; 
+    text-align: center;
+	
 }
 
 .orderlist a{
