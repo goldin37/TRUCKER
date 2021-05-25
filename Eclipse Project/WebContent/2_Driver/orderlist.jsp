@@ -7,6 +7,7 @@
     pageEncoding="EUC-KR"%>
 <%
 // 오류 발생시 sdf.format(depart_time)에서 sdf.format를 삭제해보세요.
+	String id = request.getParameter("driver_id");
 
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
@@ -80,7 +81,7 @@
 %>
 				<tr bgcolor="#f7f7f7"> 
 			 	<td align="center"  id="click">
-                    <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>"><%= order_id %></a>
+                    <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>&driver_id=<%=id %>" ><%= order_id %></a>
 			 	</td>
 			 	<td align="center">
 			 		<%= truck_type %>

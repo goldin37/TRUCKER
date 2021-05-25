@@ -1,12 +1,13 @@
+<%@page import="myUtil.DeliveryOrder"%>
+<%@page import="myUtil.DeliveryOrderDB"%>
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-
 <%
 	if(session.getAttribute("id") == null){
 %>
 		<jsp:forward page ="login.html"></jsp:forward>
 <%
 	}
-
 	String id = (String)session.getAttribute("id");
 	String name =(String)session.getAttribute("name");
 	String license = (String)session.getAttribute("license");
@@ -14,6 +15,34 @@
 	String truck_number = (String)session.getAttribute("truck_number");
 	String phone = (String)session.getAttribute("phone");
 	
+	// 진행중인 배송
+		
+	String cargo_type="",cargo_help="",to_where="",from_where="",customer_name="",customer_telephone="";
+	int cargo_weight=0,fix_cost=0;
+	Timestamp depart_time=null;
+	
+	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
+	DeliveryOrder deliveryorder = db.shipping(id);
+
+	if(id == null){
+		System.out.println("아이디가 안넘어왔다..");
+	}
+	else{
+		
+		if(deliveryorder != null){
+			truck_type = deliveryorder.getTruck_type();
+			cargo_type = deliveryorder.getCargo_type();
+			cargo_weight =deliveryorder.getCargo_weight();
+			cargo_help = deliveryorder.getCargo_help();
+			to_where = deliveryorder.getTo_where() + deliveryorder.getTo_spec();
+			from_where = deliveryorder.getFrom_where() + deliveryorder.getFrom_spec();
+			depart_time = deliveryorder.getDepart_time();
+			customer_name = deliveryorder.getCustomer_name();
+			//customer_tel = deliveryorder.getCustomer_telephone();
+			fix_cost = deliveryorder.getFix_cost();
+			
+		}
+	}
 %>
 <html lang="en">
 <head>
@@ -32,7 +61,7 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "orderlist.jsp">접수현황</a></td>
+                <td><a href = "orderlist.jsp?driver_id=<%=id%>">접수현황</a></td>
                 <td><a href = "mypage.jsp">마이페이지</a></td>
                 <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
                 <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
@@ -45,7 +74,7 @@
            	환영합니다 ! <%= name %>(<%=id %>)님 
         </p>
         <table>
-            <form method=post>
+            <form>
             <tr>
                 <td>이름 : <%=name %></td>
             </tr>
@@ -71,33 +100,34 @@
         <table>
             <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
             <tr>
-                <td>출발일자 : 받는값</td>
+                <td>출발일자 : <%=depart_time %></td>
             </tr>
             <tr>
-                <td>고객이름 : 받는 값</td>
+                <td>고객이름 : <%=customer_name %></td>
+            </tr>
+           	
+            <tr>
+                <td>화물종류 : <%=cargo_type %></td>
             </tr>
             <tr>
-                <td>화물종류 : 받는 값</td>
+                <td>화물무게 : <%=cargo_weight %></td>
             </tr>
             <tr>
-                <td>화물무게 : 받는 값</td>
+                <td>상차지 :<%=from_where %></td>
             </tr>
             <tr>
-                <td>상차지 : 받는 값</td>
+                <td>하차지 : <%=to_where %></td>
             </tr>
             <tr>
-                <td>하차지 : 받는 값</td>
+                <td>승하차도움 : <%=cargo_help %></td>
             </tr>
             <tr>
-                <td>승하차도움 : 받는 값</td>
-            </tr>
-            <tr>
-                <td>운임비용 : 받는 값</td>
+                <td>운임비용 : <%=fix_cost%></td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="운송취소" class="click" onclick="">
-                    <input type="button" value="운송완료" class="click" onclick="">
+                    <input type="button" value="운송취소" class="click" onclick="location.href='delete_order.jsp'">
+                    <input type="button" value="운송완료" class="click" onclick="location.href='completed_order.jsp'">
                     <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp'">
                     <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered_1.jsp'">
                     

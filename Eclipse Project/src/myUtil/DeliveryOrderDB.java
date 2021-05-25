@@ -12,6 +12,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import Driver.DriverBean;
+import Driver.DriverDBBean;
+
 
 public class DeliveryOrderDB {
 	private static DeliveryOrderDB instance = new DeliveryOrderDB();
@@ -329,13 +332,112 @@ public class DeliveryOrderDB {
 	public int startOrder(DeliveryOrder deliveryorder) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update delivery_order set order_state=? where order_id=?";
+		String sql = "update delivery_order set order_state=?,driver_id=? where order_id=?";
 		int re = -1;
 		
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "shipping");
+			pstmt.setString(2, deliveryorder.getDriver_id());
+			pstmt.setInt(3, deliveryorder.getOrder_id());
+			pstmt.executeUpdate();
+			re = 1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con!=null) con.close();
+				if(pstmt != null) pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return re;
+	}
+
+	public DeliveryOrder shipping(String driver_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		DeliveryOrder deliveryorder = null;
+		String sql = "select * from delivery_order where order_state ='shipping' and driver_id=?";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, driver_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				deliveryorder = new DeliveryOrder();
+				
+				deliveryorder.setCargo_type(rs.getString("cargo_type"));
+				deliveryorder.setCargo_weight(rs.getInt("cargo_weight"));
+				deliveryorder.setCargo_help(rs.getString("cargo_help"));
+				deliveryorder.setFrom_where(rs.getString("from_where"));
+				deliveryorder.setFrom_spec(rs.getString("from_spec"));
+				deliveryorder.setTo_where(rs.getString("to_where"));
+				deliveryorder.setTo_spec(rs.getString("to_spec"));
+				deliveryorder.setDepart_time(rs.getTimestamp("depart_time"));
+				deliveryorder.setFix_cost(rs.getInt("fix_cost"));
+				deliveryorder.setOrder_state(rs.getString("order_state"));
+				deliveryorder.setCustomer_name(rs.getString("customer_name"));
+				deliveryorder.setCustomer_telephone(rs.getString("customer_telephone"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con!=null) con.close();
+				if(pstmt != null) pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return deliveryorder;
+	}
+	
+	
+	public int deleteOrder(DeliveryOrder deliveryorder) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "update delivery_order set order_state='order', driver_id =? where driver_id=?";
+		int re = -1;
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "order");
+			pstmt.setString(2, null);
+			pstmt.setString(3, deliveryorder.getDriver_id());
+			pstmt.executeUpdate();
+			re = 1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con!=null) con.close();
+				if(pstmt != null) pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return re;
+	}
+	
+	public int completeOrder(DeliveryOrder deliveryorder) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "update delivery_order set order_state=? where order_id=?";
+		int re = -1;
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "completed");
 			pstmt.setInt(2, deliveryorder.getOrder_id());
 			pstmt.executeUpdate();
 			re = 1;
@@ -353,3 +455,5 @@ public class DeliveryOrderDB {
 		return re;
 	}
 }
+	
+

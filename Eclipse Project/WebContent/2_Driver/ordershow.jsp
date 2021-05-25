@@ -5,6 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+	String id = request.getParameter("driver_id");
+	
 	String pageNum =request.getParameter("pageNum");
 
 	int orderid = Integer.parseInt(request.getParameter("order_id"));
@@ -64,7 +66,7 @@
    <section class="ordershow">
         <h1>요청된 배송</h1>
         <table>
-            <form action= "order_ok.jsp?order_id=<%=order_id %>" method="post">
+            <form action= "order_ok.jsp?order_id=<%=order_id %>&driver_id=<%=id %>" method="post">
                 <tr>
                     <td width="130">주문번호</td>
                     <td><%=orderid%></td>
@@ -113,8 +115,8 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <input type="submit" value="수락" id="order">
-                        <input type="button" value="글목록" id="order" onclick="location.href='orderlist.jsp?pageNum=<%= pageNum %>'">
+                        <input type="submit" value="수락" class="order" style="height: 40px" >
+                        <input type="button" value="글목록" class="order" onclick="location.href='orderlist.jsp?pageNum=<%= pageNum %>'">
                     </td>
                 </tr>
             </form>
