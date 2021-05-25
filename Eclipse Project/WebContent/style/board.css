@@ -54,6 +54,22 @@ nav table {
 nav td {
   padding: 20px;
 }
+
+nav div{
+	position: fixed;
+	float: right;
+	
+	right: 200px;
+	width: 60px;
+	height: 60px;
+	
+	
+	background: white;
+	border-radius: 60px;
+	padding: 10px;
+	color: black;
+}
+
 section {
   width: 1000px;
   margin: auto;

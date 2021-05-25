@@ -1,28 +1,23 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.Timestamp"%>
+<%@page import="board.FAQDB"%>
+<%@page import="board.FAQ"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@page import="board.Notice"%>
-<%@page import="board.NoticeDB"%>
+    
 <%
-	String pageNum = request.getParameter("pageNum");
+	String pageNum = request.getParameter("pageNum");	
 
-	int bid = Integer.parseInt(request.getParameter("notice_number"));
-	NoticeDB db = NoticeDB.getInstance();
-	Notice notice = db.getBoard(bid, true);
+	int bid = Integer.parseInt(request.getParameter("faq_number"));
+	FAQDB db = FAQDB.getInstance();
+	FAQ	faq= db.getBoard(bid);
 	
-	int notice_number = 0, notice_hit = 0;
-	String notice_title = "", notice_content = "";
-	Timestamp notice_date = null;
+	int faq_number = 0;
+	String faq_title = "", faq_content = "";
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
-	if(notice != null){
-		notice_number = notice.getNotice_number();
-		notice_title = notice.getNotice_title();
-		notice_content = notice.getNotice_content();
-		notice_date = notice.getNotice_date();
-		notice_hit = notice.getNotice_hit();
+	if(faq != null){
+		faq_number = faq.getFaq_number();
+		faq_title = faq.getFaq_title();
+		faq_content = faq.getFaq_title();
 	}
 %>
 <html>
@@ -44,24 +39,26 @@
             <tr>
                 <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
                 <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
-                <td><a href = "Notice_main.jsp">고객센터</a></td>
+                <td><a href = "M-Notice_main.jsp">고객센터</a></td>
                 <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
         </table>
     </nav>
     <section>
-        <form name="form">
-            <h3 class="deco1">공지사항</h3><br><br>
+        <form>
+            <h3 class="deco1">자주하는 질문</h3><br><br>
             <!-- <h3>공지사항 작성하기</h3> -->
             <table>
                 <tr>
-                    <td class="aL"><%= notice_title %></td>
-                    <td class="aR"><%= sdf.format(notice_date) %></td>
+                    <td class="aL"><strong>Q.</strong><%= faq_title %></td>
                 </tr>
                 <tr>
-                    <td class="aL aR2" colspan="2"><%= notice.getNotice_content().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>") %></td>
+                    <td class="aL aR2"><%= faq.getFaq_content().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>") %></td>
                 </tr>
             </table><br><br>
+            <input type="button" value="수정" class="shipping" onclick="location.href='FAQ_edit.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>'">
+            <input type="button" value="삭제" class="shipping pd" onclick="location.href='FAQ_delete.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>'">
+            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-FAQ_main.jsp?pageNum=<%= pageNum %>'"><br>
         </form>
     </section>
     <footer>

@@ -55,9 +55,6 @@
                     <td class="aL aR2"><%= faq.getFaq_content().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>") %></td>
                 </tr>
             </table><br><br>
-            <input type="button" value="수정" class="shipping" onclick="location.href='FAQ_edit.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>'">
-            <input type="button" value="삭제" class="shipping pd" onclick="location.href='FAQ_delete.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>'">
-            <input type="button" value="목록" class="shipping pd" onclick="location.href='M-FAQ_main.jsp?pageNum=<%= pageNum %>'"><br>
         </form>
     </section>
     <footer>

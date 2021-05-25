@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,6 +8,17 @@
 <%@page import="board.FAQDB"%>
 <%@page import="board.Inquiry" %>
 <%@page import="board.InquiryDB" %>
+<!-- 
+	String id = (String)session.getAttribute("id");
+	if(id == null){
+	   response.sendRedirect("../2_Driver/login.html");
+	} else if(id.equals("admin")){
+	   response.sendRedirect("M-FAQ_main.jsp");
+	} else{
+	   response.sendRedirect("FAQ_main.jsp");      
+	} 
+ -->
+
 <%
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
@@ -57,8 +69,8 @@
     </nav>
     <section>
         <form>
-            <a href="Notice_main.jsp"><h3 class="deco2">공지사항</h3></a>
-            <a href="FAQ_main.jsp"><h3 class="deco2">자주하는 질문</h3></a>
+            <a href="M-Notice_main.jsp"><h3 class="deco2">공지사항</h3></a>
+            <a href="M-FAQ_main.jsp"><h3 class="deco2">자주하는 질문</h3></a>
             <table>
             	<%
                 	for(i=0; i<boardList.size(); i++){
@@ -72,7 +84,7 @@
                 		<input type="hidden" name="b_id" value="<%= faq_number %>">
                 	</td>
                 	<td  class="">
-                		<a href="FAQ_show.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>">
+                		<a href="M-FAQ_show.jsp?faq_number=<%= faq_number %>&pageNum=<%= pageNum %>">
                 		<strong>Q.</strong><%= faq_title %>
                 	</td>
                 </tr>

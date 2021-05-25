@@ -58,8 +58,8 @@
     </nav>
     <section>
         <form>
-            <a href="Notice_main.jsp"><h3 class="deco2">공지사항</h3></a>
-            <a href="FAQ_main.jsp"><h3 class="deco2">자주하는 질문</h3></a>
+            <a href="M-Notice_main.jsp"><h3 class="deco2">공지사항</h3></a>
+            <a href="M-FAQ_main.jsp"><h3 class="deco2">자주하는 질문</h3></a>
             <table>
                 <tr>
                     <td class="td1">번호</td>
@@ -80,7 +80,7 @@
                 		<%= notice_number %>
                 	</td>
                 	<td  class="">
-                		<a href="Notice_show.jsp?notice_number=<%= notice_number %>&pageNum=<%= pageNum %>">
+                		<a href="M-Notice_show.jsp?notice_number=<%= notice_number %>&pageNum=<%= pageNum %>">
                 		<%= notice_title %>
                 	</td>
                 	<td class="td3">
