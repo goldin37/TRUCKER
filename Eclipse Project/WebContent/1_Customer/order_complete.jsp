@@ -26,7 +26,7 @@
     <h2>화물운송 주문 접수 완료</h2>
         화물운송 주문 접수가 완료되었습니다.<br>
         운송번호 :<order_number><%= session.getAttribute("order_id") %></order_number><br>
-        운송 상태는 <a onclick="javascript:window.open('order_query.html')">운송조회 페이지</a>에서 확인하실 수 있습니다.<br>
+        운송 상태는 <a onclick="javascript:window.open('order_query.jsp')">운송조회 페이지</a>에서 확인하실 수 있습니다.<br>
         운송기사에 배차 후, 문자메시지로 안내 드리겠습니다.<br>
     </section>
     <footer>

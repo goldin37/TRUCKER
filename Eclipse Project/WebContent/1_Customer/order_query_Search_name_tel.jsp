@@ -61,7 +61,7 @@
         <table>
             <tr>
                 <td><a href = "order.html">화물접수</a></td>
-                <td><a href = "order-query.jsp">배송조회</a></td>
+                <td><a href = "order_query.jsp">배송조회</a></td>
                 <td><a href = "../3_ServiceCenter/Notice_main.jsp">고객센터</a></td>
                 <td><a href = "companyIntroduction.html">회사소개</a></td>
             </tr>
@@ -69,7 +69,7 @@
     </nav>
     <section>
     <br>
-        <form action="order-query-Search-order_id.jsp" method="post">
+        <form action="order_query_Search_order_id.jsp" method="post">
         <h1>배송 조회</h1>
         <table>
             <tr>
@@ -82,7 +82,7 @@
                 </td>
             </tr>
             </form>
-            <form action="order-query-Search-name+tel.jsp" method="post">
+            <form action="order_query_Search_name_tel.jsp" method="post">
             <tr>
                 <th>배송번호 조회</th>
             </tr>
@@ -92,11 +92,6 @@
                     전화번호 <input type = "text" size = 3 name="phone1" maxlength="3">-<input type = "text" size = 4 name="phone2" maxlength="4">-<input type = "text" size = 4 name=phone3 maxlength="4">
 
                     <input type="submit" value="조회" class="shipping">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    2021년 5월 12일 14:22 &nbsp;&nbsp;&nbsp;부산 > 김천 &nbsp;&nbsp;&nbsp;<point>B53PK</point>
                 </td>
             </tr>
         </table>

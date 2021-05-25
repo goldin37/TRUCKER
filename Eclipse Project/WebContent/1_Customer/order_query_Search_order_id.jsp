@@ -6,6 +6,7 @@
     pageEncoding="EUC-KR"%>
 <%
 	int bid = Integer.parseInt(request.getParameter("order_id"));
+	
 	queryDB odb = queryDB.getInstance(); 
 	DeliveryOrder order = odb.getOrder(bid);
 	
@@ -35,6 +36,7 @@
 		</script>
 		<%
 	}
+
 %>
 <!DOCTYPE html>
 <html>
@@ -69,14 +71,11 @@
                     배송 번호 <input type = "text" size = 5 name="order_id">
                     <input type="submit" value="조회" class="shipping">    
                 </td>
-                <td>
-                    배송번호를 잃어버렸어요. <a>배송번호 찾기</a>
-                </td>
             </tr>
             </form>
             <form action="order-query-Search-name+tel.jsp" method="post">
             <tr>
-                <th>배송번호 조회</th>
+                <th>배송번호 찾기</th>
             </tr>
             <tr>
                 <td>
@@ -86,11 +85,11 @@
                     <input type="submit" value="조회" class="shipping">
                 </td>
             </tr>
-            <tr>
-                <td>
-                    2021년 5월 12일 14:22 &nbsp;&nbsp;&nbsp;부산 > 김천 &nbsp;&nbsp;&nbsp;<point>B53PK</point>
-                </td>
-            </tr>
+<!--             <tr> -->
+<!--                 <td> -->
+<!--                     2021년 5월 12일 14:22 &nbsp;&nbsp;&nbsp;부산 > 김천 &nbsp;&nbsp;&nbsp;<point>B53PK</point> -->
+<!--                 </td> -->
+<!--             </tr> -->
         </table>
         <table>
                 <tr><th colspan="2">배송 정보</th></tr>
