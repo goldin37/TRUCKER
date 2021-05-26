@@ -10,16 +10,19 @@
 	if(db.completeOrder(id) == 1 ){
 %>
 		<script>
-			alert("배송을 완료하셨습니다.");
-		</script>
+					alert("배송을 완료하셨습니다.");
+					document.location.href="mypage.jsp"
+			</script>					
 <%
-		response.sendRedirect("mypage.jsp");		
-	}else{
+		}else{
 %>
-		<script>
-			alert("배송완료못하였습니다.\n 배송을 계속 진행합니다.");
-		</script>
+			<script>
+					alert("배송을  완료하지 못하였습니다. \n 이전으로 돌아갑니다.");
+					history.go(-1);
+			</script>
 <%
-		response.sendRedirect("mypage.jsp");		
 	}
 %>
+
+
+			

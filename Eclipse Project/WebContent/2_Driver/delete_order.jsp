@@ -6,22 +6,21 @@
 <%
 	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
 	String id = request.getParameter("driver_id");
-	System.out.println(id);
 	if(db.deleteOrder(id) == 1 ){
 %>
-		<script>
-			alert("배송을 취소하셨습니다.");
-		</script>
+			<script>
+					alert("배송을 취소하셨습니다.");
+					document.location.href="mypage.jsp"
+			</script>		
 <%
-		response.sendRedirect("mypage.jsp");		
 	}else{
 %>
-		<script>
-			alert("배송을 취소하지 못하였습니다.");
-		</script>
+			<script>
+					alert("취소하지 못했습니다.\n 이전으로 돌아갑니다.");
+					history.go(-1);
+			</script>
 <%
-		response.sendRedirect("mypage.jsp");		
 	}
 %>
-		
+
 				
