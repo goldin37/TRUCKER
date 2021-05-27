@@ -26,10 +26,9 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "#">화물접수</a></td>
-                <td><a href = "#">배송조회</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href="login.html">로그인</a></td>
+                <td><a href="searchID.html">아이디 찾기</a></td>
+                <td><a href="searchPW.html">비밀번호 찾기</a></td>
             </tr>
         </table>
       </nav>

@@ -24,16 +24,15 @@
         <h2>믿을 수 있는 화물 중개 플랫폼</h2>
         <h1>트럭커(TRUCKER)</h1>
     </header>
-      <nav>
-          <table>
+    <nav>
+        <table>
             <tr>
-                <td><a href = "#">화물접수</a></td>
-                <td><a href = "#">배송조회</a></td>
-                <td><a href = "#">고객센터</a></td>
-                <td><a href = "#">회사소개</a></td>
+                <td><a href="login.html">로그인</a></td>
+                <td><a href="searchID.html">아이디 찾기</a></td>
+                <td><a href="searchPW.html">비밀번호 찾기</a></td>
             </tr>
         </table>
-      </nav>
+    </nav>
       <section>
           <h1>비밀번호 찾기</h1>
           <table>

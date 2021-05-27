@@ -56,7 +56,7 @@
       <nav>
           <table>
             <tr>
-                <td><a href = "orderlist.jsp">배송조회</a></td>
+                <td><a href = "orderlist.jsp?driver_id=<%=id%>">접수현황</a></td>
                 <td><a href = "mypage.jsp">마이페이지</a></td>
                 <td><a href = "../3_ServiceCenter/FAQ_main.jsp">고객센터</a></td>
                 <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>

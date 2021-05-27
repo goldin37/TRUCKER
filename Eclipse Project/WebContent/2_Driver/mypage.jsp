@@ -5,7 +5,10 @@
 <%
 	if(session.getAttribute("id") == null){
 %>
-		<jsp:forward page ="login.html"></jsp:forward>
+		<script>
+			alert("로그인 후 접속해주세요");
+			document.location.href="login.html";
+		</script>
 <%
 	}
 	String id = (String)session.getAttribute("id");
@@ -15,6 +18,7 @@
 	String truck_number = (String)session.getAttribute("truck_number");
 	String phone = (String)session.getAttribute("phone");
 	
+	System.out.println(truck_type);
 	// 진행중인 배송
 		
 	String cargo_type="",cargo_help="",to_where="",from_where="",customer_name="";
@@ -95,7 +99,7 @@
             </form>
         </table>
         <input type="button" value="로그아웃" class="click" onclick="location.href='logOut.jsp'">
-        <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp'">
+        <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp?driver_id=<%=id%>'">
     </section>
     <section class="now">
        		<%
@@ -110,7 +114,7 @@
             	}
             %>
         <table>
-            <form name="form" action="view_ordered.jsp" method="post" enctype="multipart/form-data">
+            <form name="form" action="view_ordered.jsp?driver_id=<%=id%>" method="post" enctype="multipart/form-data">
             <%
             	if(depart_time != null){
        		%>
@@ -140,7 +144,7 @@
 				</td>
             </tr>
             <tr>
-                <td>화물무게 : <%=cargo_weight %>kg</td>
+                <td>화물무게 : <%=cargo_weight %></td>
             </tr>
             <tr>
                 <td>상차지 :<%=from_where %></td>
@@ -173,13 +177,13 @@
                     <!-- @##@##@##@##@##@##@ here!!!#@#@#@#@#@#@# 운송완료 누르면 completed_order로 넘어가서 complete로 바뀝니다. @#@#@#@#@#@#@#@#@#@#
                     		메소드는 deliveryOrderDB에 completeorder()입니다. @#@!#@!#!@#!@$!@#@!#!@#!@#!@#!@#-->
                     <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp?driver_id=<%=id%>'">
-                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered.jsp'">
+                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered.jsp?driver_id=<%=id%>'">
                     
                  <%
             		}else{
            		 %>
                     <input type="button" value="운송접수확인" class="click_1" onclick="location.href='orderlist.jsp?driver_id=<%=id%>'">
-                    <input type="button" value="운송내역확인" class="click_1" onclick="location.href='view_ordered.jsp'">
+                    <input type="button" value="운송내역확인" class="click_1" onclick="location.href='view_ordered.jsp?driver_id=<%=id%>'">
                 <%
             		}
          	  	 %>    
