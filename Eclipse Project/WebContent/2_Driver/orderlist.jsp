@@ -84,10 +84,36 @@
                     <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>&driver_id=<%=id %>" ><%= order_id %></a>
 			 	</td>
 			 	<td align="center">
-			 		<%= truck_type %>
+			 		<%
+			 			String trucktype = "";
+			 			if(truck_type.equals("damas")){
+			 				trucktype = "´Ù¸¶½º";
+			 			}else if(truck_type.equals("labo")){
+			 				trucktype = "¶óº¸";
+			 			}else if(truck_type.equals("1ton")){
+			 				trucktype = "1Åæ";
+			 			}else if(truck_type.equals("1.4ton")){
+			 				trucktype = "1.4Åæ";
+			 			}else if(truck_type.equals("2.5ton")){
+			 				trucktype = "2.5Åæ";
+			 			}
+			 		%>
+			 		<%= trucktype %>
 			 	</td>
 			 	<td align="center">
-			 		<%= cargo_type %>
+			 		<%
+                    	String cargotype = "";
+                    	if(cargo_type.equals("pallet")){
+                    		cargotype = "ÆÄ·¹Æ®";
+                    	}else if(cargo_type.equals("box")){
+                    		cargotype = "¹Ú½º";
+                    	}else if(cargo_type.equals("equipment")){
+                    		cargotype = "ÁßÀåºñ";
+                    	}else if(cargo_type.equals("general")){
+                    		cargotype = "ÀÏ¹İÈ­¹°(ÀÌ»ñÁü µî)";
+                    	}
+                    %>
+                    	<%=cargotype %>
 			 	</td>
 			 	<td>
 			 		<%= cargo_weight %> kg

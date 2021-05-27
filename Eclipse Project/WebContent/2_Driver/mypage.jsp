@@ -17,7 +17,7 @@
 	
 	// 진행중인 배송
 		
-	String cargo_type="",cargo_help="",to_where="",from_where="",customer_name="",customer_telephone="";
+	String cargo_type="",cargo_help="",to_where="",from_where="",customer_name="";
 	int cargo_weight=0,fix_cost=0;
 	Timestamp depart_time=null;
 	
@@ -38,7 +38,6 @@
 			from_where = deliveryorder.getFrom_where() + deliveryorder.getFrom_spec();
 			depart_time = deliveryorder.getDepart_time();
 			customer_name = deliveryorder.getCustomer_name();
-			//customer_tel = deliveryorder.getCustomer_telephone();
 			fix_cost = deliveryorder.getFix_cost();
 			
 		}
@@ -85,7 +84,10 @@
                 <td>면허 번호: <%=license %></td>
             </tr>
             <tr>
-                <td>차량 : <%=truck_type %></td>
+                <td>
+                	차량 : 
+			 		<%= truck_type %>
+                </td>
             </tr>
             <tr>
                 <td>차량번호 : <%=truck_number %></td>
@@ -96,7 +98,7 @@
         <input type="button" value="정보수정" class="click" onclick="location.href='modification.jsp'">
     </section>
     <section class="now">
-        <%
+       		<%
             	if(depart_time != null){
        		%>
        				<h2 id="box">진행 중인 배송</h2>
@@ -108,19 +110,34 @@
             	}
             %>
         <table>
-            <form name="form" action="view_ordered_1.jsp" method="post" enctype="multipart/form-data">
-            
+            <form name="form" action="view_ordered.jsp" method="post" enctype="multipart/form-data">
+            <%
+            	if(depart_time != null){
+       		%>
             <tr>
                 <td>고객이름 : <%=customer_name %></td>
             </tr>
             <tr>
-                <td>고객연락처 : <%=customer_tel %></td>
+                <td>
+                	출발일자 : <%=depart_time %>
+               	</td>
             </tr>
             <tr>
-                <td>출발일자 : <%=depart_time %></td>
-            </tr>
-            <tr>
-                <td>화물종류 : <%=cargo_type %></td>
+                <td>화물종류 : 
+					<%
+                    	String cargotype = "";
+                    	if(cargo_type.equals("pallet")){
+                    		cargotype = "파레트";
+                    	}else if(cargo_type.equals("box")){
+                    		cargotype = "박스";
+                    	}else if(cargo_type.equals("equipment")){
+                    		cargotype = "중장비";
+                    	}else if(cargo_type.equals("general")){
+                    		cargotype = "일반화물(이삿짐 등)";
+                    	}
+                    %>
+                   	<%=cargotype %>
+				</td>
             </tr>
             <tr>
                 <td>화물무게 : <%=cargo_weight %></td>
@@ -132,7 +149,19 @@
                 <td>하차지 : <%=to_where %></td>
             </tr>
             <tr>
-                <td>승하차도움 : <%=cargo_help %></td>
+                <td>승하차도움 : 
+					<%
+                    	String cargohelp = "";
+                    	if(cargo_help.equals("drive_only")){
+                    		cargohelp = "운송만";
+                    	}else if(cargo_help.equals("load_and_discharge")){
+                    		cargohelp = "승하차 도움 필요";
+                    	}else if(cargo_help.equals("to_door")){
+                    		cargohelp = "승하차후 집/창고까지 이동";
+                    	}
+                    %>
+                   	<%=cargohelp %>
+				</td>
             </tr>
             <tr>
                 <td>운임비용 : <%=fix_cost%></td>
@@ -144,8 +173,16 @@
                     <!-- @##@##@##@##@##@##@ here!!!#@#@#@#@#@#@# 운송완료 누르면 completed_order로 넘어가서 complete로 바뀝니다. @#@#@#@#@#@#@#@#@#@#
                     		메소드는 deliveryOrderDB에 completeorder()입니다. @#@!#@!#!@#!@$!@#@!#!@#!@#!@#!@#-->
                     <input type="button" value="운송접수확인" class="click" onclick="location.href='orderlist.jsp?driver_id=<%=id%>'">
-                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered_1.jsp'">
+                    <input type="button" value="운송내역확인" class="click" onclick="location.href='view_ordered.jsp'">
                     
+                 <%
+            		}else{
+           		 %>
+                    <input type="button" value="운송접수확인" class="click_1" onclick="location.href='orderlist.jsp?driver_id=<%=id%>'">
+                    <input type="button" value="운송내역확인" class="click_1" onclick="location.href='view_ordered.jsp'">
+                <%
+            		}
+         	  	 %>    
                  </td>
              </tr>
             </form>
@@ -155,8 +192,8 @@
     <section class="question">
         <h2 id="box">문의사항</h2> 
         <ul>
-            <li><a href="#"> FAQ 바로가기</a></li>
-            <li><a href="#"> Q & A 바로가기</a></li>
+            <li><a href="../3_ServiceCenter/Notice_main.jsp"> 공지사항 바로가기</a></li>
+            <li><a href="../3_ServiceCenter/FAQ_main.jsp"> 자주하는 질문(FAQ) 바로가기</a></li>
             <li>고객센터 운영시간 09:00~18:00</li>
             <li>전화번호 1555-1555</li>
         </ul>

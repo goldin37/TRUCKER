@@ -15,7 +15,7 @@
 	
 	
 	queryDB odb = queryDB.getInstance(); 
-	DeliveryOrder order = odb.getOrder2(name, tel);
+	DeliveryOrder order = odb.getOrder_name_tel(name, tel);
 	
 	int order_id = 0;
 	String order_state = "";
@@ -116,66 +116,28 @@ function orderid_check(){
             <td colspan="2">
                 배송 번호 : <point><%= order_id %></point><br><br>
                 
-                <!-- 배송상태에 맞는 이미지 -->
+               <!-- 배송상태에 맞는 이미지 -->
                 <% if(order_state.equals("order")){
                 	%> <img src = "../images/assign1.png" width="100%"> <%
-                }else if(order_state.equals("accept")){
+                }else if(order_state.equals("shipping")){
                 	%> <img src = "../images/assign2.png" width="100%"> <%
-                }else if(order_state.equals("depart")){
+                }else if(order_state.equals("complete")){
                 	%> <img src = "../images/assign3.png" width="100%"> <%
-                }else if(order_state.equals("arrive")){
-                	%> <img src = "../images/assign4.png" width="100%"> <%
-                }else{
-                	%> <img src = "../images/assign5.png" width="100%"> <%
-                } %>
+                }
+                %>
                 <br><br>
                 
                 
                 <!-- 배송상태 메세지 -->
-                고객님의 화물은 <point><% if(order_state.equals("order")){
-                	%> 배송 접수 <%
-                }else if(order_state.equals("accept")){
-                	%> 배차 완료 <%
-                }else if(order_state.equals("depart")){
-                	%> 배송 시작 <%
-                }else if(order_state.equals("arrive")){
-                	%> 배송 완료 <%
-                }else{
-                	%> 배송 확인 <%
-                } %>
-                
+                고객님의 화물은(이) <point><% if(order_state.equals("order")){
+	                	%> 배송 접수 <%
+	                }else if(order_state.equals("shipping")){
+	                	%> 배송 시작 <%
+	                }else if(order_state.equals("complete")){
+	                	%> 배송  완료<%
+	                }
+	                %>
               </point> 되었습니다.<br><br><br>
-              
-               <!-- null값시 아무것도 출력x -->
-                배송 접수 : <% if(order_date_time == null){
-                } else {
-                	%><%= order_date_time %> <%
-                }
-                %><br>
-                
-                배차 완료 : <% if(accept_date_time == null){
-                } else {
-                	%><%= accept_date_time %> <%
-                }
-                %><br>
-                
-                배송 시작 : <% if(depart_date_time == null){
-                } else {
-                	%><%= depart_date_time %> <%
-                }
-                %><br>  
-                
-                배송 완료 : <% if(arrive_date_time == null){
-                } else {
-                	%><%= arrive_date_time %> <%
-                }
-                %><br> 
-                
-                배송 확인 : <% if(complete_date_time == null){
-                } else {
-                	%><%= complete_date_time %> <%
-                }
-                %><br> 
             </td>
         </table>
         </form>

@@ -64,23 +64,23 @@
         </table>
       </nav>
    <section class="ordershow">
-        <h1>요청된 배송</h1>
+        <h1>완료된 배송</h1>
         <table>
             <form action= "order_ok.jsp?order_id=<%=order_id %>&driver_id=<%=id %>" method="post">
                 <tr>
-                    <td width="130">주문번호: </td>
+                    <td width="130">주문번호</td>
                     <td><%=orderid%></td>
                 </tr>
                 <tr>
-                    <td width="130">작성자: </td>
+                    <td width="130">작성자</td>
                     <td><%= customer_name %></td>
-                    <td width="130">연락처: </td>
+                    <td width="130">연락처</td>
                     <td><%= customer_tel %></td>
                 </tr>
                 <tr>
-                   <td width="130">화물종류: </td>
+                   <td width="130">화물종류 </td>
                    <td>
-                   	<%
+                    <%
                     	String cargotype = "";
                     	if(cargo_type.equals("pallet")){
                     		cargotype = "파레트";
@@ -93,12 +93,12 @@
                     	}
                     %>
                     	<%=cargotype %>
-                   </td>
-                   <td width="130">화물무게: </td>
+                    </td>
+                   <td width="130">화물무게 </td>
                    <td><%= cargo_weight%>kg</td>
                 </tr>
                 <tr>
-                    <td width="130">승하차 도움: </td>
+                    <td width="130">승하차 도움</td>
                     <td>
                     <%
                     	String cargohelp = "";
@@ -112,36 +112,35 @@
                     %>
                     	<%=cargohelp %>
                     </td>
-                    <td width="130">요금: </td>
+                    <td width="130">요금</td>
                     <td><%= fix_cost%>원</td>
                 </tr>
                 <tr>
-                    <td width="130">출발지: </td>
+                    <td width="130">출발지</td>
                     <td colspan="4"><%=from_where %></td>
                 </tr>
                 <tr>
-                    <td width="130">도착지: </td>
+                    <td width="130">도착지</td>
                     <td colspan="4"><%= to_where%></td>
                 </tr>
                 <tr>
-                    <td width="130">출발일시: </td>
+                    <td width="130">출발일시</td>
                     <td><%= sdf.format(depart_time) %></td>
-                    <td width="130">예상거리: </td>
+                    <td width="130">예상거리</td>
                     <td><%=distance %>km</td>
                 </tr>
                 <tr>
-                    <td width="130">예상 소요시간: </td>
+                    <td width="130">소요시간</td>
                     <td><%= time%></td>
-                    <td width="130">예상 도착시간: </td>
+                    <td width="130">도착시간</td>
                     <td><%= eta %></td>
                 </tr>
                 <tr>
-                    <td width="130">세부사항: </td>
+                    <td width="130">세부사항</td>
    		            <td><%=cargo_spec %></td>
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <input type="submit" value="수락" class="order" style="height: 40px" >
                         <input type="button" value="글목록" class="order" onclick="location.href='orderlist.jsp?pageNum=<%= pageNum %>'">
                     </td>
                 </tr>

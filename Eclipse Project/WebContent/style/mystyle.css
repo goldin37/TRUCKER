@@ -293,7 +293,7 @@ footer a:hover{
 }
 .now{   
     width: 1000px;
-    height: 750px;
+    height: 700px;
     margin: auto;
     padding: 50px;
     border: silver solid;
@@ -313,6 +313,14 @@ footer a:hover{
     padding: 10px;
     margin: 15px;
     float: right;
+}
+.click_1{
+    border-bottom: none;
+    border-radius: 10px;
+    width: 190px;
+    padding: 10px;
+    margin: 15px;
+    float: center;
 }
 .click:hover{
   	 background: rgb(131, 167, 218);

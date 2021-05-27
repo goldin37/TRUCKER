@@ -6,12 +6,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+// 오류 발생시 sdf.format(depart_time)에서 sdf.format를 삭제해보세요.
+	String id = request.getParameter("driver_id");
+
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
 		pageNum = "1";
 	}
 	DeliveryOrderDB db = DeliveryOrderDB.getInstance();
-	ArrayList<DeliveryOrder> orderList = db.listOrder_onlyorder(pageNum);
+	ArrayList<DeliveryOrder> orderList = db.listOrder_onlycomplete(pageNum);
 	
 	String truck_type,cargo_type,cargo_help,cargo_spec,to_where,from_where,time,eta, order_state;
 	int order_id, cargo_weight,distance,fix_cost;
@@ -24,7 +27,7 @@
     <meta charset="euc-kr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>배송내역조회</title>
+    <title>배송내역조회(1/2)</title>
     <link rel="stylesheet" href="../style/mystyle.css" type = "text/css">
     <!-- style/mystyle.css 로 변경 -->
 </head>
@@ -78,13 +81,39 @@
 %>
 				<tr bgcolor="#f7f7f7"> 
 			 	<td align="center"  id="click">
-                    <a href="ordershow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>"><%= order_id %></a>
+                    <a href="view_orderedshow.jsp?order_id=<%=order_id %>&pageNum=<%=pageNum %>&driver_id=<%=id %>" ><%= order_id %></a>
 			 	</td>
 			 	<td align="center">
-			 		<%= truck_type %>
+			 		<%
+			 			String trucktype = "";
+			 			if(truck_type.equals("damas")){
+			 				trucktype = "다마스";
+			 			}else if(truck_type.equals("labo")){
+			 				trucktype = "라보";
+			 			}else if(truck_type.equals("1ton")){
+			 				trucktype = "1톤";
+			 			}else if(truck_type.equals("1.4ton")){
+			 				trucktype = "1.4톤";
+			 			}else if(truck_type.equals("2.5ton")){
+			 				trucktype = "2.5톤";
+			 			}
+			 		%>
+			 		<%= trucktype %>
 			 	</td>
 			 	<td align="center">
-			 		<%= cargo_type %>
+			 		<%
+                    	String cargotype = "";
+                    	if(cargo_type.equals("pallet")){
+                    		cargotype = "파레트";
+                    	}else if(cargo_type.equals("box")){
+                    		cargotype = "박스";
+                    	}else if(cargo_type.equals("equipment")){
+                    		cargotype = "중장비";
+                    	}else if(cargo_type.equals("general")){
+                    		cargotype = "일반화물(이삿짐 등)";
+                    	}
+                    %>
+                    	<%=cargotype %>
 			 	</td>
 			 	<td>
 			 		<%= cargo_weight %> kg
@@ -106,8 +135,18 @@
 			 	<td align="center">
 					<%= fix_cost %>원
 			 	</td>
-			 	<td align="center">
-					<%= order_state %>
+			 		<td align="center">
+					<%
+						String orderstate = "";
+						if(order_state.equals("order")){
+							orderstate = "배송요청";
+						}else if(order_state.equals("shipping")){
+							orderstate = "배송중";
+						}else if(order_state.equals("complete")){
+							orderstate = "배송완료";
+						}
+					%>
+					<%= orderstate %>
 			 	</td>
 			</tr>
 	<%
