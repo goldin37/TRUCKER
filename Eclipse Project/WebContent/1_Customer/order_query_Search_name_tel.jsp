@@ -118,11 +118,11 @@ function orderid_check(){
                 
                <!-- 배송상태에 맞는 이미지 -->
                 <% if(order_state.equals("order")){
-                	%> <img src = "../images/assign1.png" width="100%"> <%
+                	%> <img src = "../images/order.png" width="100%"> <%
                 }else if(order_state.equals("shipping")){
-                	%> <img src = "../images/assign2.png" width="100%"> <%
+                	%> <img src = "../images/shipping.png" width="100%"> <%
                 }else if(order_state.equals("complete")){
-                	%> <img src = "../images/assign3.png" width="100%"> <%
+                	%> <img src = "../images/complete.png" width="100%"> <%
                 }
                 %>
                 <br><br>

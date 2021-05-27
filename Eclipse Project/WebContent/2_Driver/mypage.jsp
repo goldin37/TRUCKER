@@ -140,7 +140,7 @@
 				</td>
             </tr>
             <tr>
-                <td>화물무게 : <%=cargo_weight %></td>
+                <td>화물무게 : <%=cargo_weight %>kg</td>
             </tr>
             <tr>
                 <td>상차지 :<%=from_where %></td>

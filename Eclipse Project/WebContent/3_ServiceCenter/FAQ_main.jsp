@@ -49,7 +49,7 @@
         <table>
             <tr>
                 <td><a href = "../1_Customer/order1.jsp">화물접수</a></td>
-                <td><a href = "../1_Customer/order-query.jsp">배송조회</a></td>
+                <td><a href = "../1_Customer/order_query.jsp">배송조회</a></td>
                 <td><a href = "Notice_main.jsp">고객센터</a></td>
                 <td><a href = "../1_Customer/companyIntroduction.html">회사소개</a></td>
             </tr>
