@@ -23,7 +23,7 @@ public class queryDB {
 		return ds.getConnection();
 	}
 	
-	public DeliveryOrder getOrder(int bid) {
+	public DeliveryOrder getOrder_orderid(int bid) {
 		Connection con=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -63,7 +63,7 @@ public class queryDB {
 		}
 		return order;
 	}
-		public DeliveryOrder getOrder2(String name, String tel) {
+		public DeliveryOrder getOrder_name_tel(String name, String tel) {
 			Connection con=null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
