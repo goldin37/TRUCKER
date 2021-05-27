@@ -484,7 +484,7 @@ public class DeliveryOrderDB {
 		//shipping -> order로 변환 + 배정된 driver_id 삭제
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update delivery_order set order_state=?, driver_id =? where driver_id=?";
+		String sql = "update delivery_order set order_state=?, driver_id =? where order_state='shipping' and driver_id=?";
 		int re = -1;
 		
 		try {
@@ -513,7 +513,7 @@ public class DeliveryOrderDB {
 		//shipping -> complete 변환
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "update delivery_order set order_state=? where driver_id=?";
+		String sql = "update delivery_order set order_state=? where order_state='shipping' and driver_id=?";
 		int re = -1;
 		
 		try {
